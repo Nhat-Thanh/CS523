@@ -1,20 +1,20 @@
-data_file_path="./data/data.txt"
-database_file_path="./database.db"
+DATA_FILE_PATH="./data/data.txt"
+DATABASE_FILE_PATH="./database.db"
 
-n=1000000;
+N=1000000;
 echo "creating a table which has $n records"
 
-line=(`sed -n '1,1000000 p' $data_file_path`);
-i=0
+LINE=(`sed -n '1,1000000 p' $DATA_FILE_PATH`);
+I=0
 
-# sqlite3 $database_file_path "DROP TABLE Btree;"
+# sqlite3 $DATABASE_FILE_PATH "DROP TABLE Btree;"
 
-sqlite3 $database_file_path "CREATE TABLE Btree (NUMBER INTEGER PRIMARY KEY);"
+sqlite3 $DATABASE_FILE_PATH "CREATE TABLE Btree (NUMBER INTEGER PRIMARY KEY);"
 
-while [ $i -lt "$n" ]
+while [ $I -lt "$N" ]
 do
-	sqlite3 $database_file_path "INSERT INTO Btree VALUES (${line[$i]});";
-	i=$(($i+1))
+	sqlite3 $DATABASE_FILE_PATH "INSERT INTO Btree VALUES (${LINE[$I]});";
+	I=$(($I+1))
 done
 
 echo "finish creating database"
