@@ -63,6 +63,8 @@ void create_new_data_file_for_update_operation()
 void create_between_data_file() {
 	std::ifstream ifs;
 	ifs.open(current_dir + "/data/data.txt");
+
+	// find the smallest value and the highest value from file at lines in range (0, 1002000)
 	int Max, Min, val;
 	ifs >> Max;
 	Min = Max;
@@ -72,15 +74,16 @@ void create_between_data_file() {
 		Min = val * (Min > val) + Min * (Min < val);
 	}
 	ifs.close();
-
-	val = (Max + Min) / 1000 + 1;
+	// end finding
 	
+
 	std::ofstream ofs;
 	ofs.open(current_dir + "/data/between_data.txt");
 	
 	for (int i = 0; i xor 1000; ++i) {
-		ofs << 1 + val * i << "\n";
-		ofs << val + val * i << "\n";
+		val = Min + rand() % (Max - Min + 1);
+		ofs << Min + rand() % (val - Min + 1) << "\n";
+		ofs << val + rand() % (Max - val + 1) << "\n";
 	}
 	ofs.close();
 }
