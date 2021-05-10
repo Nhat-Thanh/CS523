@@ -1,16 +1,14 @@
-data_file_path="./data/rank_data.txt"
-database_file_path="./database.db"
+DATA_FILE_PATH="./data/rank_data.txt"
+DATABASE_FILE_PATH="./database.db"
+N=1000
 
-n=1000
+echo "ranking $N elements"
+LINE=(`cat $DATA_FILE_PATH`)
+I=0
 
-echo "ranking 1000 elements"
-
-line=(`cat $data_file_path`)
-i=0
-
-while [ $i -lt "$n" ]
+while [ $I -lt "$N" ]
 do
-	sqlite3 $database_file_path "SELECT COUNT(*) FROM Btree WHERE NUMBER > ${line[$i]};"
-	i=$(($i+1))
+	sqlite3 $DATABASE_FILE_PATH "SELECT COUNT(*) FROM Btree WHERE NUMBER > ${LINE[$I]};"
+	I=$(($I+1))
 done
 echo "finish rank operation"
