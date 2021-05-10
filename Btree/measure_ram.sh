@@ -1,16 +1,17 @@
-operation=$1
-SENSORS_PATH="./result/$operation/"$operation"_sensors.txt"
+OPERATION=$1
+SENSORS_PATH="./result/$OPERATION/"$OPERATION"_sensors.txt"
 
-sleep 0.1
+sensors >> "$SENSORS_PATH";
 
-sensors >> "$SENSORS_PATH"
+echo "%MEM   RSS  SIZE    VSZ CMD" >> "$SENSORS_PATH";
 
-echo "%CPU %MEM     ELAPSED" >> "$SENSORS_PATH"
+COMMAND="/usr/bin/time -v -o ./result/"$OPERATION"/"$OPERATION"_operation_time.txt ./operating_script/"$OPERATION".sh"
 
-while [ pgrep time ]
+while [ `pgrep --full "$COMMAND"` ]
 do
-	ps --pid $(pgrep sqlite3) --format pcpu,pmem,etime --no-headers >> "$SENSORS_PATH"
-	sleep 1
+	# top -p$(pgrep --full "$command") >> $SENSORS_PATH
+	ps --pid $(pgrep sqlite3) --format pmem,rss,size,vsize --no-headers >> "$SENSORS_PATH"
 done
 
 echo "finish measuring ram"
+
