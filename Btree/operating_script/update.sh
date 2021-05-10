@@ -1,16 +1,16 @@
-old_data_file_path="./data/old_data_for_update_operation.txt"
-new_data_file_path="./data/new_data_for_update_operation.txt"
-database_file_path="./database.db"
+OLD_DATA_FILE_PATH="./data/old_data_for_update_operation.txt"
+NEW_DATA_FILE_PATH="./data/new_data_for_update_operation.txt"
+DATABASE_FILE_PATH="./database.db"
 
-n=1000
-echo "$n elements are updating"
+N=1000
+echo "$N elements are updating"
 
-old=(`cat $old_data_file_path`)
-new=(`cat $new_data_file_path`)
-i=0
-while [ $i -lt "$n" ]
+OLD=(`cat $OLD_DATA_FILE_PATH`)
+NEW=(`cat $NEW_DATA_FILE_PATH`)
+I=0
+while [ $I -lt "$N" ]
 do
-	sqlite3 $database_file_path "UPDATE Btree SET NUMBER = ${new[$i]} WHERE NUMBER = ${old[$i]};"
-	i=$(($i+1))	
+	sqlite3 $DATABASE_FILE_PATH "UPDATE Btree SET NUMBER = ${NEW[$I]} WHERE NUMBER = ${OLD[$I]};"
+	I=$(($I+1))	
 done
 echo "finish update operation"
