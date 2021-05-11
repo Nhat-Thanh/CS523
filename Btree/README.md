@@ -1,4 +1,3 @@
-# CS523
 # Khảo sát Btree bằng phần mềm SQLite
 
 - Trình tự thực hiện hành động: **INSERT** --> **UPDATE** --> **BETWEEN** --> **RANK** --> **DELETE**
