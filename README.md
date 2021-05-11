@@ -30,5 +30,5 @@ Trình tự thực hiện hành động: INSERT -> UPDATE ->BETWEEN -> RANK ->DE
 	+ “measure_ram.sh” chứa các lệnh dùng để đo lượng Ram được sử dụng bởi sqlite thực thi và lưu kết quả vào file
 	+ “database.db” là file database mẫu được tạo sau khi chạy file “CreateDatabase.sh”
 	+ “Bree.sh” là file thực thi chinh, nó chứa các lệnh cần thiết đồng thời gọi các file shell khác để thực thi một hanh động của sqlite, khi gọi file ta truyền cho nó một chuỗi tương ứng với hanh động mà minh muốn sqlite thực hiện.
-	+ vd: bash Btree insert 
+	+ vd: bash Btree.sh insert 
 	+ // thực hiện insert các số trong file insert_data.txt vào database
