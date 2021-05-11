@@ -32,3 +32,4 @@ Trình tự thực hiện hành động: INSERT -> UPDATE ->BETWEEN -> RANK ->DE
 - “Bree.sh” là file thực thi chinh, nó chứa các lệnh cần thiết đồng thời gọi các file shell khác để thực thi một hanh động của sqlite, khi gọi file ta truyền cho nó một chuỗi tương ứng với hanh động mà minh muốn sqlite thực hiện.
 	+ vd: bash Btree.sh insert 
 	+ // thực hiện insert các số trong file insert_data.txt vào database
+	+ Có thể chạy lệnh này để thực hiện toàn bộ quá trình: bash Btree.sh insert && bash Btree.sh update && bash Btree.sh between && bash Btree.sh rank && bash Btree.sh delete
