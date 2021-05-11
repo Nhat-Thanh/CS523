@@ -24,11 +24,11 @@ Trình tự thực hiện hành động: INSERT -> UPDATE ->BETWEEN -> RANK ->DE
 “new_data_for_update_operation.txt” để thực hiện hành động update.
 
 - Thư mục result dùng để lưu kết quả vào các thư mục tương ứng sau khi chạy các hanh dộng của sqlite. 
-	+ “create_data_file.cpp” dùng để tạo ra các file text, những file text này chứa 1 số trên mỗi hàng và các con số này không trùng nhau
-	+ “CreateDatabase.sh” dùng để tạo ra một database mẫu, database này được lưu vào file “database.db”.
-	+ “init.sh” chứa các lệnh dùng để biên dịch file “create_data_file.cpp”, gọi file “CreateDatabase.sh” để tạo database mẫu, file này không nhất thiết phải chạy nếu đã có sẵn data file và database mẫu.
-	+ “measure_ram.sh” chứa các lệnh dùng để đo lượng Ram được sử dụng bởi sqlite thực thi và lưu kết quả vào file
-	+ “database.db” là file database mẫu được tạo sau khi chạy file “CreateDatabase.sh”
-	+ “Bree.sh” là file thực thi chinh, nó chứa các lệnh cần thiết đồng thời gọi các file shell khác để thực thi một hanh động của sqlite, khi gọi file ta truyền cho nó một chuỗi tương ứng với hanh động mà minh muốn sqlite thực hiện.
+- “create_data_file.cpp” dùng để tạo ra các file text, những file text này chứa 1 số trên mỗi hàng và các con số này không trùng nhau
+- “CreateDatabase.sh” dùng để tạo ra một database mẫu, database này được lưu vào file “database.db”.
+- “init.sh” chứa các lệnh dùng để biên dịch file “create_data_file.cpp”, gọi file “CreateDatabase.sh” để tạo database mẫu, file này không nhất thiết phải chạy nếu đã có sẵn data file và database mẫu.
+- “measure_ram.sh” chứa các lệnh dùng để đo lượng Ram được sử dụng bởi sqlite thực thi và lưu kết quả vào file
+- “database.db” là file database mẫu được tạo sau khi chạy file “CreateDatabase.sh”
+- “Bree.sh” là file thực thi chinh, nó chứa các lệnh cần thiết đồng thời gọi các file shell khác để thực thi một hanh động của sqlite, khi gọi file ta truyền cho nó một chuỗi tương ứng với hanh động mà minh muốn sqlite thực hiện.
 	+ vd: bash Btree.sh insert 
 	+ // thực hiện insert các số trong file insert_data.txt vào database
