@@ -27,7 +27,7 @@ then
 	I=1000
 	while [ $I -lt 9001 ]
 	do
-		/usr/bin/time -v -o ./result/delete/$I/delete_operation_time.txt bash ./operating_script/delete.sh | bash ./measure_ram.sh $OPERATION $I
+		/usr/bin/time -v -o ./result/delete/$I/delete_operation_time.txt bash ./operating_script/delete.sh $I | bash ./measure_ram.sh $OPERATION $I
 		I=$(($I+1000))
 	done
 	
