@@ -1,6 +1,6 @@
-DATA_FILE_PATH="./data/delete_data.txt"
-DATABASE_FILE_PATH="./database.db"
-N=1000;                                                                                   
+N=$1
+DATA_FILE_PATH="./data/$N/delete_data.txt"
+DATABASE_FILE_PATH="./database.db"                                                                                  
 
 echo "deleting $N elements from Btree"
 

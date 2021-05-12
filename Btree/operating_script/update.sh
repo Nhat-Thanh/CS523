@@ -1,8 +1,9 @@
-OLD_DATA_FILE_PATH="./data/old_data_for_update_operation.txt"
-NEW_DATA_FILE_PATH="./data/new_data_for_update_operation.txt"
+N=$1
+OLD_DATA_FILE_PATH="./data/$N/old_data_for_update_operation.txt"
+NEW_DATA_FILE_PATH="./data/$N/new_data_for_update_operation.txt"
 DATABASE_FILE_PATH="./database.db"
+#N=(`wc -l < $OLD_DATA_FILE_PATH`)
 
-N=1000
 echo "$N elements are updating"
 
 OLD=(`cat $OLD_DATA_FILE_PATH`)

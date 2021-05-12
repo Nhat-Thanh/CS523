@@ -1,6 +1,7 @@
-DATA_FILE_PATH="./data/rank_data.txt"
+N=$1
+DATA_FILE_PATH="./data/$N/rank_data.txt"
 DATABASE_FILE_PATH="./database.db"
-N=1000
+#N=(`wc -l < $DATA_FILE_PATH`)
 
 echo "ranking $N elements"
 LINE=(`cat $DATA_FILE_PATH`)

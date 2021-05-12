@@ -1,16 +1,15 @@
-DATA_FILE_PATH="./data/between_data.txt"
+N=$1
+DATA_FILE_PATH="./data/$N/between_data.txt"
 DATABASE_FILE_PATH="./database.db"
-
-n=1000
-echo "between with 1000 ranges"
+#N=(`wc -l < $DATA_FILE_PATH`)
 
 LINE=(`cat $DATA_FILE_PATH`)
-i=0
+I=0
 
-while [ $i -lt "$n" ]
+while [ $I -lt "$N" ]
 do
-	sqlite3 $DATABASE_FILE_PATH "SELECT COUNT(*) FROM Btree WHERE NUMBER BETWEEN ${LINE[$i]} AND ${LINE[$i + 1]}";
-	i=$(($i+2))
+	sqlite3 $DATABASE_FILE_PATH "SELECT COUNT(*) FROM Btree WHERE NUMBER BETWEEN ${LINE[$I]} AND ${LINE[$I + 1]};";
+	I=$(($I+2))
 done
 
 echo "finish between operation"
