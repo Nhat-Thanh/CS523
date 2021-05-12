@@ -16,7 +16,7 @@ then
 	I=1000
 	while [ $I -lt 9001 ]
 	do
-		/usr/bin/time -v -o ./result/insert/$I/insert_operation_time.txt bash ./operating_script/insert.sh $I | ./measure_ram.sh $OPERATION $I
+		/usr/bin/time -v -o ./result/insert/$I/insert_operation_time.txt bash ./operating_script/insert.sh $I | bash ./measure_ram.sh $OPERATION $I
 		I=$(($I+1000))
 	done
 
@@ -27,7 +27,7 @@ then
 	I=1000
 	while [ $I -lt 9001 ]
 	do
-		/usr/bin/time -v -o ./result/delete/$I/delete_operation_time.txt bash ./operating_script/delete.sh | ./measure_ram.sh $OPERATION $I
+		/usr/bin/time -v -o ./result/delete/$I/delete_operation_time.txt bash ./operating_script/delete.sh | bash ./measure_ram.sh $OPERATION $I
 		I=$(($I+1000))
 	done
 	
@@ -38,7 +38,7 @@ then
 	I=1000
 	while [ $I -lt 9001 ]
 	do
-		/usr/bin/time -v -o ./result/rank/$I/rank_operation_time.txt bash ./operating_script/rank.sh $I | ./measure_ram.sh $OPERATION $I
+		/usr/bin/time -v -o ./result/rank/$I/rank_operation_time.txt bash ./operating_script/rank.sh $I | bash ./measure_ram.sh $OPERATION $I
 		I=$(($I+1000))
 	done
 	
@@ -48,7 +48,7 @@ then
 	I=1000
 	while [ $I -lt 9001 ]
 	do
-		/usr/bin/time -v -o ./result/between/$I/between_operation_time.txt bash ./operating_script/between.sh $I | ./measure_ram.sh $OPERATION $I
+		/usr/bin/time -v -o ./result/between/$I/between_operation_time.txt bash ./operating_script/between.sh $I | bash ./measure_ram.sh $OPERATION $I
 		I=$(($I+1000))
 	done
 		
@@ -58,7 +58,7 @@ then
 	I=1000
 	while [ $I -lt 9001 ]
 	do
-		/usr/bin/time -v -o ./result/update/$I/update_operation_time.txt bash ./operating_script/update.sh $I | ./measure_ram.sh $OPERATION $I
+		/usr/bin/time -v -o ./result/update/$I/update_operation_time.txt bash ./operating_script/update.sh $I | bash ./measure_ram.sh $OPERATION $I
 		I=$(($I+1000))
 	done
 fi
