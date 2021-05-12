@@ -1,18 +1,18 @@
 	Command being timed: "./operating_script/rank.sh"
-	User time (seconds): 10.27
-	System time (seconds): 3.97
-	Percent of CPU this job got: 95%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:14.90
+	User time (seconds): 52.33
+	System time (seconds): 20.04
+	Percent of CPU this job got: 96%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:15.34
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
 	Maximum resident set size (kbytes): 6372
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 2
-	Minor (reclaiming a frame) page faults: 690082
-	Voluntary context switches: 45078
-	Involuntary context switches: 697
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 3577519
+	Voluntary context switches: 225144
+	Involuntary context switches: 4698
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0
