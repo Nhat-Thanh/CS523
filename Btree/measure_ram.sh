@@ -1,11 +1,12 @@
 OPERATION=$1
-SENSORS_PATH="./result/$OPERATION/"$OPERATION"_sensors.txt"
+N=$2
+SENSORS_PATH="./result/$OPERATION/$N/"$OPERATION"_sensors.txt"
 
 sensors >> "$SENSORS_PATH";
 
 echo "%MEM   RSS  SIZE    VSZ CMD" >> "$SENSORS_PATH";
 
-COMMAND="/usr/bin/time -v -o ./result/"$OPERATION"/"$OPERATION"_operation_time.txt ./operating_script/"$OPERATION".sh"
+COMMAND="/usr/bin/time -v -o ./result/"$OPERATION"/"$N"/"$OPERATION"_operation_time.txt bash ./operating_script/"$OPERATION".sh $N"
 
 while [ `pgrep --full "$COMMAND"` ]
 do
