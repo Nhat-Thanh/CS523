@@ -1,18 +1,18 @@
 	Command being timed: "./operating_script/update.sh"
-	User time (seconds): 1.48
-	System time (seconds): 2.74
-	Percent of CPU this job got: 4%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:34.92
+	User time (seconds): 2.92
+	System time (seconds): 5.73
+	Percent of CPU this job got: 3%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 4:05.61
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 4504
+	Maximum resident set size (kbytes): 4688
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 6
-	Minor (reclaiming a frame) page faults: 247829
-	Voluntary context switches: 104158
-	Involuntary context switches: 673
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 504709
+	Voluntary context switches: 208310
+	Involuntary context switches: 1069
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0
