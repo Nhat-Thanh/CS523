@@ -1,18 +1,18 @@
 	Command being timed: "./operating_script/delete.sh"
-	User time (seconds): 1.44
-	System time (seconds): 2.64
-	Percent of CPU this job got: 4%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:32.33
+	User time (seconds): 4.52
+	System time (seconds): 8.19
+	Percent of CPU this job got: 3%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 6:00.22
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 4588
+	Maximum resident set size (kbytes): 4712
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 6
-	Minor (reclaiming a frame) page faults: 248493
-	Voluntary context switches: 95080
-	Involuntary context switches: 811
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 750866
+	Voluntary context switches: 285497
+	Involuntary context switches: 1652
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0
