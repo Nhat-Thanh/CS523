@@ -1,5 +1,5 @@
 # CS523
-# Contributers
+## Contributers
 | order | Name | Student code |
 |:-----:|:----:|:------------:|
 | 1 | Vũ Nguyễn Nhật Thanh | 19522246 |
