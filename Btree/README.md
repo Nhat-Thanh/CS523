@@ -15,6 +15,7 @@
 - **create_sql_files.cpp** dùng để tạo ra các file sql được lưu trong các thư mục với tên và hành động tương ứng.
 - **CreateDatabase.sh** dùng để tạo ra một database mẫu, database này được lưu vào file **database.db**.
 - **measure_ram.sh** chứa các lệnh dùng để đo lượng Ram được sử dụng bởi sqlite khi thực thi và lưu kết quả vào file.
+- **recovery.sh** dùng để khôi phục database lại trạng thái ban đầu.
 - **Btree.sh** là file thực thi chính, nó chứa gọi các file shell khác để thực thi một hành động của sqlite, khi gọi file ta truyền đối số tương ứng với hành động sqlite thực hiện, các đối số có thể truyền ```insert, delete, update, rank, between, all```.
 	+ vd: ```bash Btree.sh insert``` -> thực hiện insert các số trong file **insert_data.txt** vào database.
 	+ Thực hiện toàn bộ hành động: ```bash Btree.sh all```.
