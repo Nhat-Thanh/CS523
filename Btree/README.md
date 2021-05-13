@@ -8,6 +8,7 @@
 	+ **rank.sh** thực hiện rank ```50000000``` lần.
 	+ **between.sh** thực hiện between ```50000000``` lần.
 	+ **update.sh** update các giá trị ```n = n + 50000000``` với n thuộc đoạn ```[500000001, 55000000]```.
+- Thư mục ***sheet*** chứa các bảng tính thống kê kết quả của các hành động.
 - Thư mục ***sql*** chứa các file sql được chứa trong các thư mục có tên tương ứng với các hành động.
 - Thư mục **result** dùng để lưu kết quả vào các thư mục tương ứng sau khi chạy các hành động của sqlite. 
 - **create_sql_files.cpp** dùng để tạo ra các file sql được lưu trong các thư mục với tên và hành động tương ứng.
