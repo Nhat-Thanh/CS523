@@ -2,7 +2,7 @@
 #include <unistd.h> // get_current_dir_name(), getcwd()
 #include <string>   // std::append(), std::to_string(), + operator
 #include <time.h>   // time(0)
-#include <thread>   // std::thread, detach()
+#include <thread>
 
 // current_records: quantity of records in the sample database (database.db)
 const int current_records = 500000000;
@@ -10,11 +10,16 @@ const int current_records = 500000000;
 // new_records: quantity of new records are going to be used in operations
 const int new_records = 50000000;
 
+const int QUANTITY_OF_RECORDS_AFTER_INSERTED = current_records + new_records;
+
 // QUANTITY_OF_FILES: quantity of sql files in directories which correspond with operations's name
 const int QUANTITY_OF_FILES = 2;
 
 // QUANTITY_OF_NUMBERS_ON_EACH_LINE: quantity of numbers for each insert command line
 const int QUANTITY_OF_NUMBERS_ON_EACH_LINE = 5000000;
+
+// QUANTITY_OF_UPDATED_NUMBERS: quantity of numbers are going to be updated
+const int QUANTITY_OF_UPDATED_NUMBERS = 5000000;
 
 /* assign current directory path to current_dir */
 #if defined(__linux__)
@@ -78,8 +83,8 @@ void create_insert_sql_files()
 
 void create_delete_sql_files()
 {
-    int FIRST = current_records + new_records + 1;
-    int LAST = FIRST + new_records;
+    int FIRST = current_records + QUANTITY_OF_UPDATED_NUMBERS + 1;
+    int LAST = FIRST + new_records + 1;
 
     std::ofstream ofs;
     // path = /current_directory/sql/delete/delete.sql
@@ -98,9 +103,9 @@ void create_delete_sql_files()
 
 void create_update_sql_files()
 {
-    int QUANTITY_OF_LINES = new_records;
+    int QUANTITY_OF_LINES = QUANTITY_OF_UPDATED_NUMBERS;
     int OLD = current_records + 1;
-    int NEW = OLD + new_records;
+    int NEW = QUANTITY_OF_RECORDS_AFTER_INSERTED + 1;
 
     std::ofstream ofs;
     // path = /current_directory/sql/update/update.sql
@@ -120,7 +125,7 @@ void create_update_sql_files()
 void create_between_sql_files()
 {
     int QUANTITY_OF_LINES = new_records;
-    int MAX = current_records + (new_records << 1);
+    int MAX = QUANTITY_OF_RECORDS_AFTER_INSERTED + QUANTITY_OF_UPDATED_NUMBERS;
 
     std::ofstream ofs;
     // path = /current_directory/sql/between/between.sql
@@ -142,8 +147,8 @@ void create_between_sql_files()
 
 void create_rank_sql_files()
 {
-    int QUANTITY_OF_LINES = new_records;
-    int MAX = current_records + (new_records << 1);
+    int QUANTITY_OF_LINES = QUANTITY_OF_UPDATED_NUMBERS;
+    int MAX = QUANTITY_OF_RECORDS_AFTER_INSERTED + QUANTITY_OF_UPDATED_NUMBERS;
 
     std::ofstream ofs;
     // path = /current_directory/sql/rank/rank.sql
