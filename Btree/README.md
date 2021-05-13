@@ -1,16 +1,16 @@
 # Khảo sát Btree bằng phần mềm SQLite
 ## Quá trình test.
 - Trình tự thực hiện hành động: **INSERT** --> **UPDATE** --> **BETWEEN** --> **RANK** --> **DELETE**
-- database dùng để kiểm thử có 1 table với 500 triệu record, mỗi record chứa 1 sô, và giá trị thuộc đoạn ```[1,500000000]```.
-- **INSERT, BETWEEN, DELETE** thực hiện với 50 triệu record.
+- database dùng để kiểm thử có 1 table với ```500.000.000``` record, mỗi record chứa 1 sô, và giá trị thuộc đoạn ```[1,500.000.000]```.
+- **INSERT, BETWEEN, DELETE** thực hiện với ```50.000.000``` record.
 - **UPDATE, RANK** thực hiện với 5 triệu record.
 ## Cấu trúc chức năng các thành phần trong cây thư mục.	
 - Thư mục **operating_script** chứa các file shell mà file **Btree.sh** gọi tới để thực thi các hành động tương ứng của sqlite.
-	+ **insert.sh** thực hiện insert ```50000000``` record vào database.
-	+ **delete.sh** xóa các số ```> 550000000``` trong database.
-	+ **rank.sh** thực hiện rank ```50000000``` lần.
-	+ **between.sh** thực hiện between ```50000000``` lần.
-	+ **update.sh** update các giá trị theo công thức ```n = n + 50000000``` với n thuộc đoạn ```[500000001, 55000000]```.
+	+ **insert.sh** thực hiện insert ```50.000.000``` record vào database.
+	+ **delete.sh** xóa các số ```> 550.000.000``` trong database.
+	+ **rank.sh** thực hiện rank ```5.000.000``` lần.
+	+ **between.sh** thực hiện between ```50.000.000``` lần.
+	+ **update.sh** update các giá trị theo công thức ```n = n + 50.000.000``` với n thuộc đoạn ```[500.000.001, 505.000.000]```.
 - Thư mục ***sheet*** chứa các bảng tính thống kê kết quả của các hành động.
 - Thư mục ***sql*** chứa các file sql được chứa trong các thư mục có tên tương ứng với các hành động.
 - Thư mục **result** dùng để lưu kết quả vào các thư mục tương ứng sau khi chạy các hành động của sqlite. 
