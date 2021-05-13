@@ -1,14 +1,2 @@
-N=$1
-DATA_FILE_PATH="./data/$N/insert_data.txt"
-DATABASE_FILE_PATH="./database.db"
-
-# N=(`wc -l < $DATA_FILE_PATH`)
-echo "inserting $N elements into Btree"
-LINE=(`cat $DATA_FILE_PATH`)
-I=0
-while [ $I -lt "$N" ]
-do
-        sqlite3 "$DATABASE_FILE_PATH" "INSERT INTO Btree VALUES (${LINE[$I]});"
-        I=$(($I+1))
-done
+sqlite3 ./database.db < ./sql/insert/insert.sql
 echo "finish insert operation"
