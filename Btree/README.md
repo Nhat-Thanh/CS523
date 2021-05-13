@@ -11,6 +11,7 @@
 - Thư mục ***sheet*** chứa các bảng tính thống kê kết quả của các hành động.
 - Thư mục ***sql*** chứa các file sql được chứa trong các thư mục có tên tương ứng với các hành động.
 - Thư mục **result** dùng để lưu kết quả vào các thư mục tương ứng sau khi chạy các hành động của sqlite. 
+- **Makefile** dùng để build file .cpp và thực thi file CreateDatabase.sh.
 - **create_sql_files.cpp** dùng để tạo ra các file sql được lưu trong các thư mục với tên và hành động tương ứng.
 - **CreateDatabase.sh** dùng để tạo ra một database mẫu, database này được lưu vào file **database.db**.
 - **measure_ram.sh** chứa các lệnh dùng để đo lượng Ram được sử dụng bởi sqlite khi thực thi và lưu kết quả vào file.
