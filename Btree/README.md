@@ -1,7 +1,7 @@
 # Khảo sát Btree bằng phần mềm SQLite
-
 - Trình tự thực hiện hành động: **INSERT** --> **UPDATE** --> **BETWEEN** --> **RANK** --> **DELETE**
-	
+- database dùng để kiểm thử có 1 table với 500 triệu record, mỗi record chứa 1 sô, và giá trị thuộc đoạn ```[1,500000000]```.
+## Cấu trúc chức năng các thành phần trong cây thư mục.	
 - Thư mục **operating_script** chứa các file shell mà file **Btree.sh** gọi tới để thực thi các hành động tương ứng của sqlite.
 	+ **insert.sh** thực hiện insert ```50000000``` record vào database.
 	+ **delete.sh** xóa các số ```> 550000000``` trong database.
