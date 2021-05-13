@@ -1,5 +1,5 @@
-# CS523
-## Contributers
+# CS523.L21
+## Contributors
 | order | Name | Student code |Git|
 |:-----:|:----:|:------------:|:-:|
 | 1 | Vũ Nguyễn Nhật Thanh | 19522246 | [Nhat-Thanh](https://github.com/Nhat-Thanh/) |
