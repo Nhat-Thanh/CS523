@@ -7,7 +7,7 @@
 	+ **delete.sh** xóa các số ```> 550000000``` trong database.
 	+ **rank.sh** thực hiện rank ```50000000``` lần.
 	+ **between.sh** thực hiện between ```50000000``` lần.
-	+ **update.sh** update các giá trị ```n = n + 50000000``` với n thuộc đoạn ```[500000001, 55000000]```.
+	+ **update.sh** update các giá trị theo công thức ```n = n + 50000000``` với n thuộc đoạn ```[500000001, 55000000]```.
 - Thư mục ***sheet*** chứa các bảng tính thống kê kết quả của các hành động.
 - Thư mục ***sql*** chứa các file sql được chứa trong các thư mục có tên tương ứng với các hành động.
 - Thư mục **result** dùng để lưu kết quả vào các thư mục tương ứng sau khi chạy các hành động của sqlite. 
