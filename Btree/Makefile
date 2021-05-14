@@ -1,10 +1,12 @@
-all: SQL database
+SIZE ?= 250000000
+
+all: SQL clean database 
 
 SQL:
 	g++ create_sql_files.cpp -pthread -o create_sql_files && ./create_sql_files
 
 database:
-	bash ./CreateDatabase.sh
+	bash ./CreateDatabase.sh $(SIZE)
 
 clean:
-	rm create_sql_files
+	rm -f create_sql_files
