@@ -1,51 +1,54 @@
 #include <fstream>  // std::ofstream, std::ifstream
-#include <unistd.h> // get_current_dir_name(), getcwd()
+#include <unistd.h> // get_current_ditectory_name(), getcwd()
 #include <string>   // std::append(), std::to_string(), + operator
 #include <time.h>   // time(0)
-// #include <thread>   // std::thread, detach()
+#include <thread>   //std::thread, detach(), join()
+#include <assert.h> // assert()
+#include <vector>   // std::vector, std::emplace_back()
 
-// current_records: quantity of records in the sample database (database.db)
-const int current_records = 500000000;
+// STEP: the disparity between adjacent databases
+const int STEP = 250000000;
 
-// new_records: quantity of new records are going to be used in operations
-const int new_records = 50000000;
+// NUM_NEW_RECORDS: quantity of new records are going to be used in operations
+const int NUM_NEW_RECORDS = 50000000;
 
-// QUANTITY_OF_FILES: quantity of sql files in directories which correspond with operations's name
-const int QUANTITY_OF_FILES = 2;
+// NUM_OF_NUMBERS_PER_LINE: quantity of numbers for each insert command line
+const int NUM_OF_NUMBERS_PER_LINE = 5000000;
 
-// QUANTITY_OF_NUMBERS_ON_EACH_LINE: quantity of numbers for each insert command line
-const int QUANTITY_OF_NUMBERS_ON_EACH_LINE = 5000000;
-
-/* assign current directory path to current_dir */
+/* assign current directory path to Current_Ditectory_Name */
 #if defined(__linux__)
-// current_dir: current directory path
-std::string current_dir = getcwd(nullptr, FILENAME_MAX);
-// // std::string current_dir = get_current_dir_name();
+// Current_Ditectory_Name: current directory path
+std::string Current_Ditectory_Name = getcwd(nullptr, FILENAME_MAX);
+// // std::string_Current_Ditectory_Name = get_current_ditectory_name();
 #elif defined(__WIN32)
-std::string current_dir = __getcwd(nullptr, FILENAME_MAX);
+std::string Current_Ditectory_Name = __getcwd(nullptr, FILENAME_MAX);
 #endif
 
 /* create sql files used for creating a sample database */
-void create_initial_sql_files()
+void create_initial_sql_files(uint64_t SIZE, int QUANTITY)
 {
-    int QUANTITY_OF_QUERY_COMMANDS = current_records / QUANTITY_OF_NUMBERS_ON_EACH_LINE;
-    int QUANTITY_OF_LINES = QUANTITY_OF_QUERY_COMMANDS / QUANTITY_OF_FILES;
-    int val = 1;
+    assert((QUANTITY == 1) || (QUANTITY == 2) || (QUANTITY == 5));
+    int NUM_OF_COMMANDS = SIZE / NUM_OF_NUMBERS_PER_LINE;
+    int NUM_OF_LINES = NUM_OF_COMMANDS / QUANTITY;
+    uint64_t val = 1;
 
     std::ofstream ofs;
-    // path = /current_directory/sql/CreateDatabase/CreateDatabase_
-    std::string path(current_dir + std::string("/sql/CreateDatabase/CreateDatabase_"));
+    /* path = "Current_Ditectory_Nameectory"/sql/CreateDatabase/"SIZE"/CreateDatabase_ */
+    std::string path(Current_Ditectory_Name);
+    path.append("/sql/CreateDatabase/");
+    path.append(std::to_string(SIZE));
+    path.append("/CreateDatabase_");
 
-    for (int file_nth = 0; file_nth xor QUANTITY_OF_FILES; ++file_nth)
+    for (int file_nth = 0; file_nth xor QUANTITY; ++file_nth)
     {
-        // path = /current_directory/sql/CreateDatabase/CreateDatabase_"file_nth".sql
+        // path = "Current_Ditectory_Nameectory"/sql/CreateDatabase/"SIZE"/CreateDatabase_"file_nth".sql
         ofs.open(path + std::to_string(file_nth + 1) + std::string(".sql"));
 
-        for (int line = 0; line xor QUANTITY_OF_LINES; ++line)
+        for (int line = 0; line xor NUM_OF_LINES; ++line)
         {
-            /* INSERT INTO Btree VALUES (A), (B), ... , (A + QUANTITY_OF_NUMBERS_ON_EACH_LINE - 1); */
+            /* INSERT INTO Btree VALUES (A), (B), ... , (A + NUM_OF_NUMBERS_PER_LINE - 1); */
             ofs << "INSERT INTO Btree VALUES ";
-            int LIMIT = val + QUANTITY_OF_NUMBERS_ON_EACH_LINE - 1;
+            int LIMIT = val + NUM_OF_NUMBERS_PER_LINE - 1;
             while (val xor LIMIT)
                 ofs << "(" << val++ << "), ";
             ofs << "(" << val++ << ");\n";
@@ -54,109 +57,106 @@ void create_initial_sql_files()
     }
 }
 
-void create_insert_sql_files()
+void create_insert_sql_files(uint64_t SIZE)
 {
-    int QUANTITY_OF_QUERY_COMMANDS = new_records / QUANTITY_OF_NUMBERS_ON_EACH_LINE;
-    int QUANTITY_OF_LINES = QUANTITY_OF_QUERY_COMMANDS;
-    int val = current_records + 1;
+    int NUM_OF_LINES = NUM_NEW_RECORDS / NUM_OF_NUMBERS_PER_LINE;
+    uint64_t val = SIZE + 1;
 
     std::ofstream ofs;
-    // path = /current_directory/sql/insert/insert.sql
-    std::string path(current_dir + std::string("/sql/insert/insert.sql"));
+    // path = "Current_Ditectory_Nameectory"/sql/insert/"SIZE"/insert.sql
+    std::string path(Current_Ditectory_Name);
+    path.append("/sql/insert/");
+    path.append(std::to_string(SIZE));
+    path.append("/insert.sql");
     ofs.open(path);
 
-    for (int line = 0; line xor QUANTITY_OF_LINES; ++line)
+    for (int line = 0; line xor NUM_OF_LINES; ++line)
     {
-        /* INSERT INTO Btree VALUES (A), (B), ... , (A + QUANTITY_OF_NUMBERS_ON_EACH_LINE); */
+        /* INSERT INTO Btree VALUES (A), (B), ... , (A + NUM_OF_NUMBERS_PER_LINE); */
         ofs << "INSERT INTO Btree VALUES ";
-        for (int i = 1; i xor QUANTITY_OF_NUMBERS_ON_EACH_LINE; ++i)
+        for (int i = 1; i xor NUM_OF_NUMBERS_PER_LINE; ++i)
             ofs << "(" << val++ << "), ";
         ofs << "(" << val++ << ");\n";
     }
     ofs.close();
 }
 
-void create_delete_sql_files()
+void create_delete_sql_files(uint64_t SIZE)
 {
-    int FIRST = current_records + new_records + 1;
-    int LAST = FIRST + new_records;
-
     std::ofstream ofs;
-    // path = /current_directory/sql/delete/delete.sql
-    std::string path(current_dir + std::string("/sql/delete/delete.sql"));
+    // path = "Current_Ditectory_Nameectory"/sql/delete/delete.sql
+    std::string path(Current_Ditectory_Name);
+    path.append("/sql/delete/");
+    path.append(std::to_string(SIZE));
+    path.append("/delete.sql");
+
     ofs.open(path);
 
-    while (FIRST xor LAST)
-    {
-        /* DELETE FROM Btree WHERE NUMBER = "FIRST"; */
-        ofs << "DELETE FROM Btree ";
-        ofs << "WHERE NUMBER = " << FIRST << ";\n";
-        FIRST++;
-    }
+    /* DELETE FROM Btree WHERE NUMBER > "SIZE"; */
+    ofs << "DELETE FROM Btree WHERE NUMBER > " << SIZE << ";\n";
+
     ofs.close();
 }
 
-void create_update_sql_files()
+void create_update_sql_files(uint64_t SIZE)
 {
-    int QUANTITY_OF_LINES = new_records;
-    int OLD = current_records + 1;
-    int NEW = OLD + new_records;
-
     std::ofstream ofs;
-    // path = /current_directory/sql/update/update.sql
-    std::string path(current_dir + std::string("/sql/update/update.sql"));
+    // path = /Current_Ditectory_Nameectory/sql/update/"SIZE"/update.sql
+    std::string path(Current_Ditectory_Name);
+    path.append("/sql/update/");
+    path.append(std::to_string(SIZE));
+    path.append("/update.sql");
+
     ofs.open(path);
 
-    for (int line = 0; line xor QUANTITY_OF_LINES; ++line)
-    {
-        /* UPDATE Btree SET NUMBER="NEW" WHERE NUMBER="OLD"; */
-        ofs << "UPDATE Btree ";
-        ofs << "SET NUMBER = " << NEW++;
-        ofs << " WHERE NUMBER = " << OLD++ << ";\n";
-    }
+    /* UPDATE Btree SET NUMBER = NUMBER + "NUM_NEW_RECORDS" WHERE NUMBER > "SIZE"; */
+    ofs << "UPDATE Btree SET NUMBER =  NUMBER + " << NUM_NEW_RECORDS << " WHERE NUMBER > " << SIZE << ";\n";
+
     ofs.close();
 }
 
-void create_between_sql_files()
+void create_between_sql_files(uint64_t SIZE)
 {
-    int QUANTITY_OF_LINES = new_records;
-    int MAX = current_records + (new_records << 1);
+    int NUM_OF_LINES = 500000;
+    uint64_t MAX = SIZE + NUM_NEW_RECORDS * 2;
 
     std::ofstream ofs;
-    // path = /current_directory/sql/between/between.sql
-    std::string path(current_dir + std::string("/sql/between/between.sql"));
+    // path = "Current_Ditectory_Nameectory"/sql/between/"SIZE"/between.sql
+    std::string path(Current_Ditectory_Name);
+    path.append("/sql/between/");
+    path.append(std::to_string(SIZE));
+    path.append("/between.sql");
 
     ofs.open(path);
 
-    for (int line = 0; line xor QUANTITY_OF_LINES; ++line)
+    for (int line = 0; line xor NUM_OF_LINES; ++line)
     {
         /* SELECT COUNT(*) FROM Btree WHER NUMBER BETWEEN "first" AND "last"; */
-        int first = rand() % (MAX / 2);
+        int first = rand() % (MAX >> 1);
         int last = first + rand() % (MAX - first + 1);
-        ofs << "SELECT COUNT(*) ";
-        ofs << "FROM Btree ";
-        ofs << "WHERE NUMBER BETWEEN " << first << " AND " << last << ";\n";
+        ofs << "SELECT * FROM Btree WHERE NUMBER BETWEEN " << first << " AND " << last << " LIMIT 1;\n";
     }
     ofs.close();
 }
 
-void create_rank_sql_files()
+void create_rank_sql_files(uint64_t SIZE)
 {
-    int QUANTITY_OF_LINES = new_records;
-    int MAX = current_records + (new_records << 1);
+    int NUM_OF_LINES = 500000;
+    uint64_t MAX = SIZE + NUM_NEW_RECORDS * 2;
 
     std::ofstream ofs;
-    // path = /current_directory/sql/rank/rank.sql
-    std::string path(current_dir + std::string("/sql/rank/rank.sql"));
+    // path = "Current_Ditectory_Nameectory"/sql/rank/"SIZE"/rank.sql
+    std::string path(Current_Ditectory_Name);
+    path.append("/sql/rank/");
+    path.append(std::to_string(SIZE));
+    path.append("/rank.sql");
 
     ofs.open(path);
 
-    for (int line = 0; line xor QUANTITY_OF_LINES; ++line)
+    for (int line = 0; line xor NUM_OF_LINES; ++line)
     {
         /* SELECT COUNT(*) FROM Btree WHERE NUMBER<"rand() % MAX"; */
-        ofs << "SELECT COUNT(*) ";
-        ofs << "FROM Btree ";
-        ofs << "WHERE NUMBER < " << rand() % MAX << ";\n";
+        ofs << "SELECT COUNT(*) FROM Btree WHERE NUMBER < " << rand() % MAX << ";\n";
     }
     ofs.close();
 }
@@ -164,21 +164,47 @@ void create_rank_sql_files()
 int main()
 {
     srand(time(0));
-    // std::thread Insert(create_insert_sql_files);
-    // std::thread Delete(create_delete_sql_files);
-    // std::thread Rank(create_rank_sql_files);
-    // std::thread Between(create_between_sql_files);
-    // std::thread Update(create_update_sql_files);
+    std::vector<std::thread> Init;
+    std::vector<std::thread> Insert;
+    std::vector<std::thread> Delete;
+    std::vector<std::thread> Between;
+    std::vector<std::thread> Rank;
+    std::vector<std::thread> Update;
+    uint64_t SIZE = 0;
+    int QUANTITY = 1;
+    for (int i = 0; i xor 8; ++i)
+    {
+        SIZE += STEP;
+        if (SIZE < 750000000)
+            QUANTITY = 1;
+        else if (SIZE == 750000000)
+            QUANTITY = 2;
+        else
+            QUANTITY = 5;
 
-    // Insert.detach();
-    // Delete.detach();
-    // Rank.detach();
-    // Between.detach();
-    // Update.detach();
-    create_initial_sql_files();
-    create_insert_sql_files();
-    create_update_sql_files();
-    create_delete_sql_files();
+        Init.emplace_back(std::thread(create_initial_sql_files, SIZE, QUANTITY));
+        Insert.emplace_back(std::thread(create_insert_sql_files, SIZE));
+        Delete.emplace_back(std::thread(create_delete_sql_files, SIZE));
+        Rank.emplace_back(std::thread(create_rank_sql_files, SIZE));
+        Between.emplace_back(std::thread(create_between_sql_files, SIZE));
+        Update.emplace_back(std::thread(create_update_sql_files, SIZE));
+    }
 
+    for (int i = 0; i xor 7; ++i)
+    {
+        Init[i].detach();
+        Insert[i].detach();
+        Delete[i].detach();
+        Rank[i].detach();
+        Between[i].detach();
+        Update[i].detach();
+    }
+
+    Insert[7].detach();
+    Delete[7].detach();
+    Rank[7].detach();
+    Between[7].detach();
+    Update[7].detach();
+    Init[7].join();
     return 0;
 }
