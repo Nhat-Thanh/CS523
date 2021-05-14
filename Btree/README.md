@@ -1,24 +1,28 @@
 # Khảo sát Btree bằng phần mềm SQLite
 ## Quá trình test.
 - Trình tự thực hiện hành động: **INSERT** --> **UPDATE** --> **BETWEEN** --> **RANK** --> **DELETE**
-- database dùng để kiểm thử có 1 table với ```500.000.000``` record, mỗi record chứa 1 sô, và giá trị thuộc đoạn ```[1,500.000.000]```.
-- **INSERT, BETWEEN, DELETE** thực hiện với ```50.000.000``` record.
-- **UPDATE, RANK** thực hiện với 5 triệu record.
+- Dùng make để tạo database mẫu: cú pháp ```make <nhãn> [SIZE=<một con số>]```
+	+ ```<nhãn>```:
+- Chạy với 8 database có kích thước lần lượt là: 250 triệu, 500 triệu, 750 triệu, 1 tỷ, 1.25 tỷ, 1.5 tỷ, 1.75 tỷ, 2 tỷ. 
+- Các database dùng để kiểm thử có 1 table với```[250.000.000, 2000.000.000]``` record, mỗi record chứa 1 sô, và giá trị thuộc đoạn ```[1, kích thước database]```.
+- **INSERT, UPDATE, DELETE** thực hiện với ```50.000.000``` record.
+- **BETWEEN, RANK** thực hiện với 500.000 record.
 ## Cấu trúc chức năng các thành phần trong cây thư mục.	
 - Thư mục **operating_script** chứa các file shell mà file **Btree.sh** gọi tới để thực thi các hành động tương ứng của sqlite.
-	+ **insert.sh** thực hiện insert ```50.000.000``` record vào database.
-	+ **delete.sh** xóa các số ```> 550.000.000``` trong database.
-	+ **rank.sh** thực hiện rank ```5.000.000``` lần.
-	+ **between.sh** thực hiện between ```50.000.000``` lần.
-	+ **update.sh** update các giá trị theo công thức ```n = n + 50.000.000``` với n thuộc đoạn ```[500.000.001, 505.000.000]```.
+	+ **insert.sh** nhận 1 đối số ```SIZE (kích thước của database tương ứng)```, và thực hiện insert ```50.000.000``` record vào database đó.
+	+ **delete.sh** nhận 1 đối số ```SIZE (kích thước của database tương ứng)```, và xóa các số ```> SIZE + 50.000.000``` trong database đó.
+	+ **rank.sh** nhận 1 đối số ```SIZE (kích thước của database tương ứng)```, và thực hiện rank ```500.000``` lần trong database đó.
+	+ **between.sh** nhận 1 đối số ```SIZE (kích thước của database tương ứng)```, và thực hiện between ```500.000``` lần trong database đó.
+	+ **update.sh** nhận 1 đối số ```SIZE (kích thước của database tương ứng)```, và update các giá trị theo công thức ```n = n + 50.000.000``` với ```n > SIZE```.
 - Thư mục ***sheet*** chứa các bảng tính thống kê kết quả của các hành động.
 - Thư mục ***sql*** chứa các file sql được chứa trong các thư mục có tên tương ứng với các hành động.
-- Thư mục **result** dùng để lưu kết quả vào các thư mục tương ứng sau khi chạy các hành động của sqlite. 
+	+ Các thư mục có tên là các con số dùng để chứa các file ```.sql``` dùng để thao tác với database có ```SIZE``` tương ứng
+- Thư mục **result** dùng để lưu kết quả vào các thư mục tương ứng sau khi chạy các hành động của sqlite.
+ 	+ Các thư mục tương ứng này được chứa trong các thư mục có tên là các con số tương ứng với ```SIZE``` của database được thao tác. 
 - **Makefile** dùng để build file .cpp và thực thi file CreateDatabase.sh.
-- **create_sql_files.cpp** dùng để tạo ra các file sql được lưu trong các thư mục với tên và hành động tương ứng.
-- **CreateDatabase.sh** dùng để tạo ra một database mẫu, database này được lưu vào file **database.db**.
-- **measure_ram.sh** chứa các lệnh dùng để đo lượng Ram được sử dụng bởi sqlite khi thực thi và lưu kết quả vào file.
-- **recovery.sh** dùng để khôi phục database lại trạng thái ban đầu.
-- **Btree.sh** là file thực thi chính, nó chứa gọi các file shell khác để thực thi một hành động của sqlite, khi gọi file ta truyền đối số tương ứng với hành động sqlite thực hiện, các đối số có thể truyền ```insert, delete, update, rank, between, all```.
-	+ vd: ```bash Btree.sh insert``` -> thực hiện insert các số trong file **insert_data.txt** vào database.
-	+ Thực hiện toàn bộ hành động: ```bash Btree.sh all```.
+- **create_sql_files.cpp** dùng để tạo ra các file ```.sql``` được lưu thư mục ```sql```.
+- **CreateDatabase.sh** nhận 1 đối số ```SIZE (kích thước của database tương ứng)```, và dùng để tạo ra một database mẫu có số lượng record đúng bằng ```SIZE```, database này được lưu vào file **database_"SIZE".db**.
+- **measure_ram.sh** nhận 2 đối số ```SIZE (kích thước của database tương ứng)```, ```OPERATION (hành động thực thi)```, dùng để đo lượng Ram và đĩa cứng được sử dụng bởi sqlite khi thực thi ```OPERATION``` trên database có ```SIZE``` record và lưu kết quả vào file.
+- **recovery.sh** nhận 1 đối số ```SIZE (kích thước của database tương ứng)```, và dùng để khôi phục database có kích thước ban đầu là ```SIZE``` record.
+- **Btree.sh** nhận 2 đối số ```SIZE (kích thước của database tương ứng)```, ```OPERATION (hành động thực thi)```, đây là file thực thi chính, nó thực thi ```OPERATION``` của sqlite với database có ```SIZE``` record, các đối số có thể truyền ```insert, delete, update, rank, between, all```.
+	+ vd: ```bash Btree.sh insert 250000000``` -> thực hiện insert vào database có 250000000 record.
