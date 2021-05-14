@@ -134,7 +134,7 @@ void create_between_sql_files(uint64_t SIZE)
         /* SELECT COUNT(*) FROM Btree WHER NUMBER BETWEEN "first" AND "last"; */
         int first = rand() % (MAX >> 1);
         int last = first + rand() % (MAX - first + 1);
-        ofs << "SELECT * FROM Btree WHERE NUMBER BETWEEN " << first << " AND " << last << " LIMIT 1;\n";
+        ofs << "SELECT COUNT(*) FROM Btree WHERE NUMBER BETWEEN " << first << " AND " << last << ";\n";
     }
     ofs.close();
 }
