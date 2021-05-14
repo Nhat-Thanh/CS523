@@ -2,10 +2,11 @@
 ## Quá trình test.
 - Trình tự thực hiện hành động: **INSERT** --> **UPDATE** --> **BETWEEN** --> **RANK** --> **DELETE**
 - Dùng make để tạo database mẫu: cú pháp ```make <nhãn> [SIZE=<một con số>]```
-	+ ```<nhãn>```:gồm ```all```, ```SQL```, ```database```.
+	+ ```<nhãn>```:gồm ```all```, ```SQL```, ```database```, ```clean```.
 		+ ```all```: chạy 2 nhãn ```SQL```, ```database```.
 		+ ```SQL```: build và run file ```create_sql_files.cpp```.
 		+ ```database```: để chạy nhãn này cần truyền ```SIZE=<một con số>```, chạy file ```CreateDatabase``` với đối số ```SIZE```.
+		+ ```clean```: xóa file thực thi của file ```create_sql_files``` sau khi build.
 	+ ```[SIZE=<một con số>]```: chỉ truyền khi chạy nhãn ```database```.
 		+ ```SIZE=250000000```, ```SIZE=500000000```, ```SIZE=750000000```, ```SIZE=1000000000```, ```SIZE=1250000000```, ```SIZE=1500000000```, ```SIZE=1750000000```, ```SIZE=2000000000```.
 - Chạy với 8 database có kích thước lần lượt là: 250 triệu, 500 triệu, 750 triệu, 1 tỷ, 1.25 tỷ, 1.5 tỷ, 1.75 tỷ, 2 tỷ.
