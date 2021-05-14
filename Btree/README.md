@@ -20,8 +20,8 @@
 2) ```make database SIZE=250000000```
 3) ```bash Btree all 250000000```
 4) Xóa database cũ.
-5) Thực hiện lại bước 2 với ```SIZE``` thay đổi, ```SIZE``` và đối số truyền vào sau ```all``` của lệnh 3 phải giống nhau.
-6) thực hiện lại cho đến khi đủ 8 database :)).
+5) Quay lại và thực hiện bước 2 với ```SIZE``` thay đổi, ```SIZE``` và đối số truyền vào sau ```all``` của lệnh 3 phải giống nhau.
+6) Thực hiện 5 bươc trên cho đến khi đủ 8 database :)).
 ## Cấu trúc chức năng các thành phần trong cây thư mục.	
 - Thư mục **operating_script** chứa các file shell mà file **Btree.sh** gọi tới để thực thi các hành động tương ứng của sqlite.
 	+ **insert.sh** nhận 1 đối số ```SIZE (kích thước của database tương ứng)```, và thực hiện insert ```50.000.000``` record vào database đó.
