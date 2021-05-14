@@ -1,11 +1,14 @@
 OPERATION=$1
+SIZE=$2
+
+rm -f create_sql_files
 
 if [ $OPERATION != "insert" -a \
 	$OPERATION != "delete" -a \
 	$OPERATION != "rank" -a \
 	$OPERATION != "between" -a \
 	$OPERATION != "update" -a \
-	$OPERATION != "all" ]
+	$OPERATION != "all" ]; 
 then
 	echo "operation is invalid
 	all, insert, delete, rank, between, update are acceptable"
@@ -13,49 +16,43 @@ then
 fi
 
 # INSERT OPERATION
-if [ $OPERATION == "all" ]
-then
-	/usr/bin/time -v -o ./result/insert/insert_operation_time.txt bash ./operating_script/insert.sh | bash ./measure_ram.sh insert
+if [ $OPERATION == "all" ]; then
+	/usr/bin/time -v -o ./result/$SIZE/insert/insert_operation_time.txt bash ./operating_script/insert.sh $SIZE | bash ./measure_ram.sh insert $SIZE
 	echo "finish insert"
-	
-	/usr/bin/time -v -o ./result/update/update_operation_time.txt bash ./operating_script/update.sh | bash ./measure_ram.sh update
-	echo "finish update"
-	
-	# /usr/bin/time -v -o ./result/between/between_operation_time.txt bash ./operating_script/between.sh | bash ./measure_ram.sh between
-	# echo "finish between"
-	
-	# /usr/bin/time -v -o ./result/rank/rank_operation_time.txt bash ./operating_script/rank.sh | bash ./measure_ram.sh rank
-	# echo "finish rank"
-	
-	# /usr/bin/time -v -o ./result/delete/delete_operation_time.txt bash ./operating_script/delete.sh | bash ./measure_ram.sh delete
-	# echo "finish delete"
 
-elif [ $OPERATION == "insert" ]
-then
-	/usr/bin/time -v -o ./result/insert/insert_operation_time.txt bash ./operating_script/insert.sh | bash ./measure_ram.sh insert
+	/usr/bin/time -v -o ./result/$SIZE/update/update_operation_time.txt bash ./operating_script/update.sh $SIZE | bash ./measure_ram.sh update $SIZE
+	echo "finish update"
+
+	/usr/bin/time -v -o ./result/$SIZE/between/between_operation_time.txt bash ./operating_script/between.sh $SIZE | bash ./measure_ram.sh between $SIZE
+	echo "finish between"
+
+	/usr/bin/time -v -o ./result/$SIZE/rank/rank_operation_time.txt bash ./operating_script/rank.sh $SIZE | bash ./measure_ram.sh rank $SIZE
+	echo "finish rank"
+
+	/usr/bin/time -v -o ./result/$SIZE/delete/delete_operation_time.txt bash ./operating_script/delete.sh $SIZE | bash ./measure_ram.sh delete $SIZE
+	echo "finish delete"
+
+elif [ $OPERATION == "insert" ]; then
+	/usr/bin/time -v -o ./result/$SIZE/insert/insert_operation_time.txt bash ./operating_script/insert.sh $SIZE | bash ./measure_ram.sh insert $SIZE
 	echo "finish insert"
 
 # DELETE OPERATION
-elif [ $OPERATION == "delete" ]
-then
-	/usr/bin/time -v -o ./result/delete/delete_operation_time.txt bash ./operating_script/delete.sh | bash ./measure_ram.sh delete
+elif [ $OPERATION == "delete" ]; then
+	/usr/bin/time -v -o ./result/$SIZE/sdelete/delete_operation_time.txt bash ./operating_script/delete.sh $SIZE | bash ./measure_ram.sh delete $SIZE
 	echo "finish delete"
 
 # RANK OPERATION
-elif [ $OPERATION == "rank" ]
-then
-	/usr/bin/time -v -o ./result/rank/rank_operation_time.txt bash ./operating_script/rank.sh | bash ./measure_ram.sh rank
+elif [ $OPERATION == "rank" ]; then
+	/usr/bin/time -v -o ./result/$SIZE/rank/rank_operation_time.txt bash ./operating_script/rank.sh $SIZE | bash ./measure_ram.sh rank $SIZE
 	echo "finish rank"
 
 # BETWEEN OPERATION
-elif [ $OPERATION == "between" ]
-then
-	/usr/bin/time -v -o ./result/between/between_operation_time.txt bash ./operating_script/between.sh | bash ./measure_ram.sh between
+elif [ $OPERATION == "between" ]; then
+	/usr/bin/time -v -o ./result/$SIZE/between/between_operation_time.txt bash ./operating_script/between.sh $SIZE | bash ./measure_ram.sh between $SIZE
 	echo "finish between"
-		
+
 # UPDATE OPERATION
-elif [ $OPERATION == "update" ]
-then
-	/usr/bin/time -v -o ./result/update/update_operation_time.txt bash ./operating_script/update.sh | bash ./measure_ram.sh update
+elif [ $OPERATION == "update" ]; then
+	/usr/bin/time -v -o ./result/$SIZE/update/update_operation_time.txt bash ./operating_script/update.sh $SIZE | bash ./measure_ram.sh update $SIZE
 	echo "finish update"
 fi
