@@ -14,7 +14,7 @@
 - Sau khi tạo database mới thì **phải xóa database cũ di** để đo dung lượng ổ đĩa khi thực hiện các hành động trên database mới.
 - Các database dùng để kiểm thử có 1 table với số record thuộc ```{250000000, 500000000, 750000000, 1000000000, 1250000000, 1500000000, 1750000000, 2000.000.000}```, mỗi record chứa 1 sô, và giá trị thuộc đoạn ```[1, kích thước database]```.
 - **INSERT, UPDATE, DELETE** thực hiện với ```50.000.000``` record.
-- **BETWEEN, RANK** thực hiện với 500.000 record.
+- **BETWEEN, RANK** thực hiện bằng cách đo thời gian của cùng 1 hành động 100 lần, sau đó trừ đi thời gian count.
 ## Các lệnh để thực hiện kiểm nghiệm.
 1) ```make SQL```.
 2) ```make database SIZE=250000000```
