@@ -2,7 +2,7 @@
 #include <unistd.h> // get_current_ditectory_name(), getcwd()
 #include <string>   // std::append(), std::to_string(), + operator
 #include <time.h>   // time(0)
-#include <thread>   // std::thread, detach(), join()
+#include <thread>   //std::thread, detach(), join()
 #include <assert.h> // assert()
 #include <vector>   // std::vector, std::emplace_back()
 
@@ -137,7 +137,7 @@ void create_between_sql_files(uint64_t SIZE)
 
     for (int line = 0; line xor NUM_OF_LINES; ++line)
     {
-        ofs << "SELECT COUNT(*) FROM Btree WHERE NUMBER BETWEEN 0 AND " << SIZE  + 1<< ";\n";
+        ofs << "SELECT COUNT(*) FROM Btree WHERE NUMBER BETWEEN 0 AND " << SIZE  + NUM_NEW_RECORDS + 1<< ";\n";
         ofs_count << "SELECT COUNT(*) FROM Btree;\n";
     }
     ofs.close();
@@ -167,7 +167,7 @@ void create_rank_sql_files(uint64_t SIZE)
     for (int line = 0; line xor NUM_OF_LINES; ++line)
     {
         /* SELECT COUNT(*) FROM Btree WHERE NUMBER < "SIZE"; */
-        ofs << "SELECT COUNT(*) FROM Btree WHERE NUMBER < " << SIZE + 1<< ";\n";
+        ofs << "SELECT COUNT(*) FROM Btree WHERE NUMBER < " << SIZE + NUM_NEW_RECORDS + 1<< ";\n";
         ofs_count << "SELECT COUNT(*) FROM Btree;\n";
     }
     ofs.close();
