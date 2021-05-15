@@ -2,7 +2,7 @@
 #include <unistd.h> // get_current_ditectory_name(), getcwd()
 #include <string>   // std::append(), std::to_string(), + operator
 #include <time.h>   // time(0)
-#include <thread>   //std::thread, detach(), join()
+#include <thread>   // std::thread, detach(), join()
 #include <assert.h> // assert()
 #include <vector>   // std::vector, std::emplace_back()
 
