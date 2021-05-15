@@ -33,7 +33,7 @@ void create_initial_sql_files(uint64_t SIZE, int QUANTITY)
     uint64_t val = 1;
 
     std::ofstream ofs;
-    /* path = "Current_Ditectory_Nameectory"/sql/CreateDatabase/"SIZE"/CreateDatabase_ */
+    /* path = "Current_Ditectory_Name"/sql/CreateDatabase/"SIZE"/CreateDatabase_ */
     std::string path(Current_Ditectory_Name);
     path.append("/sql/CreateDatabase/");
     path.append(std::to_string(SIZE));
@@ -41,7 +41,7 @@ void create_initial_sql_files(uint64_t SIZE, int QUANTITY)
 
     for (int file_nth = 0; file_nth xor QUANTITY; ++file_nth)
     {
-        // path = "Current_Ditectory_Nameectory"/sql/CreateDatabase/"SIZE"/CreateDatabase_"file_nth".sql
+        // path = "Current_Ditectory_Name"/sql/CreateDatabase/"SIZE"/CreateDatabase_"file_nth".sql
         ofs.open(path + std::to_string(file_nth + 1) + std::string(".sql"));
 
         for (int line = 0; line xor NUM_OF_LINES; ++line)
@@ -63,7 +63,7 @@ void create_insert_sql_files(uint64_t SIZE)
     uint64_t val = SIZE + 1;
 
     std::ofstream ofs;
-    // path = "Current_Ditectory_Nameectory"/sql/insert/"SIZE"/insert.sql
+    // path = "Current_Ditectory_Name"/sql/insert/"SIZE"/insert.sql
     std::string path(Current_Ditectory_Name);
     path.append("/sql/insert/");
     path.append(std::to_string(SIZE));
@@ -84,7 +84,7 @@ void create_insert_sql_files(uint64_t SIZE)
 void create_delete_sql_files(uint64_t SIZE)
 {
     std::ofstream ofs;
-    // path = "Current_Ditectory_Nameectory"/sql/delete/delete.sql
+    // path = "Current_Ditectory_Name"/sql/delete/delete.sql
     std::string path(Current_Ditectory_Name);
     path.append("/sql/delete/");
     path.append(std::to_string(SIZE));
@@ -101,7 +101,7 @@ void create_delete_sql_files(uint64_t SIZE)
 void create_update_sql_files(uint64_t SIZE)
 {
     std::ofstream ofs;
-    // path = /Current_Ditectory_Nameectory/sql/update/"SIZE"/update.sql
+    // path = /Current_Ditectory_Name/sql/update/"SIZE"/update.sql
     std::string path(Current_Ditectory_Name);
     path.append("/sql/update/");
     path.append(std::to_string(SIZE));
@@ -117,48 +117,61 @@ void create_update_sql_files(uint64_t SIZE)
 
 void create_between_sql_files(uint64_t SIZE)
 {
-    int NUM_OF_LINES = 500000;
-    uint64_t MAX = SIZE + NUM_NEW_RECORDS * 2;
+    int NUM_OF_LINES = 100;
 
-    std::ofstream ofs;
-    // path = "Current_Ditectory_Nameectory"/sql/between/"SIZE"/between.sql
+    std::ofstream ofs, ofs_count;
     std::string path(Current_Ditectory_Name);
+    std::string test_count_path;
+    /* initialize "path" and "test_count_path" */
     path.append("/sql/between/");
     path.append(std::to_string(SIZE));
+    test_count_path.append(path);
     path.append("/between.sql");
+    test_count_path.append("/test_count.sql");
 
+    // path = "Current_Ditectory_Name"/sql/between/"SIZE"/between.sql
     ofs.open(path);
+
+    // test_count_path = "Current_Ditectory_Name"/sql/between/"SIZE"/test_count.sql
+    ofs_count.open(test_count_path);
 
     for (int line = 0; line xor NUM_OF_LINES; ++line)
     {
-        /* SELECT COUNT(*) FROM Btree WHER NUMBER BETWEEN "first" AND "last"; */
-        int first = rand() % (MAX >> 1);
-        int last = first + rand() % (MAX - first + 1);
-        ofs << "SELECT COUNT(*) FROM Btree WHERE NUMBER BETWEEN " << first << " AND " << last << ";\n";
+        ofs << "SELECT COUNT(*) FROM Btree WHERE NUMBER BETWEEN 0 AND " << SIZE  + 1<< ";\n";
+        ofs_count << "SELECT COUNT(*) FROM Btree\n";
     }
     ofs.close();
+    ofs_count.close();
 }
 
 void create_rank_sql_files(uint64_t SIZE)
 {
-    int NUM_OF_LINES = 500000;
-    uint64_t MAX = SIZE + NUM_NEW_RECORDS * 2;
+    int NUM_OF_LINES = 100;
 
-    std::ofstream ofs;
-    // path = "Current_Ditectory_Nameectory"/sql/rank/"SIZE"/rank.sql
+    std::ofstream ofs, ofs_count;
+    // path = "Current_Ditectory_Name"/sql/rank/"SIZE"/rank.sql
     std::string path(Current_Ditectory_Name);
+    std::string test_count_path;
     path.append("/sql/rank/");
     path.append(std::to_string(SIZE));
+    test_count_path.append(path);
     path.append("/rank.sql");
+    test_count_path.append("/test_count.sql");
 
+    // path = "Current_Ditectory_Name"/sql/rank/"SIZE"/rank.sql
     ofs.open(path);
+
+    // test_count_path = "Current_Ditectory_Name"/sql/rank/"SIZE"/test_count.sql
+    ofs_count.open(test_count_path);
 
     for (int line = 0; line xor NUM_OF_LINES; ++line)
     {
-        /* SELECT COUNT(*) FROM Btree WHERE NUMBER<"rand() % MAX"; */
-        ofs << "SELECT COUNT(*) FROM Btree WHERE NUMBER < " << rand() % MAX << ";\n";
+        /* SELECT COUNT(*) FROM Btree WHERE NUMBER < "SIZE"; */
+        ofs << "SELECT COUNT(*) FROM Btree WHERE NUMBER < " << SIZE + 1<< ";\n";
+        ofs_count << "SELECT COUNT(*) FROM Btree\n";
     }
     ofs.close();
+    ofs_count.close();
 }
 
 int main()
