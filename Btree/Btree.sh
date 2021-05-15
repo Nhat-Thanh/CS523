@@ -23,11 +23,11 @@ if [ $OPERATION == "all" ]; then
 	echo "finish update"
 
 	/usr/bin/time -v -o ./result/$SIZE/between/between_operation_time.txt bash ./operating_script/between.sh $SIZE | bash ./measure_ram.sh between $SIZE
-	/usr/bin/time -v -o ./result/$SIZE/between/count_time.txt sqlite3 ./database_"$SIZE".db <./sql/between/$SIZE/test_count.sql
+	bash ./operating_script/count.sh between $SIZE
 	echo "finish between"
 
 	/usr/bin/time -v -o ./result/$SIZE/rank/rank_operation_time.txt bash ./operating_script/rank.sh $SIZE | bash ./measure_ram.sh rank $SIZE
-	/usr/bin/time -v -o ./result/$SIZE/rank/count_time.txt sqlite3 ./database_"$SIZE".db <./sql/rank/$SIZE/test_count.sql
+	bash ./operating_script/count.sh rank $SIZE
 	echo "finish rank"
 
 	/usr/bin/time -v -o ./result/$SIZE/delete/delete_operation_time.txt bash ./operating_script/delete.sh $SIZE | bash ./measure_ram.sh delete $SIZE
@@ -45,13 +45,13 @@ elif [ $OPERATION == "delete" ]; then
 # RANK OPERATION
 elif [ $OPERATION == "rank" ]; then
 	/usr/bin/time -v -o ./result/$SIZE/rank/rank_operation_time.txt bash ./operating_script/rank.sh $SIZE | bash ./measure_ram.sh rank $SIZE
-	/usr/bin/time -v -o ./result/$SIZE/rank/count_time.txt sqlite3 ./database_"$SIZE".db <./sql/rank/$SIZE/test_count.sql
+	bash ./operating_script/count.sh rank $SIZE
 	echo "finish rank"
 
 # BETWEEN OPERATION
 elif [ $OPERATION == "between" ]; then
 	/usr/bin/time -v -o ./result/$SIZE/between/between_operation_time.txt bash ./operating_script/between.sh $SIZE | bash ./measure_ram.sh between $SIZE
-	/usr/bin/time -v -o ./result/$SIZE/between/count_time.txt sqlite3 ./database_"$SIZE".db <./sql/between/$SIZE/test_count.sql
+	/bash ./operating_script/count.sh between $SIZE
 	echo "finish between"
 
 # UPDATE OPERATION
