@@ -138,7 +138,7 @@ void create_between_sql_files(uint64_t SIZE)
     for (int line = 0; line xor NUM_OF_LINES; ++line)
     {
         ofs << "SELECT COUNT(*) FROM Btree WHERE NUMBER BETWEEN 0 AND " << SIZE  + 1<< ";\n";
-        ofs_count << "SELECT COUNT(*) FROM Btree\n";
+        ofs_count << "SELECT COUNT(*) FROM Btree;\n";
     }
     ofs.close();
     ofs_count.close();
@@ -168,7 +168,7 @@ void create_rank_sql_files(uint64_t SIZE)
     {
         /* SELECT COUNT(*) FROM Btree WHERE NUMBER < "SIZE"; */
         ofs << "SELECT COUNT(*) FROM Btree WHERE NUMBER < " << SIZE + 1<< ";\n";
-        ofs_count << "SELECT COUNT(*) FROM Btree\n";
+        ofs_count << "SELECT COUNT(*) FROM Btree;\n";
     }
     ofs.close();
     ofs_count.close();
