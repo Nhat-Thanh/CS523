@@ -2,7 +2,7 @@
 	User time (seconds): 76.20
 	System time (seconds): 2.63
 	Percent of CPU this job got: 46%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:48.71
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:44.71
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
