@@ -1,6 +1,6 @@
 SIZE=$1
 
-if [ $SIZE != "all" ]; then
+if [ $SIZE == "all" ]; then
     sqlite3 ./database_250000000.db "DELETE FROM Btree WHERE NUMBER > 250000000"
     sqlite3 ./database_500000000.db "DELETE FROM Btree WHERE NUMBER > 500000000"
     sqlite3 ./database_750000000.db "DELETE FROM Btree WHERE NUMBER > 750000000"
