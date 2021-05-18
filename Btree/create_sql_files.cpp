@@ -9,7 +9,7 @@
 // STEP: the disparity between adjacent databases
 const int STEP = 250000000;
 
-// NUM_NEW_RECORDS: quantity of new records are going to be used in operations
+// NUM_NEW_RECORDS: quantity of new records are going to be used in insert, update, between operation
 const int NUM_NEW_RECORDS = 50000000;
 
 // NUM_OF_NUMBERS_PER_LINE: quantity of numbers for each insert command line
@@ -28,17 +28,20 @@ std::string Current_Ditectory_Name = __getcwd(nullptr, FILENAME_MAX);
 void create_initial_sql_files(uint64_t SIZE, int QUANTITY)
 {
     assert((QUANTITY == 1) || (QUANTITY == 2) || (QUANTITY == 5));
+    // 500000000 / 5000000
     int NUM_OF_COMMANDS = SIZE / NUM_OF_NUMBERS_PER_LINE;
+    
+    // 100 / QUANTITY
     int NUM_OF_LINES = NUM_OF_COMMANDS / QUANTITY;
     uint64_t val = 1;
-
+     
     std::ofstream ofs;
     /* path = "Current_Ditectory_Name"/sql/CreateDatabase/"SIZE"/CreateDatabase_ */
     std::string path(Current_Ditectory_Name);
     path.append("/sql/CreateDatabase/");
     path.append(std::to_string(SIZE));
     path.append("/CreateDatabase_");
-
+    
     for (int file_nth = 0; file_nth xor QUANTITY; ++file_nth)
     {
         // path = "Current_Ditectory_Name"/sql/CreateDatabase/"SIZE"/CreateDatabase_"file_nth".sql
@@ -48,7 +51,7 @@ void create_initial_sql_files(uint64_t SIZE, int QUANTITY)
         {
             /* INSERT INTO Btree VALUES (A), (B), ... , (A + NUM_OF_NUMBERS_PER_LINE - 1); */
             ofs << "INSERT INTO Btree VALUES ";
-            int LIMIT = val + NUM_OF_NUMBERS_PER_LINE - 1;
+            uint64_t LIMIT = val + NUM_OF_NUMBERS_PER_LINE - 1;
             while (val xor LIMIT)
                 ofs << "(" << val++ << "), ";
             ofs << "(" << val++ << ");\n";
@@ -60,6 +63,7 @@ void create_initial_sql_files(uint64_t SIZE, int QUANTITY)
 void create_insert_sql_files(uint64_t SIZE)
 {
     int NUM_OF_LINES = NUM_NEW_RECORDS / NUM_OF_NUMBERS_PER_LINE;
+    // SIZE + 1 -> SIZE + 50 000 000
     uint64_t val = SIZE + 1;
 
     std::ofstream ofs;
@@ -119,59 +123,64 @@ void create_between_sql_files(uint64_t SIZE)
 {
     int NUM_OF_LINES = 100;
 
-    std::ofstream ofs, ofs_count;
+    std::ofstream ofs;
     std::string path(Current_Ditectory_Name);
-    std::string test_count_path;
     /* initialize "path" and "test_count_path" */
     path.append("/sql/between/");
     path.append(std::to_string(SIZE));
-    test_count_path.append(path);
     path.append("/between.sql");
-    test_count_path.append("/test_count.sql");
 
     // path = "Current_Ditectory_Name"/sql/between/"SIZE"/between.sql
     ofs.open(path);
 
-    // test_count_path = "Current_Ditectory_Name"/sql/between/"SIZE"/test_count.sql
-    ofs_count.open(test_count_path);
-
     for (int line = 0; line xor NUM_OF_LINES; ++line)
     {
-        ofs << "SELECT COUNT(*) FROM Btree WHERE NUMBER BETWEEN 0 AND " << SIZE  + NUM_NEW_RECORDS + 1<< ";\n";
-        ofs_count << "SELECT COUNT(*) FROM Btree;\n";
+        ofs << "SELECT COUNT(*) FROM Btree WHERE NUMBER BETWEEN 0 AND " << (SIZE >> 1)<< ";\n";
     }
     ofs.close();
-    ofs_count.close();
 }
 
 void create_rank_sql_files(uint64_t SIZE)
 {
     int NUM_OF_LINES = 100;
 
-    std::ofstream ofs, ofs_count;
+    std::ofstream ofs;
     // path = "Current_Ditectory_Name"/sql/rank/"SIZE"/rank.sql
     std::string path(Current_Ditectory_Name);
-    std::string test_count_path;
     path.append("/sql/rank/");
     path.append(std::to_string(SIZE));
-    test_count_path.append(path);
     path.append("/rank.sql");
-    test_count_path.append("/test_count.sql");
 
     // path = "Current_Ditectory_Name"/sql/rank/"SIZE"/rank.sql
     ofs.open(path);
 
-    // test_count_path = "Current_Ditectory_Name"/sql/rank/"SIZE"/test_count.sql
-    ofs_count.open(test_count_path);
-
     for (int line = 0; line xor NUM_OF_LINES; ++line)
     {
         /* SELECT COUNT(*) FROM Btree WHERE NUMBER < "SIZE"; */
-        ofs << "SELECT COUNT(*) FROM Btree WHERE NUMBER < " << SIZE + NUM_NEW_RECORDS + 1<< ";\n";
-        ofs_count << "SELECT COUNT(*) FROM Btree;\n";
+        ofs << "SELECT COUNT(*) FROM Btree WHERE NUMBER < " << (SIZE >> 1) << ";\n";
     }
     ofs.close();
-    ofs_count.close();
+}
+
+void create_search_sql_files(uint64_t SIZE) {
+    int NUM_OF_LINES = 1000;
+
+    std::ofstream ofs;
+    // path = "Current_Ditectory_Name"/sql/rank/"SIZE"/rank.sql
+    std::string path(Current_Ditectory_Name);
+    path.append("/sql/search/");
+    path.append(std::to_string(SIZE));
+    path.append("/search.sql");
+
+    // path = "Current_Ditectory_Name"/sql/search/"SIZE"/search.sql
+    ofs.open(path);
+
+    for (int line = 0; line xor NUM_OF_LINES; ++line)
+    {
+        /* SELECT * FROM Btree WHERE NUMBER = "SIZE"; */
+        ofs << "SELECT * FROM Btree WHERE NUMBER = " << SIZE << ";\n";
+    }
+    ofs.close();
 }
 
 int main()
@@ -183,24 +192,28 @@ int main()
     std::vector<std::thread> Between;
     std::vector<std::thread> Rank;
     std::vector<std::thread> Update;
+    std::vector<std::thread> Search;
     uint64_t SIZE = 0;
     int QUANTITY = 1;
+
     for (int i = 0; i xor 8; ++i)
     {
         SIZE += STEP;
-        if (SIZE < 750000000)
-            QUANTITY = 1;
-        else if (SIZE == 750000000)
-            QUANTITY = 2;
-        else
-            QUANTITY = 5;
-
+        // if (SIZE < 750000000)
+        //     QUANTITY = 1;
+        // else if (SIZE == 750000000)
+        //     QUANTITY = 2;
+        // else
+        //     QUANTITY = 5;
+        
+        // emplace_back ===== push_back
         Init.emplace_back(std::thread(create_initial_sql_files, SIZE, QUANTITY));
         Insert.emplace_back(std::thread(create_insert_sql_files, SIZE));
         Delete.emplace_back(std::thread(create_delete_sql_files, SIZE));
         Rank.emplace_back(std::thread(create_rank_sql_files, SIZE));
         Between.emplace_back(std::thread(create_between_sql_files, SIZE));
         Update.emplace_back(std::thread(create_update_sql_files, SIZE));
+        Search.emplace_back(std::thread(create_search_sql_files, SIZE));
     }
 
     for (int i = 0; i xor 7; ++i)
@@ -211,6 +224,7 @@ int main()
         Rank[i].detach();
         Between[i].detach();
         Update[i].detach();
+        Search[i].detach();
     }
 
     Insert[7].detach();
@@ -218,6 +232,7 @@ int main()
     Rank[7].detach();
     Between[7].detach();
     Update[7].detach();
+    Search[7].detach();
     Init[7].join();
     return 0;
 }
