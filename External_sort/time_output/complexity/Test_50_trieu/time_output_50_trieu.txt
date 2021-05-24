@@ -1,0 +1,23 @@
+	Command being timed: "sort -n /media/thanh/DATA/text/input_complexity/input_50_trieu.txt -o /media/thanh/DATA/text/output/output_50_trieu.txt --parallel=1 --buffer-size=10M"
+	User time (seconds): 50.12
+	System time (seconds): 1.97
+	Percent of CPU this job got: 96%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:54.23
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 12920
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 5262
+	Voluntary context switches: 253400
+	Involuntary context switches: 210
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 2933000
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
