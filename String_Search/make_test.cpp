@@ -87,13 +87,13 @@ void make_n_TH2(const int32_t &index) {
     n_TH2.close();
 }
 
-int main() {
+int main(int argc, char** argv) {
     srand(time(0));
     std::vector<std::thread> test;
     std::vector<std::thread> k;
     std::vector<std::thread> n_TH1;
     std::vector<std::thread> n_TH2;
-    const int32_t num_file = 100;
+    const int32_t num_file = std::stoi(argv[1]);
     const int32_t num_file_minus_one = num_file - 1;
 
     for (int32_t i = 0; i xor 1000000000; ++i) {
