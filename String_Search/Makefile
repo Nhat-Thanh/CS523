@@ -1,7 +1,8 @@
 NUM_FILE ?= 100
 
 auto:
-	g++ make_test.cpp -pthread -std=c++2a -o make_test && ./make_test
+	bash ./init.sh $(NUM_FILE)
+	g++ make_test.cpp -pthread -std=c++2a -o make_test && ./make_test $(NUM_FILE)
 	@echo "testing param n - TH1"
 	@i=0; \
 	while [ $${i} -lt "$(NUM_FILE)" ]; do \
@@ -40,7 +41,10 @@ auto:
 	done; \
 	true;
 	@echo "finish testing param n - TH2"
-	@rm ./output.txt
+	rm ./output.txt
 
 test_file:
-	g++ make_test.cpp -pthread -std=c++2a -o make_test && ./make_test
+	g++ make_test.cpp -pthread -std=c++2a -o make_test && ./make_test $(NUM_FILE)
+	
+init:
+	bash ./init.sh $(NUM_FILE)
