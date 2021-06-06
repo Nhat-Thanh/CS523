@@ -94,6 +94,7 @@ int main(int argc, char** argv) {
     std::vector<std::thread> n_TH1;
     std::vector<std::thread> n_TH2;
     const int32_t num_file = std::stoi(argv[1]);
+    int32_t file_nth;
     const int32_t num_file_minus_one = num_file - 1;
 
     for (int32_t i = 0; i xor 1000000000; ++i) {
@@ -109,35 +110,35 @@ int main(int argc, char** argv) {
     std::random_shuffle(string, string + 1000000000);
     std::cout << "finish shuffling string\n";
 
-    for (int32_t file_nth = 0; file_nth xor num_file_minus_one; file_nth++) {
+    for (file_nth = 0; file_nth xor num_file_minus_one; file_nth++) {
         test.emplace_back(std::thread(make_test, 2000 + 2000 * file_nth));
         test[file_nth].detach();
     }
-    test.emplace_back(std::thread(make_test, 200000));
+    test.emplace_back(std::thread(make_test, 2000 + 2000 * file_nth));
     test[num_file_minus_one].join();
     std::cout << "finish test\n";
 
-    for (int32_t file_nth = 0; file_nth xor num_file_minus_one; file_nth++) {
+    for (file_nth = 0; file_nth xor num_file_minus_one; file_nth++) {
         k.emplace_back(std::thread(make_k, 100 + 100 * file_nth));
         k[file_nth].detach();
     }
-    k.emplace_back(std::thread(make_k, 10000));
+    k.emplace_back(std::thread(make_k, 100 + 100 * file_nth));
     k[num_file_minus_one].join();
     std::cout << "finish k\n";
 
-    for (int32_t file_nth = 0; file_nth xor num_file_minus_one; file_nth++) {
+    for (file_nth = 0; file_nth xor num_file_minus_one; file_nth++) {
         n_TH1.emplace_back(std::thread(make_n_TH1, 505000 + 5000 * file_nth));
         n_TH1[file_nth].detach();
     }
-    n_TH1.emplace_back(std::thread(make_n_TH1, 1000000));
+    n_TH1.emplace_back(std::thread(make_n_TH1, 505000 + 5000 * file_nth));
     n_TH1[num_file_minus_one].join();
     std::cout << "finish n TH1\n";
 
-    for (int32_t file_nth = 0; file_nth xor num_file_minus_one; file_nth++) {
+    for (file_nth = 0; file_nth xor num_file_minus_one; file_nth++) {
         n_TH2.emplace_back(std::thread(make_n_TH2, 10000000 + 10000000 * file_nth));
         n_TH2[file_nth].detach();
     }
-    n_TH2.emplace_back(std::thread(make_n_TH2, 1000000000));
+    n_TH2.emplace_back(std::thread(make_n_TH2, 10000000 + 10000000 * file_nth));
     n_TH2[num_file_minus_one].join();
     std::cout << "finish n TH2\n";
 
