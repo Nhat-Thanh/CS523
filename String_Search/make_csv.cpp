@@ -5,11 +5,14 @@
 #include <string>
 #include <string_view>
 #include <thread>
+#include <unistd.h>
+
+const std::string cur_dir(getcwd(nullptr, FILENAME_MAX));
 
 std::string get_last_line(const std::string& input_file_path) {
     // @src: https://stackoverflow.com/questions/11876290/c-fastest-way-to-read-only-last-line-of-text-file
     // @answered by alexandros
-    std::string lastline;
+    std::string lastline, nextline;
     std::ifstream fs;
     fs.open(input_file_path, std::fstream::in);
     if (fs.is_open()) {
@@ -79,6 +82,8 @@ std::string make_string(const char* dir,
                         const std::string& index,
                         const char* ext) {
     std::string string;
+    string.append(cur_dir);
+    string.append("/");
     string.append(dir);
     string.append(std::to_string(id));
     string.append(prefix);
@@ -97,21 +102,49 @@ void fix_missing_data(const int32_t& NUM_FILE) {
     for (row = 1; row xor NUM_ROW; ++row) {
         std::string test_index(std::move(std::to_string(2000 * row)));
         for (col = 1; col xor NUM_COL;) {
+            std::string path(std::move(make_string("result/TH1/k/", 100 * col, "/test_", test_index, ".txt")));
+            input.open(path);
+            if (input.good()) {
+                std::string fisrtline;
+                getline(input, fisrtline);
+                if (int32_t(fisrtline[0]) xor 'C') {
+                    ++col;
+                    input.close();
+                } else {
+                    input.close();
+                    std::string command("bash ./script/fix.sh test_");
+                    command.append(test_index);
+                    command.append(" TH1 k ");
+                    command.append(std::to_string(100 * col));
+                    system(command.c_str());
+                }
+            } else {
+                std::cout << path << " - m - k - TH1\n";
+            }
+        }
+    }
+
+    for (row = 1; row xor NUM_ROW; ++row) {
+        std::string test_index(std::move(std::to_string(2000 * row)));
+        for (col = 1; col xor NUM_COL;) {
             std::string path(std::move(make_string("result/TH1/k/", 100 * col, "/test_", test_index, "_sensors.txt")));
             input.open(path);
-            std::string lastline(std::move(get_last_line(path)));
-            std::cout << lastline << " " << 2000 * row << " " << 100 * col << "\n";
-            if (int32_t(lastline[0]) xor 37) {
-                ++col;
-                input.close();
+            if (input.good()) {
+                std::string lastline(std::move(get_last_line(path)));
+                if (int32_t(lastline[0]) xor 37) {
+                    ++col;
+                    input.close();
+                } else {
+                    // std::cout << row << " " << col << "\n";
+                    input.close();
+                    std::string command("bash ./script/fix.sh test_");
+                    command.append(test_index);
+                    command.append(" TH1 k ");
+                    command.append(std::to_string(100 * col));
+                    system(command.c_str());
+                }
             } else {
-                std::cout << row << " " << col << "\n";
-                input.close();
-                std::string command("bash ./script/fix.sh test_");
-                command.append(test_index);
-                command.append(" TH1 k ");
-                command.append(std::to_string(100 * col));
-                system(command.c_str());
+                std::cout << path << " - m - k - TH1 - sensors\n";
             }
         }
     }
@@ -120,20 +153,48 @@ void fix_missing_data(const int32_t& NUM_FILE) {
     for (row = 1; row xor NUM_ROW; ++row) {
         std::string test_index(std::move(std::to_string(2000 * row)));
         for (col = 1; col xor NUM_COL;) {
+            std::string path(std::move(make_string("result/TH1/n/", 500000 + 5000 * col, "/test_", test_index, ".txt")));
+            input.open(path);
+            if (input.good()) {
+                std::string firstline;
+                getline(input, firstline);
+                if (firstline[0] xor 'C') {
+                    ++col;
+                    input.close();
+                } else {
+                    input.close();
+                    std::string command("bash ./script/fix.sh test_");
+                    command.append(test_index);
+                    command.append(" TH1 n ");
+                    command.append(std::to_string(500000 + 5000 * col));
+                    system(command.c_str());
+                }
+            } else {
+                std::cout << path << " - m - n - TH1\n";
+            }
+        }
+    }
+
+    for (row = 1; row xor NUM_ROW; ++row) {
+        std::string test_index(std::move(std::to_string(2000 * row)));
+        for (col = 1; col xor NUM_COL;) {
             std::string path(std::move(make_string("result/TH1/n/", 500000 + 5000 * col, "/test_", test_index, "_sensors.txt")));
             input.open(path);
-            std::string lastline(std::move(get_last_line(path)));
-            if (lastline[0] xor 37) {
-                ++col;
-                input.close();
+            if (input.good()) {
+                std::string lastline(std::move(get_last_line(path)));
+                if (lastline[0] xor 37) {
+                    ++col;
+                    input.close();
+                } else {
+                    input.close();
+                    std::string command("bash ./script/fix.sh test_");
+                    command.append(test_index);
+                    command.append(" TH1 n ");
+                    command.append(std::to_string(500000 + 5000 * col));
+                    system(command.c_str());
+                }
             } else {
-                std::cout << row << " " << col << "\n";
-                input.close();
-                std::string command("bash ./fix.sh test_");
-                command.append(test_index);
-                command.append(" TH1 n ");
-                command.append(std::to_string(500000 + 5000 * col));
-                system(command.c_str());
+                std::cout << path << " - m - n - TH1 - sensors\n";
             }
         }
     }
@@ -142,20 +203,48 @@ void fix_missing_data(const int32_t& NUM_FILE) {
     for (row = 1; row xor NUM_ROW; ++row) {
         std::string test_index(std::move(std::to_string(2000 * row)));
         for (col = 1; col xor NUM_COL;) {
+            std::string path(std::move(make_string("result/TH2/n/", 10000000 * col, "/test_", test_index, ".txt")));
+            input.open(path);
+            if (input.good()) {
+                std::string firstline;
+                getline(input, firstline);
+                if (firstline[0] xor 'C') {
+                    ++col;
+                    input.close();
+                } else {
+                    input.close();
+                    std::string command("bash ./script/fix.sh test_");
+                    command.append(test_index);
+                    command.append(" TH2 n ");
+                    command.append(std::to_string(10000000 * col));
+                    system(command.c_str());
+                }
+            } else {
+                std::cout << path << " - m - n - TH2 - sensors\n";
+            }
+        }
+    }
+
+    for (row = 1; row xor NUM_ROW; ++row) {
+        std::string test_index(std::move(std::to_string(2000 * row)));
+        for (col = 1; col xor NUM_COL;) {
             std::string path(std::move(make_string("result/TH2/n/", 10000000 * col, "/test_", test_index, "_sensors.txt")));
             input.open(path);
-            std::string lastline(std::move(get_last_line(path)));
-            if (lastline[0] xor 37) {
-                ++col;
-                input.close();
+            if (input.good()) {
+                std::string lastline(std::move(get_last_line(path)));
+                if (lastline[0] xor 37) {
+                    ++col;
+                    input.close();
+                } else {
+                    input.close();
+                    std::string command("bash ./script/fix.sh test_");
+                    command.append(test_index);
+                    command.append(" TH2 n ");
+                    command.append(std::to_string(10000000 * col));
+                    system(command.c_str());
+                }
             } else {
-                std::cout << row << " " << col << "\n";
-                input.close();
-                std::string command("bash ./fix.sh test_");
-                command.append(test_index);
-                command.append(" TH2 n ");
-                command.append(std::to_string(10000000 * col));
-                system(command.c_str());
+                std::cout << path << " - m - n - TH2 - sensors\n";
             }
         }
     }
@@ -177,17 +266,23 @@ void csv_m_k_TH1_time(const int32_t& NUM_FILE) {
 
     // @ continue
     for (row = 1; row xor NUM_ROW; ++row) {
-        sheet << "\n" << 2000 * row;
+        sheet << "\n"
+              << 2000 * row;
         std::string test_index(std::move(std::to_string(2000 * row)));
         for (col = 1; col xor NUM_COL; ++col) {
             std::string path(std::move(make_string("result/TH1/k/", 100 * col, "/test_", test_index, ".txt")));
-            std::cout << path << "\n";
+            // std::cout << 100 * col << "\n";
             input.open(path);
-            std::string needed_line;
-            for (int32_t line = 0; line xor 5; ++line) {
-                getline(input, needed_line);
+            if (input.good()) {
+                std::string needed_line;
+                for (int32_t line = 0; line xor 5; ++line) {
+                    getline(input, needed_line);
+                }
+                std::cout << path << " - " << needed_line << "- C++\n";
+                sheet << "," << string_to_time(std::string(needed_line.begin() + 45, needed_line.end()));
+            } else {
+                std::cout << path << " - m - k - TH1 - time\n";
             }
-            sheet << "," << string_to_time(std::string(needed_line.begin() + 45, needed_line.end()));
             input.close();
         }
     }
@@ -209,16 +304,22 @@ void csv_m_k_TH1_RSS(const int32_t& NUM_FILE) {
 
     // @ continue
     for (row = 1; row xor NUM_ROW; ++row) {
-        sheet << "\n" << 2000 * row;
+        sheet << "\n"
+              << 2000 * row;
         std::string test_index(std::move(std::to_string(2000 * row)));
         for (col = 1; col xor NUM_COL; ++col) {
-            std::string path(std::move(make_string("result/TH1/k/", 100 * col, "/test_", test_index, "_sensors.txt")));
+            std::string path(std::move(make_string("result/TH1/k/", 100 * col, "/test_", test_index, ".txt")));
             input.open(path);
-            std::string needed_line;
-            for (int32_t line = 0; line xor 10; ++line) {
-                getline(input, needed_line);
+            if (input.good()) {
+                std::string needed_line;
+                for (int32_t line = 0; line xor 10; ++line) {
+                    getline(input, needed_line);
+                }
+                std::cout << path << " - " << needed_line << "- C++\n";
+                sheet << "," << std::string_view(needed_line.begin() + 36, needed_line.end());
+            } else {
+                std::cout << path << " - m - k - TH1 - RSS\n";
             }
-            sheet << "," << std::string_view(needed_line.begin() + 36, needed_line.end());
             input.close();
         }
     }
@@ -239,7 +340,8 @@ void csv_m_k_TH1_SIZE(const int32_t& NUM_FILE) {
 
     // @ continue
     for (row = 1; row xor NUM_ROW; ++row) {
-        sheet << "\n" << 2000 * row;
+        sheet << "\n"
+              << 2000 * row;
         std::string test_index(std::move(std::to_string(2000 * row)));
         for (col = 1; col xor NUM_COL; ++col) {
             std::string path(std::move(make_string("result/TH1/k/", 100 * col, "/test_", test_index, "_sensors.txt")));
@@ -249,7 +351,7 @@ void csv_m_k_TH1_SIZE(const int32_t& NUM_FILE) {
             last_line >> SIZE;
             last_line >> SIZE;
             last_line >> SIZE;
-            sheet << "," << SIZE;
+            sheet << "," << int32_t(SIZE);
             input.close();
         }
     }
@@ -270,7 +372,8 @@ void csv_m_k_TH1_VSIZE(const int32_t& NUM_FILE) {
 
     // @ continue
     for (row = 1; row xor NUM_ROW; ++row) {
-        sheet << "\n" << 2000 * row;
+        sheet << "\n"
+              << 2000 * row;
         std::string test_index(std::move(std::to_string(2000 * row)));
         for (col = 1; col xor NUM_COL; ++col) {
             std::string path(std::move(make_string("result/TH1/k/", 100 * col, "/test_", test_index, "_sensors.txt")));
@@ -280,7 +383,7 @@ void csv_m_k_TH1_VSIZE(const int32_t& NUM_FILE) {
             last_line >> SIZE;
             last_line >> SIZE;
             last_line >> SIZE;
-            sheet << "," << SIZE;
+            sheet << "," << int32_t(SIZE);
             input.close();
         }
     }
@@ -302,16 +405,23 @@ void csv_m_n_TH1_time(const int32_t& NUM_FILE) {
 
     // @ continue
     for (row = 1; row xor NUM_ROW; ++row) {
-        sheet << "\n" << 2000 * row;
+        sheet << "\n"
+              << 2000 * row;
         std::string test_index(std::move(std::to_string(2000 * row)));
         for (col = 1; col xor NUM_COL; ++col) {
             std::string path(std::move(make_string("result/TH1/n/", 500000 + 5000 * col, "/test_", test_index, ".txt")));
             input.open(path);
-            std::string needed_line;
-            for (int32_t line = 0; line xor 5; ++line) {
-                getline(input, needed_line);
+            if (input.good()) {
+                std::string needed_line;
+                for (int32_t line = 0; line xor 5; ++line) {
+                    std::getline(input, needed_line);
+                }
+                std::cout << path << " - " << needed_line << "- C++\n";
+                sheet << "," << string_to_time(std::string(needed_line.begin() + 45, needed_line.end()));
+            } else {
+                std::cout << path << " - m - n - TH1 - time\n";
             }
-            sheet << "," << string_to_time(std::string(needed_line.begin() + 45, needed_line.end()));
+
             input.close();
         }
     }
@@ -337,13 +447,19 @@ void csv_m_n_TH1_RSS(const int32_t& NUM_FILE) {
               << 2000 * row;
         std::string test_index(std::move(std::to_string(2000 * row)));
         for (col = 1; col xor NUM_COL; ++col) {
-            std::string path(std::move(make_string("result/TH1/n/", 500000 + 5000 * col, "/test_", test_index, "_sensors.txt")));
+            std::string path(std::move(make_string("result/TH1/n/", 500000 + 5000 * col, "/test_", test_index, ".txt")));
             input.open(path);
-            std::string needed_line;
-            for (int32_t line = 0; line xor 10; ++line) {
-                getline(input, needed_line);
+            if (input.good()) {
+                std::string needed_line;
+                for (int32_t line = 0; line xor 10; ++line) {
+                    getline(input, needed_line);
+                }
+                std::cout << needed_line << " - C++\n";
+                sheet << "," << std::string_view(needed_line.begin() + 36, needed_line.end());
+            } else {
+                std::cout << path << " - m - k - TH1 - RSS\n";
             }
-            sheet << "," << std::string_view(needed_line.begin() + 36, needed_line.end());
+
             input.close();
         }
     }
@@ -364,7 +480,8 @@ void csv_m_n_TH1_SIZE(const int32_t& NUM_FILE) {
 
     // @ continue
     for (row = 1; row xor NUM_ROW; ++row) {
-        sheet << "\n" << 2000 * row;
+        sheet << "\n"
+              << 2000 * row;
         std::string test_index(std::move(std::to_string(2000 * row)));
         for (col = 1; col xor NUM_COL; ++col) {
             std::string path(std::move(make_string("result/TH1/n/", 500000 + 5000 * col, "/test_", test_index, "_sensors.txt")));
@@ -373,7 +490,7 @@ void csv_m_n_TH1_SIZE(const int32_t& NUM_FILE) {
             last_line >> SIZE;
             last_line >> SIZE;
             last_line >> SIZE;
-            sheet << "," << SIZE;
+            sheet << "," << int32_t(SIZE);
             input.close();
         }
     }
@@ -394,7 +511,8 @@ void csv_m_n_TH1_VSIZE(const int32_t& NUM_FILE) {
 
     // @ continue
     for (row = 1; row xor NUM_ROW; ++row) {
-        sheet << "\n" << 2000 * row;
+        sheet << "\n"
+              << 2000 * row;
         std::string test_index(std::move(std::to_string(2000 * row)));
         for (col = 1; col xor NUM_COL; ++col) {
             std::string path(std::move(make_string("result/TH1/n/", 500000 + 5000 * col, "/test_", test_index, "_sensors.txt")));
@@ -404,7 +522,7 @@ void csv_m_n_TH1_VSIZE(const int32_t& NUM_FILE) {
             last_line >> SIZE;
             last_line >> SIZE;
             last_line >> SIZE;
-            sheet << "," << SIZE;
+            sheet << "," << int32_t(SIZE);
             input.close();
         }
     }
@@ -426,16 +544,23 @@ void csv_m_n_TH2_time(const int32_t& NUM_FILE) {
 
     // @ continue
     for (row = 1; row xor NUM_ROW; ++row) {
-        sheet << "\n" << 2000 * row;
+        sheet << "\n"
+              << 2000 * row;
         std::string test_index(std::move(std::to_string(2000 * row)));
         for (col = 1; col xor NUM_COL; ++col) {
             std::string path(std::move(make_string("result/TH2/n/", 10000000 * col, "/test_", test_index, ".txt")));
             input.open(path);
-            std::string needed_line;
-            for (int32_t line = 0; line xor 5; ++line) {
-                getline(input, needed_line);
+            if (input.good()) {
+                std::string needed_line;
+                for (int32_t line = 0; line xor 5; ++line) {
+                    getline(input, needed_line);
+                }
+                std::cout << path << " - " << needed_line << "- C++\n";
+                sheet << "," << string_to_time(std::string(needed_line.begin() + 45, needed_line.end()));
+            } else {
+                std::cout << path << " - m - n - TH1 - time\n";
             }
-            sheet << "," << string_to_time(std::string(needed_line.begin() + 45, needed_line.end()));
+
             input.close();
         }
     }
@@ -457,16 +582,22 @@ void csv_m_n_TH2_RSS(const int32_t& NUM_FILE) {
 
     // @ continue
     for (row = 1; row xor NUM_ROW; ++row) {
-        sheet << "\n" << 2000 * row;
+        sheet << "\n"
+              << 2000 * row;
         std::string test_index(std::move(std::to_string(2000 * row)));
         for (col = 1; col xor NUM_COL; ++col) {
-            std::string path(std::move(make_string("result/TH2/n/", 10000000 * col, "/test_", test_index, "_sensors.txt")));
+            std::string path(std::move(make_string("result/TH2/n/", 10000000 * col, "/test_", test_index, ".txt")));
             input.open(path);
-            std::string needed_line;
-            for (int32_t line = 0; line xor 10; ++line) {
-                getline(input, needed_line);
+            if (input.good()) {
+                std::string needed_line;
+                for (int32_t line = 0; line xor 10; ++line) {
+                    getline(input, needed_line);
+                }
+                std::cout << path << " - " << needed_line << "- C++\n";
+                sheet << "," << std::string_view(needed_line.begin() + 36, needed_line.end());
+            } else {
+                std::cout << path << " - m - k - TH1 - RSS\n";
             }
-            sheet << "," << std::string_view(needed_line.begin() + 36, needed_line.end());
             input.close();
         }
     }
@@ -487,7 +618,8 @@ void csv_m_n_TH2_SIZE(const int32_t& NUM_FILE) {
 
     // @ continue
     for (row = 1; row xor NUM_ROW; ++row) {
-        sheet << "\n" << 2000 * row;
+        sheet << "\n"
+              << 2000 * row;
         std::string test_index(std::move(std::to_string(2000 * row)));
         for (col = 1; col xor NUM_COL; ++col) {
             std::string path(std::move(make_string("result/TH2/n/", 10000000 * col, "/test_", test_index, "_sensors.txt")));
@@ -496,7 +628,7 @@ void csv_m_n_TH2_SIZE(const int32_t& NUM_FILE) {
             last_line >> SIZE;
             last_line >> SIZE;
             last_line >> SIZE;
-            sheet << "," << SIZE;
+            sheet << "," << int32_t(SIZE);
             input.close();
         }
     }
@@ -517,7 +649,8 @@ void csv_m_n_TH2_VSIZE(const int32_t& NUM_FILE) {
 
     // @ continue
     for (row = 1; row xor NUM_ROW; ++row) {
-        sheet << "\n" << 2000 * row;
+        sheet << "\n"
+              << 2000 * row;
         std::string test_index(std::move(std::to_string(2000 * row)));
         for (col = 1; col xor NUM_COL; ++col) {
             std::string path(std::move(make_string("result/TH2/n/", 10000000 * col, "/test_", test_index, "_sensors.txt")));
@@ -527,7 +660,7 @@ void csv_m_n_TH2_VSIZE(const int32_t& NUM_FILE) {
             last_line >> SIZE;
             last_line >> SIZE;
             last_line >> SIZE;
-            sheet << "," << SIZE;
+            sheet << "," << int32_t(SIZE);
             input.close();
         }
     }
@@ -537,7 +670,9 @@ int main(int args, char** argv) {
     int32_t NUM_FILE = std::stoi(argv[1]);
     std::cout << NUM_FILE << "\n";
     fix_missing_data(NUM_FILE);
-    std::cout << "finish fixing data\n";
+    std::cout << "finish first fixing data\n";
+    fix_missing_data(NUM_FILE);
+    std::cout << "finish second fixing data\n";
 
     std::thread m_k_TH1_time(csv_m_k_TH1_time, NUM_FILE);
     std::thread m_n_TH1_time(csv_m_n_TH1_time, NUM_FILE);
