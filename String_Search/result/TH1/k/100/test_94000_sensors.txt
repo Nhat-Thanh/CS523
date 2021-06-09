@@ -1,0 +1,42 @@
+coretemp-isa-0000
+Adapter: ISA adapter
+Package id 0:  +74.0°C  (high = +100.0°C, crit = +100.0°C)
+Core 0:        +74.0°C  (high = +100.0°C, crit = +100.0°C)
+Core 1:        +69.0°C  (high = +100.0°C, crit = +100.0°C)
+Core 2:        +68.0°C  (high = +100.0°C, crit = +100.0°C)
+Core 3:        +69.0°C  (high = +100.0°C, crit = +100.0°C)
+
+pch_cannonlake-virtual-0
+Adapter: Virtual device
+temp1:        +61.0°C  
+
+BAT0-acpi-0
+Adapter: ACPI interface
+in0:          12.84 V  
+curr1:            N/A  
+
+dell_smm-virtual-0
+Adapter: Virtual device
+fan1:        4954 RPM
+
+radeon-pci-0100
+Adapter: PCI adapter
+temp1:            N/A  (crit = +120.0°C, hyst = +90.0°C)
+
+acpitz-acpi-0
+Adapter: ACPI interface
+temp1:        +25.0°C  (crit = +107.0°C)
+
+%MEM   RSS  SIZE    VSZ
+ 0.2 19588 20168  28740
+ 0.3 30872 30784  39356
+ 0.5 46084 51532  60104
+ 0.5 45284 45832  54404
+ 0.5 45284 45832  54404
+ 0.5 45284 45832  54404
+ 0.5 45284 45832  54404
+ 0.5 45284 45832  54404
+ 0.5 45284 45832  54404
+ 0.5 45284 45832  54404
+ 0.5 45284 45832  54404
+ 0.5 45284 45832  54404
