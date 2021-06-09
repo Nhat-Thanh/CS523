@@ -85,6 +85,5 @@
   - **``bash ./script/k_TH1.sh $(NUM_FILE)``** - chạy thực nghiệm tham số k trong TH1.
   - **``bash ./script/n_TH1.sh $(NUM_FILE)``** - chạy thực nghiệm tham số n trong TH1.
   - **``bash ./script/n_TH2.sh $(NUM_FILE)``** - chạy thực nghiệm tham số n trong TH2.
-  - **``bash ./remove_end.sh $(NUM_FILE)``** - xóa hàng cuối cùng trong các file sensors.
   - **``g++ make_csv.cpp -pthread -std=c++2a -o make_csv && ./make_csv $(NUM_FILE)``** - build và chạy file make_csv.cpp để tạo file .csv tự động.
 - Do nhóm em bắt đầu thực hiện thử nghiệm khi deadline còn khá ngắn nên nhóm em không thực nghiệm được với regex, nhóm em chỉ tìm hiểu về regex và viết vào báo cáo.
