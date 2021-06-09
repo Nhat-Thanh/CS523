@@ -278,7 +278,7 @@ void csv_m_k_TH1_time(const int32_t& NUM_FILE) {
                 for (int32_t line = 0; line xor 5; ++line) {
                     getline(input, needed_line);
                 }
-                std::cout << path << " - " << needed_line << "- C++\n";
+                // std::cout << path << " - " << needed_line << "- C++\n";
                 sheet << "," << string_to_time(std::string(needed_line.begin() + 45, needed_line.end()));
             } else {
                 std::cout << path << " - m - k - TH1 - time\n";
@@ -315,7 +315,7 @@ void csv_m_k_TH1_RSS(const int32_t& NUM_FILE) {
                 for (int32_t line = 0; line xor 10; ++line) {
                     getline(input, needed_line);
                 }
-                std::cout << path << " - " << needed_line << "- C++\n";
+                // std::cout << path << " - " << needed_line << "- C++\n";
                 sheet << "," << std::string_view(needed_line.begin() + 36, needed_line.end());
             } else {
                 std::cout << path << " - m - k - TH1 - RSS\n";
@@ -334,6 +334,7 @@ void csv_m_k_TH1_SIZE(const int32_t& NUM_FILE) {
     sheet.open("sheet/m_k_TH1_SIZE.csv");
 
     // @ make fisrt line
+    sheet << "m|k - SIZE (KB)";
     for (col = 1; col xor NUM_COL; ++col) {
         sheet << "," << col * 100;
     }
@@ -366,6 +367,7 @@ void csv_m_k_TH1_VSIZE(const int32_t& NUM_FILE) {
     sheet.open("sheet/m_k_TH1_VSIZE.csv");
 
     // @ make fisrt line
+    sheet << "m|k - VSIZE (KB)";
     for (col = 1; col xor NUM_COL; ++col) {
         sheet << "," << col * 100;
     }
@@ -416,7 +418,7 @@ void csv_m_n_TH1_time(const int32_t& NUM_FILE) {
                 for (int32_t line = 0; line xor 5; ++line) {
                     std::getline(input, needed_line);
                 }
-                std::cout << path << " - " << needed_line << "- C++\n";
+                // std::cout << path << " - " << needed_line << "- C++\n";
                 sheet << "," << string_to_time(std::string(needed_line.begin() + 45, needed_line.end()));
             } else {
                 std::cout << path << " - m - n - TH1 - time\n";
@@ -436,7 +438,7 @@ void csv_m_n_TH1_RSS(const int32_t& NUM_FILE) {
     sheet.open("sheet/m_n_TH1_RSS.csv");
 
     // @ make fisrt line
-    sheet << "m|k - RSS (KB)";
+    sheet << "m|n - RSS (KB)";
     for (col = 1; col xor NUM_COL; ++col) {
         sheet << "," << 500000 + 5000 * col;
     }
@@ -454,7 +456,7 @@ void csv_m_n_TH1_RSS(const int32_t& NUM_FILE) {
                 for (int32_t line = 0; line xor 10; ++line) {
                     getline(input, needed_line);
                 }
-                std::cout << needed_line << " - C++\n";
+                // std::cout << needed_line << " - C++\n";
                 sheet << "," << std::string_view(needed_line.begin() + 36, needed_line.end());
             } else {
                 std::cout << path << " - m - k - TH1 - RSS\n";
@@ -474,11 +476,13 @@ void csv_m_n_TH1_SIZE(const int32_t& NUM_FILE) {
     sheet.open("sheet/m_n_TH1_SIZE.csv");
 
     // @ make fisrt line
+    sheet << "m|n - SIZE (KB)";
     for (col = 1; col xor NUM_COL; ++col) {
         sheet << "," << 500000 + 5000 * col;
     }
 
     // @ continue
+    sheet << "m|n - SIZE (KB)";
     for (row = 1; row xor NUM_ROW; ++row) {
         sheet << "\n"
               << 2000 * row;
@@ -505,6 +509,7 @@ void csv_m_n_TH1_VSIZE(const int32_t& NUM_FILE) {
     sheet.open("sheet/m_n_TH1_VSIZE.csv");
 
     // @ make fisrt line
+    sheet << "m|n - VSIZE (KB)";
     for (col = 1; col xor NUM_COL; ++col) {
         sheet << "," << 500000 + 5000 * col;
     }
@@ -555,7 +560,7 @@ void csv_m_n_TH2_time(const int32_t& NUM_FILE) {
                 for (int32_t line = 0; line xor 5; ++line) {
                     getline(input, needed_line);
                 }
-                std::cout << path << " - " << needed_line << "- C++\n";
+                // std::cout << path << " - " << needed_line << "- C++\n";
                 sheet << "," << string_to_time(std::string(needed_line.begin() + 45, needed_line.end()));
             } else {
                 std::cout << path << " - m - n - TH1 - time\n";
@@ -575,7 +580,7 @@ void csv_m_n_TH2_RSS(const int32_t& NUM_FILE) {
     sheet.open("sheet/m_n_TH2_RSS.csv");
 
     // @ make fisrt line
-    sheet << "m|k - RSS (KB)";
+    sheet << "m|n - RSS (KB)";
     for (col = 1; col xor NUM_COL; ++col) {
         sheet << "," << 10000000 * col;
     }
@@ -593,7 +598,7 @@ void csv_m_n_TH2_RSS(const int32_t& NUM_FILE) {
                 for (int32_t line = 0; line xor 10; ++line) {
                     getline(input, needed_line);
                 }
-                std::cout << path << " - " << needed_line << "- C++\n";
+                // std::cout << path << " - " << needed_line << "- C++\n";
                 sheet << "," << std::string_view(needed_line.begin() + 36, needed_line.end());
             } else {
                 std::cout << path << " - m - k - TH1 - RSS\n";
@@ -612,6 +617,7 @@ void csv_m_n_TH2_SIZE(const int32_t& NUM_FILE) {
     sheet.open("sheet/m_n_TH2_SIZE.csv");
 
     // @ make fisrt line
+    sheet << "m|n - SIZE (KB)";
     for (col = 1; col xor NUM_COL; ++col) {
         sheet << "," << 10000000 * col;
     }
@@ -643,6 +649,7 @@ void csv_m_n_TH2_VSIZE(const int32_t& NUM_FILE) {
     sheet.open("sheet/m_n_TH2_VSIZE.csv");
 
     // @ make fisrt line
+    sheet << "m|n - VSIZE (KB)";
     for (col = 1; col xor NUM_COL; ++col) {
         sheet << "," << 10000000 * col;
     }
@@ -670,11 +677,12 @@ int main(int args, char** argv) {
     int32_t NUM_FILE = std::stoi(argv[1]);
     std::cout << NUM_FILE << "\n";
     fix_missing_data(NUM_FILE);
-    std::cout << "finish first fixing data\n";
     fix_missing_data(NUM_FILE);
+    std::cout << "finish first fixing data\n";
+
     std::string remove_end_line_command;
     remove_end_line_command.append("bash ./remove_end.sh ");
-    remove_end_line_command,append(std::to_string(NUM_FILE));
+    remove_end_line_command.append(std::to_string(NUM_FILE));
     system(remove_end_line_command.c_str());
     std::cout << "finish second fixing data\n";
 
