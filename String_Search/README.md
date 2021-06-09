@@ -39,26 +39,26 @@
   3. test_(size m)_sensors.txt - Lưu kết quả của nhiệt độ trước lúc chạy và dung lượng Ram mà grep sử dụng.
 
 ## Cấu trúc file trong cây thư mục.
-- TH1: lưu các file dùng cho thực nghiệm với tham số n và k trong trường hợp 1.
-- TH2: lưu các file dùng cho thực nghiệm với tham số n trong trường hợp 2.
-- result: lưu các file kết quả của toàn bộ quá trình thực nghiệm.
-- script: chứa các file shell dùng cho quá trình thực nghiệm.
-  - fix.sh - tự động chạy lại các test case không đo được dung lượng Ram.
-  - k.sh - thực hiện lệnh grep với tham số k.
-  - n.sh - thực hiện lệnh grep với tham số n.
-  - n_TH1.sh - thực nghiệm tham số n trong TH1.
-  - n_TH2.sh - thực nghiệm tham số n trong TH2.
-  - k_TH1.sh - thực nghiệm tham số k trong TH1.
+- **``TH1``**: lưu các file dùng cho thực nghiệm với tham số n và k trong trường hợp 1.
+- **``TH2``**: lưu các file dùng cho thực nghiệm với tham số n trong trường hợp 2.
+- **``result``**: lưu các file kết quả của toàn bộ quá trình thực nghiệm.
+- **``script``**: chứa các file shell dùng cho quá trình thực nghiệm.
+  - **``fix.sh``** - tự động chạy lại các test case không đo được dung lượng Ram.
+  - **`` k.sh``** - thực hiện lệnh grep với tham số k.
+  - **``n.sh``** - thực hiện lệnh grep với tham số n.
+  - **``n_TH1.sh``** - thực nghiệm tham số n trong TH1.
+  - **``n_TH2.sh``** - thực nghiệm tham số n trong TH2.
+  - **``k_TH1.sh``** - thực nghiệm tham số k trong TH1.
 
-- sheet: chứa bảng tính kết quả đo đạc
-- test: lưu các file của tham số m.
-- Makefile: dùng để thực hiện tự động toàn bộ quá trình thực nghiệm.
-- grep.sh: file shell thực thi chính.
-- init.sh: tạo các thư mục con trong thư mục result để dùng cho việc lưu kết quả.
-- make_csv.cpp: file .cpp dùng để tự động tạo file csv.
-- make_test.csv: file .cpp dùng để tạo tự động các file thử nghiệm của toàn bộ tham số trong cả 2 trường hơp.
-- measure_ram.sh: đo dung lượng Ram và đĩa cứng mà grep sử dụng trong lúc chạy grep (lấy %MEM, RSS, SIZE, VSIZE).
-- remove_end.sh: loại bỏ hàng cuối dùng trong các file sensors, do lúc đo dung lượng Ram sẽ có trường hơp bắt được lệnh grep lúc nó chuẩn bị kết thúc (dung lượng Ram sử dụng bằng 0).
+- **``sheet``**: chứa bảng tính kết quả đo đạc
+- **``test``**: lưu các file của tham số m.
+- **``Makefile``**: dùng để thực hiện tự động toàn bộ quá trình thực nghiệm.
+- **``grep.sh``**: file shell thực thi chính.
+- **``init.sh``**: tạo các thư mục con trong thư mục result để dùng cho việc lưu kết quả.
+- **``make_csv.cpp``**: file .cpp dùng để tự động tạo file csv.
+- **``make_test.csv``**: file .cpp dùng để tạo tự động các file thử nghiệm của toàn bộ tham số trong cả 2 trường hơp.
+- **``measure_ram.sh``**: đo dung lượng Ram và đĩa cứng mà grep sử dụng trong lúc chạy grep (lấy %MEM, RSS, SIZE, VSIZE).
+- **``remove_end.sh``**: loại bỏ hàng cuối dùng trong các file sensors, do lúc đo dung lượng Ram sẽ có trường hơp bắt được lệnh grep lúc nó chuẩn bị kết thúc (dung lượng Ram sử dụng bằng 0).
 
 ## Thực nghiệm.
 ### Môi trường thực nghiệm và các công cụ cần thiết.
@@ -78,14 +78,14 @@
   - 50 chỉ là con số ví dụ.
 
 - Nếu nếu không muốn thực hiện lệnh make auto thì có thể thực hiện với trình tự các lệnh sau:
-  - ``sudo -i`` - chuyển về chế độ root vì lệnh đo dung lượng ổ đĩa được thực hiện trên thư mục /tmp.
-  - ``cd "PATH TO THIS DIRECTORY"`` - chuyển workspace vào thư mục chứa toàn bộ mã nguồn.
-  - ``bash ./init.sh $(NUM_FILE)`` - tạo thư mục trong thư mục result.
-  - ``g++ make_test.cpp -pthread -std=c++2a -o make_test && ./make_test $(NUM_FILE)`` - build và chạy make_csv.cpp để tạo file test cho các tham số.
-  - ``bash ./script/k_TH1.sh $(NUM_FILE);`` - chạy thực nghiệm tham số k trong TH1.
-  - ``bash ./script/n_TH1.sh $(NUM_FILE);`` - chạy thực nghiệm tham số n trong TH1.
-  - ``bash ./script/n_TH2.sh $(NUM_FILE);`` - chạy thực nghiệm tham số n trong TH2.
-  - ``rm -f ~/output.txt`` - xóa file tạm được sinh ra trong lúc thực nghiệm (file này không phải file tạm của grep).
-  - ``bash ./remove_end.sh $(NUM_FILE)`` - xóa hàng cuối cùng trong các file sensors.
-  - ``g++ make_csv.cpp -pthread -std=c++2a -o make_csv && ./make_csv $(NUM_FILE)`` - build và chạy file make_csv.cpp để tạo file .csv tự động.
+  - **``sudo -i``** - chuyển về chế độ root vì lệnh đo dung lượng ổ đĩa được thực hiện trên thư mục /tmp.
+  - **``cd "PATH TO THIS DIRECTORY"``** - chuyển workspace vào thư mục chứa toàn bộ mã nguồn.
+  - **``bash ./init.sh $(NUM_FILE)``** - tạo thư mục trong thư mục result.
+  - **``g++ make_test.cpp -pthread -std=c++2a -o make_test && ./make_test $(NUM_FILE)``** - build và chạy make_csv.cpp để tạo file test cho các tham số.
+  - **``bash ./script/k_TH1.sh $(NUM_FILE)``** - chạy thực nghiệm tham số k trong TH1.
+  - **``bash ./script/n_TH1.sh $(NUM_FILE)``** - chạy thực nghiệm tham số n trong TH1.
+  - **``bash ./script/n_TH2.sh $(NUM_FILE)``** - chạy thực nghiệm tham số n trong TH2.
+  - **``rm -f ~/output.txt``** - xóa file tạm được sinh ra trong lúc thực nghiệm (file này không phải file tạm của grep).
+  - **``bash ./remove_end.sh $(NUM_FILE)`** - xóa hàng cuối cùng trong các file sensors.
+  - **``g++ make_csv.cpp -pthread -std=c++2a -o make_csv && ./make_csv $(NUM_FILE)``** - build và chạy file make_csv.cpp để tạo file .csv tự động.
 - Do nhóm em bắt đầu thực hiện thử nghiệm khi deadline còn khá ngắn nên nhóm em không thực nghiệm được với regex, nhóm em chỉ tìm hiểu về regex và viết vào báo cáo.
