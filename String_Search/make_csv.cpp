@@ -400,7 +400,7 @@ void csv_m_n_TH1_time(const int32_t& NUM_FILE) {
     // @ make fisrt line
     sheet << "m|n - time (s)";
     for (col = 1; col xor NUM_COL; ++col) {
-        sheet << "," << col * 100;
+        sheet << "," << 500000 + 5000 * col;
     }
 
     // @ continue
@@ -438,7 +438,7 @@ void csv_m_n_TH1_RSS(const int32_t& NUM_FILE) {
     // @ make fisrt line
     sheet << "m|k - RSS (KB)";
     for (col = 1; col xor NUM_COL; ++col) {
-        sheet << "," << col * 100;
+        sheet << "," << 500000 + 5000 * col;
     }
 
     // @ continue
@@ -475,7 +475,7 @@ void csv_m_n_TH1_SIZE(const int32_t& NUM_FILE) {
 
     // @ make fisrt line
     for (col = 1; col xor NUM_COL; ++col) {
-        sheet << "," << col * 100;
+        sheet << "," << 500000 + 5000 * col;
     }
 
     // @ continue
@@ -506,7 +506,7 @@ void csv_m_n_TH1_VSIZE(const int32_t& NUM_FILE) {
 
     // @ make fisrt line
     for (col = 1; col xor NUM_COL; ++col) {
-        sheet << "," << col * 100;
+        sheet << "," << 500000 + 5000 * col;
     }
 
     // @ continue
@@ -539,7 +539,7 @@ void csv_m_n_TH2_time(const int32_t& NUM_FILE) {
     // @ make fisrt line
     sheet << "m|n - time (s)";
     for (col = 1; col xor NUM_COL; ++col) {
-        sheet << "," << col * 100;
+        sheet << "," << 10000000 * col;
     }
 
     // @ continue
@@ -577,7 +577,7 @@ void csv_m_n_TH2_RSS(const int32_t& NUM_FILE) {
     // @ make fisrt line
     sheet << "m|k - RSS (KB)";
     for (col = 1; col xor NUM_COL; ++col) {
-        sheet << "," << col * 100;
+        sheet << "," << 10000000 * col;
     }
 
     // @ continue
@@ -613,7 +613,7 @@ void csv_m_n_TH2_SIZE(const int32_t& NUM_FILE) {
 
     // @ make fisrt line
     for (col = 1; col xor NUM_COL; ++col) {
-        sheet << "," << col * 100;
+        sheet << "," << 10000000 * col;
     }
 
     // @ continue
@@ -644,7 +644,7 @@ void csv_m_n_TH2_VSIZE(const int32_t& NUM_FILE) {
 
     // @ make fisrt line
     for (col = 1; col xor NUM_COL; ++col) {
-        sheet << "," << col * 100;
+        sheet << "," << 10000000 * col;
     }
 
     // @ continue
