@@ -6,7 +6,6 @@ auto:
 	bash ./script/k_TH1.sh $(NUM_FILE); 
 	bash ./script/n_TH1.sh $(NUM_FILE);
 	bash ./script/n_TH2.sh $(NUM_FILE);
-	bash ./remove_end.sh $(NUM_FILE)
 	g++ make_csv.cpp -pthread -std=c++2a -o make_csv && ./make_csv $(NUM_FILE)
 	
 
