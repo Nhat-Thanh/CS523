@@ -672,6 +672,10 @@ int main(int args, char** argv) {
     fix_missing_data(NUM_FILE);
     std::cout << "finish first fixing data\n";
     fix_missing_data(NUM_FILE);
+    std::string remove_end_line_command;
+    remove_end_line_command.append("bash ./remove_end.sh ");
+    remove_end_line_command,append(std::to_string(NUM_FILE));
+    system(remove_end_line_command.c_str());
     std::cout << "finish second fixing data\n";
 
     std::thread m_k_TH1_time(csv_m_k_TH1_time, NUM_FILE);
