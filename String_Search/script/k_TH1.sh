@@ -6,4 +6,5 @@ while [ $i -lt "$NUM_FILE" ]; do
 	i=$(($i + 1))
 done
 echo "finish testing param k - TH1"
+rm -f ~/output.txt
 exit 0
