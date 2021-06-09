@@ -63,9 +63,9 @@
 ## Thực nghiệm.
 ### Môi trường thực nghiệm và các công cụ cần thiết.
 - Garuda Linux, có thể sử dụng các distro GNU Linux khác.
-- GNU make.
+- GNU make 4.3.
 - g++ 10 hay bất cứ phiên bản g++ hỗ trợ C++20.
-- bash shell.
+- bash shell 5.1.8.
 
 ### Thực nghiệm
 - CHÚ Ý: **$(NUM_FILE)** là một con số và nó giống nhau với mọi lệnh, nó là số file của tham số m, n, k trong mọi trường hợp và có thể thay đổi tùy theo ý muốn của người sử dụng, nếu NUM_FILE càng lớn thì sẽ yêu cầu dung lượng trống của ổ đĩa dang chứa mã nguồn này phải càng nhiều (NUM_FILE = 100 sẽ cần 610GB dung lượng trống).
