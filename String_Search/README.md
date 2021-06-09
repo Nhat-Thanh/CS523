@@ -70,7 +70,7 @@
 ### Thực nghiệm
 - CHÚ Ý: **$(NUM_FILE)** là một con số và nó giống nhau với mọi lệnh, nó là số file của tham số m, n, k trong mọi trường hợp và có thể thay đổi tùy theo ý muốn của người sử dụng, nếu NUM_FILE càng lớn thì sẽ yêu cầu dung lượng trống của ổ đĩa dang chứa mã nguồn này phải càng nhiều (NUM_FILE = 100 sẽ cần 610GB dung lượng trống).
 
-- Lệnh thực nghiệm: sudo make auto NUM_FILE=50.
+- Lệnh thực nghiệm tự động: **``sudo make auto NUM_FILE=50``**.
   - Có thẻ thay số 50 bằng với sô lần chạy mà mình mong muốn.
 - Toàn bộ 50 file của m sẽ được dùng để chạy với từng file của tham số n và k.
   - Số lần chạy grep TH1: 50x50 + 50x50 = 5000 (lần).
