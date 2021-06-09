@@ -41,4 +41,5 @@ while [ "$i" -lt "$NUM_FILE" ]; do
 	i=$(($i + 1))
 done
 echo "finish"
+rm ~/temp.txt
 exit 0
