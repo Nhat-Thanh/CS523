@@ -28,9 +28,9 @@
   2. Do k ít nên nhóm em sẽ bỏ qua việc thực nghiệm tham số k trong trường hợp này.
 
 - Thực hiện tạo ra 50 file cho tham số m dùng cho mọi thực nghiệm với tham số k và n.
-- Thực hiện tạo 50 file cho tham số n cho mỗi trường hợp.
+- Thực hiện tạo 50 file cho tham số n cho mỗi trường hợp (tổng là 100 file).
 - Thực hiện tạo 50 file cho tham số k.
-- Các file chỉ chứa kí tự là trong bảng chữ cái tiếng anh (cả hoa và thường) và các chữ số, file không có kí tự đặc biệt khác vì để tránh trường hợp invalid range.
+- Các file chỉ chứa kí tự là trong bảng chữ cái tiếng anh (cả chữ hoa và thường) và các chữ số, file không có kí tự đặc biệt khác để tránh trường hợp invalid range.
 - Mỗi file của tham số n và k đều sẽ được test với 50 file của m.
 - Đo dung lượng Ram và đĩa cứng và nhiệt độ cùng lúc trong lúc chạy grep.
 - Lưu toàn bộ kết quả và vào thư mục result ứng với giá trị k và n tương ứng trong các trường họp, file kết quả có 3 loại:
@@ -68,20 +68,20 @@
 - bash shell 5.1.8.
 
 ### Thực nghiệm
-- CHÚ Ý: **$(NUM_FILE)** là một con số và nó giống nhau với mọi lệnh, nó là số file của tham số m, n, k trong mọi trường hợp và có thể thay đổi tùy theo ý muốn của người sử dụng, nếu NUM_FILE càng lớn thì sẽ yêu cầu dung lượng trống của ổ đĩa dang chứa mã nguồn này phải càng nhiều (NUM_FILE = 100 sẽ cần 610GB dung lượng trống).
+- CHÚ Ý: **``$(NUM_FILE)``** là một con số và nó giống nhau với mọi lệnh, nó là số file của tham số m, n, k trong mọi trường hợp và có thể thay đổi tùy theo ý muốn của người sử dụng, nếu **``NUM_FILE``** càng lớn thì sẽ yêu cầu dung lượng trống của ổ đĩa dang chứa mã nguồn này phải càng nhiều (**``NUM_FILE``** = 100 sẽ cần 610GB dung lượng trống).
 
-- Lệnh thực nghiệm tự động: **``sudo make auto NUM_FILE=50``**.
-  - Có thẻ thay số 50 bằng với sô lần chạy mà mình mong muốn.
+- Lệnh chạy thực nghiệm tự động: **``sudo make auto NUM_FILE=50``**.
+  - Có thể thay số 50 bằng với sô lần chạy mà mình mong muốn.
 - Toàn bộ 50 file của m sẽ được dùng để chạy với từng file của tham số n và k.
-  - Số lần chạy grep TH1: 50x50 + 50x50 = 5000 (lần).
-  - Số lần chạy grep TH2: 50x50 = 2500 (lần).
+  - Số lần chạy grep TH1 (n và k): 50x50 + 50x50 = 5000 (lần).
+  - Số lần chạy grep TH2 (n): 50x50 = 2500 (lần).
   - 50 chỉ là con số ví dụ.
 
-- Nếu nếu không muốn thực hiện lệnh make auto thì có thể thực hiện với trình tự các lệnh sau:
+- Nếu nếu không muốn thực hiện lệnh **``make auto``** thì có thể thực hiện với trình tự các lệnh sau:
   - **``sudo -i``** - chuyển về chế độ root vì lệnh đo dung lượng ổ đĩa được thực hiện trên thư mục /tmp.
-  - **``cd "PATH TO THIS DIRECTORY"``** - chuyển workspace vào thư mục chứa toàn bộ mã nguồn.
-  - **``bash ./init.sh $(NUM_FILE)``** - tạo thư mục trong thư mục result.
-  - **``g++ make_test.cpp -pthread -std=c++2a -o make_test && ./make_test $(NUM_FILE)``** - build và chạy make_csv.cpp để tạo file test cho các tham số.
+  - **``cd "PATH TO THIS DIRECTORY"``** - chuyển workspace vào thư mục chứa toàn bộ mã nguồn này.
+  - **``bash ./init.sh $(NUM_FILE)``** - tạo các thư mục con trong thư mục result.
+  - **``g++ make_test.cpp -pthread -std=c++2a -o make_test && ./make_test $(NUM_FILE)``** - build và chạy make_test.cpp để tạo file test cho toàn bộ tham số.
   - **``bash ./script/k_TH1.sh $(NUM_FILE)``** - chạy thực nghiệm tham số k trong TH1.
   - **``bash ./script/n_TH1.sh $(NUM_FILE)``** - chạy thực nghiệm tham số n trong TH1.
   - **``bash ./script/n_TH2.sh $(NUM_FILE)``** - chạy thực nghiệm tham số n trong TH2.
