@@ -59,7 +59,7 @@
   + `lsm` Thư mục này chứa 6 thư mục tương ứng với kết quả của thao tác tương ứng trên các database sử dụng LSM tree, bên trong các thư mục con đều chứa 100 thư mục ứng với kết quả của database có số lượng record tương ứng. 
       + Giống với `btree`
 
-- `script`: Thư mục này chứa file shell, các file shell này sẽ thực hiện với toàn bộ database, tất cả đều cần truyền một đối số là loại tree mà các database sử dụng. 
+- `script`: Thư mục này chứa file shell, các file shell này sẽ thực hiện trên toàn bộ database:
     + `compact.sh`: merge LSM Tree. 
     + `create_database.sh`: Tạo database ứng với từng loại tree. 
     + `delete.sh`: Thực hiện xóa 100000 record. 
@@ -70,7 +70,7 @@
     + `search.sh`: Thực hiện tìm kiếm một giá trị mong muốn 100 lần. 
     + `update.sh`: Thực hiện cập nhật 100000 record. 
 
-- `sheet`: Thư mục này chứa bảng kết quả của từng thao tác với từng loại tree. 
+- `sheet`: Thư mục này chứa bảng kết quả của từng thao tác với từng loại tree:
     + `btree_create_database.csv`: tổng hợp kết quả của thao tác **create_database** trên các btree database.
     + `btree_delete.csv`: tổng hợp kết quả của thao tác **delete** trên các btree database.
     + `btree_insert.csv`: tổng hợp kết quả của thao tác **insert** trên các btree database.
@@ -84,7 +84,7 @@
     + `lsm_search.csv`: tổng hợp kết quả của thao tác **search** trên các lsm tree database.
     + `lsm_update.csv`: tổng hợp kết quả của thao tác **update** trên các lsm tree database.
 
-- `src`: Thư mục chứa mã nguồn của các file thực thi trong thư mục `bin`. 
+- `src`: Thư mục chứa mã nguồn của các file thực thi trong thư mục `bin`:
     + `check_and_fix.cpp`
     + `compact.cpp`
     + `create_btree_table.cpp`
