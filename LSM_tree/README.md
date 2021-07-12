@@ -110,7 +110,7 @@
 	+ **AMOUNT_FOR_OP**: đại diện cho số lượng record mà một "**OP**" cần thao tác, mặc đinh là 100000.
 	+ **STEP**: đại diện số lượng record chênh lệch giữa 2 database liền nhau, mặc định là 100000.
 
-- Makefile có tổng cộng 16 nhãn, mỗi nhãn có thể được gọi để thực hiện một công việc, tất cả các nhãn đều cần được truyền tham só:
+- Makefile có tổng cộng 16 nhãn, mỗi nhãn có thể được gọi để thực hiện một công việc, tất cả các nhãn đều cần được truyền tham số:
     - `auto`: Thực hiện mọi thử nghiệm một cách tự động
         + Các tham số cần truyền: `START`, `END`, `STEP`.
     - `init`: tạo thư mục `result`, `btree_db`, `lsm_db`, `bin` và các thư mục con bên trong.
