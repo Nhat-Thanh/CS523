@@ -1,4 +1,4 @@
-# CS523.L21
+# CS523.L21 - Cấu trúc dữ liệu và giải thuật nâng cao
 ## Contributors
 | Order | Name | Student code |Git|
 |:-----:|:----:|:------------:|:-:|
