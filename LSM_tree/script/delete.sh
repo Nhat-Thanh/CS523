@@ -13,3 +13,4 @@ while [ "$SIZE" -lt "$END" ]; do
         bash script/measure_swinfo.sh $TYPE delete $SIZE $AMOUNT
     SIZE=$(($SIZE + $STEP))
 done
+exit 0

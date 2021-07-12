@@ -3,7 +3,6 @@ START=$2
 END=$3
 STEP=$4
 
-# SIZE=100000
 SIZE=$START
 END=$(($END + 1))
 
@@ -16,3 +15,4 @@ while [ "$SIZE" -lt "$END" ]; do
     echo "sleep 5s"
     sleep 5
 done
+exit 0

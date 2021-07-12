@@ -1,6 +1,11 @@
-SIZE=100000
+START=$1
+END=$2
+STEP=$3
 
-while [ "$SIZE" -lt 10000001 ]; do
+SIZE=$START
+
+while [ "$SIZE" -lt "$END" ]; do
     bin/compact lsm_db/$SIZE
-    SIZE=$(($SIZE + 100000))
+    SIZE=$(($SIZE + $STEP))
 done
+exit 0
