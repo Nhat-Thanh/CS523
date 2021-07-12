@@ -99,7 +99,7 @@
 
 - `Makefile` file tổng hợp các lệnh cần gọi để thực thi, giảm việc gõ lệnh và thực thi tự động, ta sẽ gọi mọi file khác thông qua file này.
 
-**LƯU Ý**: nhũng con số trong phần mô tả trên chi là thực nghiệm đã được là trước đó, các con số này có thể được tùy biến để tạo ra một thử nghiệm mới bằng cách thay đối giá trị của các tham số được truyền vào của `Makefile`.
+**LƯU Ý**: nhũng con số trong phần mô tả trên chi là thực nghiệm đã được làm trước đó, các con số này có thể được tùy biến để tạo ra một thử nghiệm mới bằng cách thay đối giá trị của các tham số được truyền vào của `Makefile`.
 
 ### Quá trình thực nghiệm
 - Trình tự thực hiện: create_database -> open -> insert -> search -> update -> delete.
