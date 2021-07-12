@@ -1,0 +1,23 @@
+	Command being timed: "bin/create_lsm_table 8800000 lsm_db/8800000"
+	User time (seconds): 19.61
+	System time (seconds): 4.98
+	Percent of CPU this job got: 127%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:19.26
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 1069948
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 4
+	Minor (reclaiming a frame) page faults: 260921
+	Voluntary context switches: 50943
+	Involuntary context switches: 890
+	Swaps: 0
+	File system inputs: 3040
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
