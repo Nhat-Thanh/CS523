@@ -26,23 +26,16 @@ auto:
 
 	#=============================== Create Databases ===============================
 	bash script/create_database.sh lsm $(START) $(END) $(STEP)
-	# cp -r lsm_db/ /run/media/thanh/DATA_BACKUP/database/
-	# cp -r btree_db/ /run/media/thanh/DATA_BACKUP/database/
+	bash script/create_database.sh btree $(START) $(END) $(STEP)
 
 	#============================= run LSM tree operation ===========================\
-	sleep 120
 	bash script/open.sh lsm $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
-	sleep 120
 	bash script/insert.sh lsm $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
-	sleep 120
 	bash script/search.sh lsm $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
-	sleep 120
 	bash script/update.sh lsm $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
-	sleep 120
 	bash script/delete.sh lsm $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
 
 	#============================ run Btree tree operation ==========================
-	bash script/create_database.sh btree $(START) $(END) $(STEP)
 	bash script/open.sh btree $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
 	bash script/insert.sh btree $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
 	bash script/search.sh btree $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
@@ -108,6 +101,7 @@ all_database:
 test:
 	bash script/$(OP).sh $(TREE_TYPE) $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
 
+# run all test on Btree database
 test_btree:
 	bash script/open.sh btree $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
 	bash script/insert.sh btree $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
@@ -115,6 +109,7 @@ test_btree:
 	bash script/update.sh btree $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
 	bash script/delete.sh btree $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
 
+# run all test on lsm database
 test_lsm:
 	bash script/open.sh lsm $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
 	bash script/insert.sh lsm $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
@@ -122,6 +117,7 @@ test_lsm:
 	bash script/update.sh lsm $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
 	bash script/delete.sh lsm $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
 
+# check result files and fix it by run again that test case
 check_and_fix:
 	bin/check_and_fix $(START) $(END) $(STEP)
 
@@ -158,13 +154,7 @@ csv:
 	bin/make_csv btree search $(START) $(END) $(STEP)
 	bin/make_csv btree update $(START) $(END) $(STEP)
 	bin/make_csv btree delete $(START) $(END) $(STEP)
-	
-remove_end_lines:
-	bash script/remove_end_lines lsm
-	bash script/remove_end_lines btree
 
+# merge lsm database if it's possible
 compact:
-	bash script/compact.sh
-
-stress_test:
-	bash script/stress_test.sh
+	bash script/compact.sh $(START) $(END) $(STEP)
