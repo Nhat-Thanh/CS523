@@ -11,13 +11,13 @@
 #include <string.h>
 #include <string>
 
-int start;
-int end;
-int step;
+int start;     /* the smallest database size */
+int end;       /* the biggest database size */
+int step;      /* step to jump to next database */
 
 std::string get_last_line(const std::string &input_file_path) {
-    // @src: https://stackoverflow.com/questions/11876290/c-fastest-way-to-read-only-last-line-of-text-file
-    // @answered by alexandros
+    /* @src: https://stackoverflow.com/questions/11876290/c-fastest-way-to-read-only-last-line-of-text-file */
+    /* @answered by alexandros */
     std::string lastline, nextline;
     std::ifstream fs;
     fs.open(input_file_path, std::fstream::in);
@@ -43,11 +43,13 @@ std::string get_last_line(const std::string &input_file_path) {
     return lastline;
 }
 
+/* make a path to save result in */
 void make_res_dir_path(std::string &input,
                        const char *tree_type,
                        const char *op,
                        const int &db_size) {
     input.clear();
+    /* result/tree_type/op/db_size/ */
     input.append("result/");
     input.append(tree_type);
     input.append("/");
@@ -57,12 +59,16 @@ void make_res_dir_path(std::string &input,
     input.append("/");
 }
 
+/* make a command to run the fail test again */
 void make_command(std::string &command,
                   const char *tree_type,
                   const char *op,
                   const int &db_size) {
     command.clear();
+    /* if (op != "create-database") */
     if (strcmp(op, "create_database")) {
+        /* command = make fix TREE_TYPE=tree_type OP=op DB_SIZE=db_size */
+        /* example: make fix TREE_TYPE=lsm OP=insert DB_SIZE=100000 */
         command.append("make fix TREE_TYPE=");
         command.append(tree_type);
         command.append(" OP=");
@@ -70,6 +76,8 @@ void make_command(std::string &command,
         command.append(" DB_SIZE=");
         command.append(std::to_string(db_size));
     } else {
+        /* command = make fix_create_database TREE_TYPE=tree_type DB_SIZE=db_size */
+        /* example: make fix_create_database TREE_TYPE=lsm DB_SIZE=100000 */
         command.append("make fix_create_database TREE_TYPE=");
         command.append(tree_type);
         command.append(" DB_SIZE=");
@@ -81,17 +89,23 @@ void check_vsize(const char *tree_type,
                  const char *op,
                  const int &db_size) {
     std::string filepath;
+    /* make a path to save result and assign it to filepath */
     make_res_dir_path(filepath, tree_type, op, db_size);
+    /* filepath = result/tree_type/op/db_size/sensor.txt */
     filepath.append("sensor.txt");
+    /* a stream object to read file */
     std::ifstream ifs;
     ifs.open(filepath);
     if (ifs.good()) {
+        /* get last time of sensor.txt file */
         std::string lastline(std::move(get_last_line(filepath)));
+        /* if lastline == "" or lastline[0] == '%' */
         if (lastline.empty() | !(lastline[0] xor 37)) {
             printf("type=%s, op=%s, size=%d\n", tree_type, op, db_size);
             ifs.close();
             std::string command;
             make_command(command, tree_type, op, db_size);
+            /* run command on system */
             system(command.c_str());
         }
     }

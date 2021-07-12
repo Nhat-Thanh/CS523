@@ -1,13 +1,10 @@
 /* 
-@ This progream take 2 argument
+@ This progream take 3 argument
 @ argv[1] -> type of database, "lsm" or "btree"
 @ argv[2] -> size of database
 @ argv[3] -> path of place that save database file
 */
 
-// @ finished
-
-#include <string.h>
 #include <wiredtiger.h>
 
 int main(int args, char **argv) {

@@ -4,10 +4,8 @@
 @ argv[2] -> path of place that save database file
 */
 
-// @ finished
-
-#include <string.h>
 #include <wiredtiger.h>
+#include <string.h>
 
 int main(int args, char **argv) {
     WT_CONNECTION *connection;
@@ -15,16 +13,23 @@ int main(int args, char **argv) {
     WT_SESSION *session;
     int *key, *value;
     int ret;
+    /* connection config */
+    const char *conn_config = "cache_size=5G,eviction=(threads_min=4,threads_max=8)";
     const char *table_name = (!strcmp(argv[1], "lsm")) ? "table:LSM" : "table:Btree";
+
     /* Open a connection to the database */
-    wiredtiger_open(argv[2], nullptr,
-                    "cache_size=5G,eviction=(threads_min=4,threads_max=8)",
-                    &connection);
+    wiredtiger_open(argv[2], nullptr, conn_config, &connection);
+    
     /* Open a session handle for the database. */
     connection->open_session(connection, nullptr, nullptr, &session);
+    
+    /* connect table to a cursor */
     session->open_cursor(session, table_name, nullptr, nullptr, &cursor);
-    cursor->reset(cursor); /* Restart the scan. */
+    
+    /* Restart the scan. */
+    cursor->reset(cursor); 
     ret = cursor->next(cursor);
+    
     while (!ret) {
         cursor->get_key(cursor, &key);
         cursor->get_value(cursor, &value);
@@ -32,6 +37,7 @@ int main(int args, char **argv) {
         ret = cursor->next(cursor);
     }
 
+    /* Close all handles. */
     connection->close(connection, nullptr); /* Close all handles. */
     return 0;
 }

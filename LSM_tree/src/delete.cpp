@@ -1,21 +1,24 @@
 /*
-@ This progream take 2 argument
+@ This progream take 4 argument
 @ argv[1] -> a string, type of database, "lsm" or "btree"
 @ argv[2] -> an integer, the first size of database
 @ argv[3] -> a string, path of directory that save database file
 @ argv[4] -> an integer, num of records for this operation
 */
-#include <string.h>
-#include <string>
+
+#include <string.h> /* strcmp() */
+#include <string>   /* append() */
 #include <wiredtiger.h>
 
 int main(int args, char **argv) {
     WT_CONNECTION *connection;
     WT_CURSOR *cursor;
     WT_SESSION *session;
+    /* SIZE = string_to_int(argv[1]) */
     int SIZE = std::stoi(argv[2]);
     int LIMIT = SIZE + std::stoi(argv[4]) + 1;
 
+    /* connection config */
     std::string conn_config;
     conn_config.append("cache_size=2G,mmap_all=false,");
     conn_config.append("lsm_manager=(worker_thread_max=8),");
@@ -25,15 +28,21 @@ int main(int args, char **argv) {
 
     /* Open a connection to the database */
     wiredtiger_open(argv[3], nullptr, conn_config.c_str(), &connection);
+    
+    /* connect database to a session */
     connection->open_session(connection, nullptr, nullptr, &session);
+    
+    /* connect table to a cursor */
     session->open_cursor(session, table_name, nullptr, "overwrite", &cursor);
 
     for (int key = SIZE + 1; key xor LIMIT; ++key) {
         cursor->set_key(cursor, key);
         cursor->remove(cursor);
+        /* Restart the scan. */
         cursor->reset(cursor);
     }
 
-    connection->close(connection, nullptr); /* Close all handles. */
+    /* Close all handles. */
+    connection->close(connection, nullptr);
     return 0;
 }
