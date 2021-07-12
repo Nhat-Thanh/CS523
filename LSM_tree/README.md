@@ -2,7 +2,7 @@
 
 # Chủ đề: Log-Structured Merge-Tree
 
-## Mô tả quá trình thực nghiệm
+## Chuẩn bị cho quá trình thực nghiệm
 
 ### Môi trường thử nghiệm
 - Hệ điều hành: Garuda Linux hoặc các GNU distro khác.
@@ -101,7 +101,7 @@
 
 **LƯU Ý**: nhũng con số trong phần mô tả trên chi là thực nghiệm đã được làm trước đó, các con số này có thể được tùy biến để tạo ra một thử nghiệm mới bằng cách thay đối giá trị của các tham số được truyền vào của `Makefile`.
 
-### Quá trình thực nghiệm
+## Thực nghiệm
 - Trình tự thực hiện: create_database -> open -> insert -> search -> update -> delete.
 - Sử dụng **make** để thực hiện tự động các các thao tác, Makefile có tổng cộng 7 tham số có thể truyền vào, các tham số này có thể tùy biến để phù hợp với các yêu cầu mong muốn:
 	+ **TREE_TYPE**: đại diện cho loại của tree, tham số chỉ nhận giá trị "lsm" hoặc "btree", mặc định là "lsm".
