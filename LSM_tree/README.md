@@ -161,7 +161,7 @@
 - Các file thực thi trong thư mục `bin` nhận vào các tham số, các tham số cần truyền được ghi trong các file mã nguồn, có thể truyền tham số nhiều hơn nhưng cần phải đảm bảo thứ tự của các tham số cần thiết là đúng.
 
 - Có thể dụng lệnh `make auto` với các tham số để chạy toàn bộ thử nghiệm một cách tự động:
-    + Lệnh dùng với cấu trúc thư mục hiện tại: `make auto START=100000 END=10000000 STEP=100000, AMOUNT_FOR_OP=100000`.
+    + Lệnh dùng với cấu trúc thư mục hiện tại: `make auto START=100000 END=10000000 STEP=100000 AMOUNT_FOR_OP=100000`.
     + Có thể tùy biến `START`, `END`, `STEP` và `AMOUNT_FOR_OP` để phù hợp với mục đích, nếu tùy biến tham số thì cần xóa thư mục `btee_db`, `lsm_db`, `result` trước khi chạy `make auto`.
 
 - Sau khi chạy xong toàn bộ thử nghiệm, cần chạy file `check_and_fix` để sửa lại các test case bị lỗi do không đo được dung lượng RAM:
