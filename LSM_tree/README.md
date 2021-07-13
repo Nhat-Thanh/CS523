@@ -9,6 +9,7 @@
 - Công cụ: shell, cmake, g++, du, pgrep, ps, wiredtiger.
 - Yêu câu tối thiểu dung lượng trống trên đĩa cứng là 14GB.
 - Nên thử nghiệm trên HDD để có kết quả chính xác hơn.
+- Cách cài đặt wiredtiger: [tại đây](http://source.wiredtiger.com/1.4.2/install.html)
 
 ### Cấu trúc cây thư mục
 - **`bin`**: Thư mục chứa các file chương trình thực thi. 
