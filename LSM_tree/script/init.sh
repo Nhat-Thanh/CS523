@@ -1,6 +1,6 @@
-START=$1
-END=$2
-STEP=$3
+START=$1  # the smallest database size
+END=$2    # the biggest database size
+STEP=$3   # discrepacy between 2 adjacent database size
 
 SIZE=$START
 END=$(($END + 1))
