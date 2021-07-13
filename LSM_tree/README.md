@@ -3,7 +3,7 @@
 # Chủ đề: Log-Structured Merge-Tree
 
 ## Mục lục
-* [Chuẩn bị cho quá trình thưc nghiệm](#chuẩn-bị-cho-quá-trinh-thử-nghiệm)
+* [Chuẩn bị cho quá trình thưc nghiệm](#chuẩn-bị-cho-quá-trình-thực-nghiệm)
 * [Môi trường thử nghiệm](#môi-trường-thử-nghiệm)
 * [Cấu trúc cây thư mục](#cấu-trúc-cay-thư-mục)
 * [Thực nghiệm](#thực-nghiệm)
