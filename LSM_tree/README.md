@@ -181,6 +181,6 @@
     + **`START`**, **`END`**, **`STEP`** phải giống với lúc chạy lệnh **`make auto`**.
 
 - Chi tiết các bước thực hiện và kết quả thử nghiệm đều được ghi trong file báo cáo:
-- Các kết quả được mô phỏng lại bằng colab.
-	+ Link: [Tại đây](https://colab.research.google.com/drive/1gLP6Bc5lhb_CpKPL5dd92P_poETSQt6j?usp=sharing).
-	+ File colab không có các lệnh để chạy mã nguồn.
+- Các kết quả được mô phỏng và đánh giá: [Tại đây](https://colab.research.google.com/drive/1gLP6Bc5lhb_CpKPL5dd92P_poETSQt6j?usp=sharing).
+
+
