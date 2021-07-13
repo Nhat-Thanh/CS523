@@ -60,7 +60,7 @@
   + **`lsm`** Thư mục này chứa 6 thư mục tương ứng với kết quả của thao tác tương ứng trên các database sử dụng LSM tree, bên trong các thư mục con đều chứa 100 thư mục ứng với kết quả của database có số lượng record tương ứng. 
       + Giống với **`btree`**
 
-- **`script`**: Thư mục này chứa các file shell, các file shell này thao tác trên toàn bộ database:
+- **`script`**: Thư mục này chứa các file shell, các file shell này gọi các chương trình trong thư mục **`bin`** và thao tác trên toàn bộ database:
     + **`compact.sh`**: merge LSM Tree. 
     + **`create_database.sh`**: Tạo database ứng với từng loại tree. 
     + **`delete.sh`**: Thực hiện xóa 100000 record. 
