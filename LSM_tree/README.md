@@ -63,13 +63,13 @@
 - **`script`**: Thư mục này chứa các file shell, các file shell này gọi các chương trình trong thư mục **`bin`** và thao tác trên toàn bộ database:
     + **`compact.sh`**: merge LSM Tree. 
     + **`create_database.sh`**: Tạo database ứng với từng loại tree. 
-    + **`delete.sh`**: Thực hiện xóa 100000 record. 
+    + **`delete.sh`**: Thực hiện xóa 100 000 record. 
     + **`init.sh`**: Tạo các các thư mục **`lsm_db`**, **`btree_db`**, **`bin`** và **`result`**. 
-    + **`insert.sh`**: Thực hiện chèn 100000 record. 
+    + **`insert.sh`**: Thực hiện chèn 100 000 record. 
     + **`measure_swinfo.sh`**: Đo dung lượng RAM và đĩa cứng. 
     + **`open.sh`**: Thực hiện mở và đóng database. 
     + **`search.sh`**: Thực hiện tìm kiếm một key mong muốn 100 lần. 
-    + **`update.sh`**: Thực hiện cập nhật 100000 record. 
+    + **`update.sh`**: Thực hiện cập nhật 100 000 record. 
 
 - **`sheet`**: Thư mục này chứa bảng kết quả của từng thao tác với từng loại tree:
     + **`btree_create_database.csv`**: tổng hợp kết quả của thao tác **create_database** trên các btree database.
@@ -107,11 +107,11 @@
 - Sử dụng **`make`** để thực hiện tự động các các thao tác, Makefile có tổng cộng 7 tham số có thể truyền vào, các tham số này có thể tùy biến để phù hợp với các yêu cầu mong muốn:
 	+ **`TREE_TYPE`**: đại diện cho loại của tree, tham số chỉ nhận giá trị "lsm" hoặc "btree", mặc định là "lsm".
 	+ **`OP`**: viết tắt của "OPERATION", tham số chỉ nhận các giá trị trong tập `{create_database, open, insert, delete, update, seach}`, mặc định là "open".
-	+ **`START`**: đại diện cho kích thước (số record) của database nhỏ nhất, mặc định là 100000.
-	+ **`END`**: đại diện cho kích thước (số record) của database lớn nhất, mặc định là 10000000.
-	+ **`DB_SIZE`**: viết tắt của "DATABASE SIZE", đại diện cho kích thước (số record) của database, mặc định là 10000000.
-	+ **`AMOUNT_FOR_OP`**: đại diện cho số lượng record mà một **`OP`** cần thao tác, mặc đinh là 100000.
-	+ **`STEP`**: đại diện số lượng record chênh lệch giữa 2 database liền nhau, mặc định là 100000.
+	+ **`START`**: đại diện cho kích thước (số record) của database nhỏ nhất, mặc định là 100 000.
+	+ **`END`**: đại diện cho kích thước (số record) của database lớn nhất, mặc định là 10 000 000.
+	+ **`DB_SIZE`**: viết tắt của "DATABASE SIZE", đại diện cho kích thước (số record) của database, mặc định là 10 000 000.
+	+ **`AMOUNT_FOR_OP`**: đại diện cho số lượng record mà một **`OP`** cần thao tác, mặc đinh là 100 000.
+	+ **`STEP`**: đại diện số lượng record chênh lệch giữa 2 database liền nhau, mặc định là 100 000.
 
 - Makefile có tổng cộng 16 nhãn, mỗi nhãn có thể được gọi để thực hiện một công việc, tất cả các nhãn đều cần được truyền tham số:
     - **`auto`**: Thực hiện mọi thử nghiệm một cách tự động
