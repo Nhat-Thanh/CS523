@@ -85,7 +85,7 @@
     + **`lsm_search.csv`**: tổng hợp kết quả của thao tác **search** trên các lsm tree database.
     + **`lsm_update.csv`**: tổng hợp kết quả của thao tác **update** trên các lsm tree database.
 
-- **`src`**: Thư mục chứa mã nguồn của các file chương trình thực thi trong thư mục `bin`:
+- **`src`**: Thư mục chứa mã nguồn của các file chương trình thực thi trong thư mục **`bin`**:
     + **`check_and_fix.cpp`**
     + **`compact.cpp`**
     + **`create_btree_table.cpp`**
