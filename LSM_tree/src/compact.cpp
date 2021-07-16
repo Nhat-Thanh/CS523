@@ -9,7 +9,7 @@ int main(int args, char **argv) {
     WT_CONNECTION *connection;
     WT_CURSOR *cursor;
     WT_SESSION *session;
-    const char *conn_config = "cache_size=4G,eviction=(threads_min=4,threads_max=8)";
+    const char *conn_config = "cache_size=4G,eviction=(threads_min=4,threads_max=4)";
 
     /* Open a connection to the database. */
     wiredtiger_open(argv[1], nullptr, conn_config, &connection);

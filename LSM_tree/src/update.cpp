@@ -6,8 +6,8 @@
 @ argv[4] -> an integer, num of records for this operation
 */
 
-#include <string.h>     /* strcmp() */
-#include <string>       /* append() */
+#include <cstring> /* strcmp() */
+#include <string>  /* std::append(), std::c_str() */
 #include <wiredtiger.h>
 
 int main(int args, char **argv) {

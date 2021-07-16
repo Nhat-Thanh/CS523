@@ -7,10 +7,10 @@
 @ argv[5] ann integer, step at each database size
 */
 
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <string>
+#include <fstream>  /* std::ifstream, std::ofstream */
+#include <iostream> /* std::cout */
+#include <sstream>  /* std::stringstream */
+#include <string>   /* std::append, getline */
 
 int start; /* the smallest database size */
 int end;   /* the biggest database size */

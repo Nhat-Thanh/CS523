@@ -6,8 +6,8 @@
 @ argv[4] -> an integer, num of records for this operation
 */
 
-#include <string.h> /* strcmp() */
-#include <string>   /* append() */
+#include <cstring> /* strcmp() */
+#include <string>  /* append(). std::c_str() */
 #include <wiredtiger.h>
 
 int main(int args, char **argv) {
@@ -28,10 +28,10 @@ int main(int args, char **argv) {
 
     /* Open a connection to the database */
     wiredtiger_open(argv[3], nullptr, conn_config.c_str(), &connection);
-    
+
     /* connect database to a session */
     connection->open_session(connection, nullptr, nullptr, &session);
-    
+
     /* connect table to a cursor */
     session->open_cursor(session, table_name, nullptr, "overwrite", &cursor);
 

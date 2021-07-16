@@ -5,8 +5,8 @@
 @ argv[3] -> a string, path of directory that save database file
 */
 
-#include <string.h>     /* strcmp() */
-#include <string>       /* append() */
+#include <cstring> /* strcmp() */
+#include <string>  /* std::append(), std::c_str() */
 #include <wiredtiger.h>
 
 int main(int args, char **argv) {
@@ -27,10 +27,10 @@ int main(int args, char **argv) {
 
     /* Open a connection to the database */
     wiredtiger_open(argv[3], nullptr, conn_config.c_str(), &connection);
-    
+
     /* Open a session handle for the database. */
     connection->open_session(connection, nullptr, nullptr, &session);
-    
+
     /* connect table to a cursor */
     session->open_cursor(session, table_name, nullptr, "overwrite", &cursor);
 
@@ -40,7 +40,7 @@ int main(int args, char **argv) {
         /* Restart the scan. */
         cursor->reset(cursor);
     }
-    
+
     /* Close all handles. */
     connection->close(connection, nullptr); /* Close all handles. */
     return 0;

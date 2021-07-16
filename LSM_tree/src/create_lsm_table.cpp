@@ -4,7 +4,7 @@
 @ argv[2] -> path of place that save database file
 */
 
-#include <string>
+#include <string> /* std::append, std::c_str() */
 #include <wiredtiger.h>
 
 int main(int args, char **argv) {
@@ -13,7 +13,7 @@ int main(int args, char **argv) {
     WT_CURSOR *cursor;
     /* SIZE = string_to_int(argv[1]) */
     int SIZE = std::stoi(argv[1]) + 1;
-    
+
     /* connection config */
     std::string conn_config;
     conn_config.append("create,cache_size=2G,mmap_all=false,");
@@ -29,13 +29,13 @@ int main(int args, char **argv) {
 
     /* Open a connection to the database. */
     wiredtiger_open(argv[2], nullptr, conn_config.c_str(), &connection);
-    
+
     /* connect database to a session */
     connection->open_session(connection, nullptr, nullptr, &session);
-    
+
     /* create a table that has table_condfig */
     session->create(session, "table:LSM", table_config.c_str());
-    
+
     /* connect table to a cursor */
     session->open_cursor(session, "table:LSM", nullptr, "overwrite", &cursor);
 

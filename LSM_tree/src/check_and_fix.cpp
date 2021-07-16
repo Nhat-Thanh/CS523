@@ -5,15 +5,15 @@
 @ srgv[3] ann integer, step at each database size
 */
 
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <string.h>
-#include <string>
+#include <cstring>  /* strcmp */
+#include <fstream>  /* std::ifstream, std::ofstream, std::seekg() */
+#include <iostream> /* std::cout */
+#include <sstream>  /* std::stringstream */
+#include <string>   /* std::append, getline */
 
-int start;     /* the smallest database size */
-int end;       /* the biggest database size */
-int step;      /* step to jump to next database */
+int start; /* the smallest database size */
+int end;   /* the biggest database size */
+int step;  /* step to jump to next database */
 
 std::string get_last_line(const std::string &input_file_path) {
     /* @src: https://stackoverflow.com/questions/11876290/c-fastest-way-to-read-only-last-line-of-text-file */
@@ -60,7 +60,7 @@ void make_res_dir_path(std::string &input,
 }
 
 /* make a command to run the fail test again */
-void make_command(std::string &command,
+void make_command(std::string &command, 
                   const char *tree_type,
                   const char *op,
                   const int &db_size) {
