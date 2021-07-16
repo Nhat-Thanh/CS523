@@ -122,7 +122,7 @@
 
 - Makefile có tổng cộng 16 nhãn, mỗi nhãn có thể được gọi để thực hiện một công việc, tất cả các nhãn đều cần được truyền tham số:
     - **`auto`**: Thực hiện mọi thử nghiệm một cách tự động
-        + Các tham số cần truyền: **`START`**, **`END`**, **`STEP`**.
+        + Các tham số cần truyền: **`START`**, **`END`**, **`AMOUNT_FOR_OP`**, **`STEP`**.
     - **`init`**: Tạo thư mục **`result`**, **`btree_db`**, **`lsm_db`**, **`bin`** và các thư mục con bên trong.
         + Các tham số cần truyền: **`START`**, **`END`**, **`STEP`**.
     - **`build_all_cpp`**: Build toàn bộ mã nguồn trong thư mục **`src`**.
