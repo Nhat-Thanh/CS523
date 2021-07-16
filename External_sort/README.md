@@ -1,2 +1,2 @@
 # External Sort
-# This is going to be update later.
+# This is going to be updated later.
