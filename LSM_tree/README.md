@@ -180,7 +180,7 @@
     + Lệnh để chạy: **`make csv START=100000 END=10000000 STEP=100000`**.
     + **`START`**, **`END`**, **`STEP`** phải giống với lúc chạy lệnh **`make auto`**.
 
-- Chi tiết các bước thực hiện và kết quả thử nghiệm đều được ghi trong file báo cáo:
+- Chi tiết các bước thực hiện và kết quả thử nghiệm đều được ghi trong file báo cáo: [Tại đây](https://github.com/Nhat-Thanh/CS523.L21/blob/main/LSM_tree/B%C3%81O%20C%C3%81O%20%C4%90%E1%BB%92%20%C3%81N%20V%E1%BB%80%20LSM%20TREE%20(PDF).pdf)
 - Các kết quả được mô phỏng và đánh giá: [Tại đây](https://colab.research.google.com/drive/1gLP6Bc5lhb_CpKPL5dd92P_poETSQt6j?usp=sharing).
 
 
