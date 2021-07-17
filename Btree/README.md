@@ -1,3 +1,4 @@
+# This is going to be updated later.
 # Khảo sát Btree bằng phần mềm SQLite
 ## Quá trình test.
 - Trình tự thực hiện hành động: **OPEN** --> **SEARCH** --> **INSERT** --> **UPDATE** --> **BETWEEN** --> **RANK** --> **DELETE**
