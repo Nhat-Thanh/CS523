@@ -11,7 +11,7 @@
 ## Người thực hiện
 - Vũ Nguyễn Nhật Thanh
 	-  Phụ trách mã nguồn và thực nghiệm.
-	-  Đo đạc, thống kê và biểu diễn kêt quả thành biểu đồ.
+	-  Đo đạc, thống kê và biểu diễn kết quả thành biểu đồ.
 	-  Viết báo cáo phần "THỰC NGHIỆM".
 - Nguyễn Phi Long
 	- Phụ trách lý thuyết về Log-Structured Merge-Tree.
