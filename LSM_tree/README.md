@@ -8,6 +8,16 @@
 * [Cấu trúc cây thư mục](#cấu-trúc-cây-thư-mục)
 * [Thực nghiệm](#thực-nghiệm)
 
+## Người thực hiện
+- Vũ Nguyễn Nhật Thanh
+	-  Phụ trách mã nguồn và thực nghiệm.
+	-  Đo đặc, thống kê và biểu diễn kêt quả thành biểu đồ.
+	-  Viết báo cáo phần "THỰC NGHIỆM".
+- Nguyễn Phi Long
+	- Phụ trách lý thuyết về Log-Structured Merge-Tree.
+	- Lên nội dung cho bài báo cáo.
+	- Viết báo cáo phần "LOG-STRUCTURED MERGE-TREE".
+
 ## Chuẩn bị cho quá trình thực nghiệm
 
 ### Môi trường thử nghiệm
