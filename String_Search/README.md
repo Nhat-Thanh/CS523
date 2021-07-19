@@ -1,5 +1,13 @@
 # Khảo sát phần GNU grep
 
+## Mục lục
+* [Yêu cầu](#yêu-cầu)
+* [Mô tả quá trình khảo sát](#mô-tả-quá-trình-khảo-sát)
+* [Cấu trúc cây thư mục](#cấu-trúc-cây-thư-mục)
+* [Mô tả thực nghiệm](#mô-tả-thực-nghiệm)
+* [Môi trường](#môi-trường)
+* [Thực nghiệm](#thực-nghiệm)
+
 ## Yêu cầu
 - Tìm hiểu và khảo sát hoạt động của các thuật toán Fast  string search và regex, minh họa qua ứng dụng GNU grep
 - Các bạn sẽ khảo sát độ phức tạp của thuật toán string search theo 03 tham số:
@@ -38,7 +46,7 @@
   2. test_(size m)_disk.txt - lưu kết quả do dung lượng của thư mục /tmp.
   3. test_(size m)_sensors.txt - Lưu kết quả của nhiệt độ trước lúc chạy và dung lượng Ram mà grep sử dụng.
 
-## Cấu trúc file trong cây thư mục.
+## Cấu trúc cây thư mục.
 - **``TH1``**: lưu các file dùng cho thực nghiệm với tham số n và k trong trường hợp 1.
 - **``TH2``**: lưu các file dùng cho thực nghiệm với tham số n trong trường hợp 2.
 - **``result``**: lưu các file kết quả của toàn bộ quá trình thực nghiệm.
@@ -60,8 +68,8 @@
 - **``measure_ram.sh``**: đo dung lượng Ram và đĩa cứng mà grep sử dụng trong lúc chạy grep (lấy %MEM, RSS, SIZE, VSIZE).
 - **``remove_end.sh``**: loại bỏ hàng cuối dùng trong các file sensors, do lúc đo dung lượng Ram sẽ có trường hơp bắt được lệnh grep lúc nó chuẩn bị kết thúc (dung lượng Ram sử dụng bằng 0).
 
-## Thực nghiệm.
-### Môi trường thực nghiệm và các công cụ cần thiết.
+## Mô tả thực nghiệm.
+### Môi trường.
 - Garuda Linux, có thể sử dụng các distro GNU Linux khác.
 - GNU make 4.3.
 - g++ 10 hay bất cứ phiên bản g++ hỗ trợ C++20.
