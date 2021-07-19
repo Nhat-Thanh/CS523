@@ -1,5 +1,12 @@
 # Khảo sát Btree bằng phần mềm SQLite
 
+## Mục lục
+* [Yêu cầu](#yêu-cầu)
+* [Quá trình test](#quá-trình-test)
+* [Các lệnh để thực hiện kiểm nghiệm khi test từng database](#các-lệnh-để-thực-hiện-kiểm-nghiệm-khi-test-từng-database)
+* [Lệnh rút gọn](#lệnh-rút-gọn)
+* [Cấu trúc cây thư mục](#cấu-trúc-cây-thư-mục)
+
 ## Yêu cầu
 Tìm hiểu và khảo sát hoạt động của B-Tree được cài đặt qua chương trình tham khảo SQLite
 
@@ -26,6 +33,11 @@ Các đoạn script, và các mã nguồn chương trình đã sử dụng khi t
 File bảng tính thống kê số liệu
 
 File báo cáo mô tả quá trình nghiệm, phân tích số liệu và kết luận, nhận xét
+
+## Môi trường
+- OS: garuda linux
+- Tools: bash, du, ps, pgrep, g++, sqlite, cmake.
+- Lưu ý: g++ phải hỗ trợ C++20.
 
 ## Quá trình test.
 - Trình tự thực hiện hành động: **OPEN** --> **SEARCH** --> **INSERT** --> **UPDATE** --> **BETWEEN** --> **RANK** --> **DELETE**
@@ -54,7 +66,7 @@ File báo cáo mô tả quá trình nghiệm, phân tích số liệu và kết 
 
 ## Lệnh rút gọn.
 - Ta có thể gõ `make auto` để thực hiện toàn bộ quá trình kiểm nghiệm, việc còn lại là dạng háng, treo máy để chờ :)).
-## Cấu trúc chức năng các thành phần trong cây thư mục.	
+## Cấu trúc cây thư mục.	
 - Thư mục **operating_script** chứa các file shell mà file **Btree.sh** gọi tới để thực thi các hành động tương ứng của sqlite.
 	+ **insert.sh** nhận 1 đối số `SIZE (kích thước của database tương ứng)`, và thực hiện insert `50000000` record vào database đó.
 	+ **delete.sh** nhận 1 đối số `SIZE (kích thước của database tương ứng)`, và xóa các số `> SIZE` trong database đó.
