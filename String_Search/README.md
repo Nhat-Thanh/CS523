@@ -1,6 +1,6 @@
 # Khảo sát phần GNU grep
 
-## Yêu cầu của khảo sát
+## Yêu cầu
 - Tìm hiểu và khảo sát hoạt động của các thuật toán Fast  string search và regex, minh họa qua ứng dụng GNU grep
 - Các bạn sẽ khảo sát độ phức tạp của thuật toán string search theo 03 tham số:
   - m: Độ dài của chuỗi cần tìm
@@ -87,3 +87,4 @@
   - **``bash ./script/n_TH2.sh $(NUM_FILE)``** - chạy thực nghiệm tham số n trong TH2.
   - **``g++ make_csv.cpp -pthread -std=c++2a -o make_csv && ./make_csv $(NUM_FILE)``** - build và chạy file make_csv.cpp để tạo file .csv tự động.
 - Do nhóm em bắt đầu thực hiện thử nghiệm khi deadline còn khá ngắn nên nhóm em không thực nghiệm được với regex, nhóm em chỉ tìm hiểu về regex và viết vào báo cáo.
+- Kết quả được mô phỏng bằng colab: [Tại đây](https://colab.research.google.com/drive/1QTFrCZcbJ9Rga5VXxFS3rtHBewB6GSaA?usp=sharing)
