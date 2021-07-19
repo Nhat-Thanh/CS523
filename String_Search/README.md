@@ -4,7 +4,6 @@
 * [Yêu cầu](#yêu-cầu)
 * [Mô tả quá trình khảo sát](#mô-tả-quá-trình-khảo-sát)
 * [Cấu trúc cây thư mục](#cấu-trúc-cây-thư-mục)
-* [Mô tả thực nghiệm](#mô-tả-thực-nghiệm)
 * [Môi trường](#môi-trường)
 * [Thực nghiệm](#thực-nghiệm)
 
@@ -68,18 +67,17 @@
 - **``measure_ram.sh``**: đo dung lượng Ram và đĩa cứng mà grep sử dụng trong lúc chạy grep (lấy %MEM, RSS, SIZE, VSIZE).
 - **``remove_end.sh``**: loại bỏ hàng cuối dùng trong các file sensors, do lúc đo dung lượng Ram sẽ có trường hơp bắt được lệnh grep lúc nó chuẩn bị kết thúc (dung lượng Ram sử dụng bằng 0).
 
-## Mô tả thực nghiệm.
-### Môi trường.
+## Môi trường.
 - Garuda Linux, có thể sử dụng các distro GNU Linux khác.
 - GNU make 4.3.
 - g++ 10 hay bất cứ phiên bản g++ hỗ trợ C++20.
 - bash shell 5.1.8.
 
-### Thực nghiệm
+## Thực nghiệm
 - CHÚ Ý: **``$(NUM_FILE)``** là một con số và nó giống nhau với mọi lệnh, nó là số file của tham số m, n, k trong mọi trường hợp và có thể thay đổi tùy theo ý muốn của người sử dụng, nếu **``NUM_FILE``** càng lớn thì sẽ yêu cầu dung lượng trống của ổ đĩa dang chứa mã nguồn này phải càng nhiều (**``NUM_FILE``** = 100 sẽ cần 610GB dung lượng trống).
 
 - Lệnh chạy thực nghiệm tự động: **``sudo make auto NUM_FILE=50``**.
-  - Có thể thay số 50 bằng với sô lần chạy mà mình mong muốn.
+  - Có thể thay số 50 bằng với số lần chạy mà mình mong muốn.
 - Toàn bộ 50 file của m sẽ được dùng để chạy với từng file của tham số n và k.
   - Số lần chạy grep TH1 (n và k): 50x50 + 50x50 = 5000 (lần).
   - Số lần chạy grep TH2 (n): 50x50 = 2500 (lần).
