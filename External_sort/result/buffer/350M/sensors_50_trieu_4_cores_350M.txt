@@ -27,7 +27,7 @@ acpitz-acpi-0
 Adapter: ACPI interface
 temp1:        +25.0°C  (crit = +107.0°C)
 
-%CPU %MEM     ELAPSED
+%MEM   RSS  SIZE    VSZ
  1.3 107424 358792 369792
  1.7 137256 358792 369792
  1.7 139972 383500 459916
