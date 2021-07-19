@@ -1,4 +1,3 @@
-# This is going to be updated later.
 # Khảo sát Btree bằng phần mềm SQLite
 
 ## Yêu cầu
