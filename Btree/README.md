@@ -1,5 +1,33 @@
 # This is going to be updated later.
 # Khảo sát Btree bằng phần mềm SQLite
+
+## Yêu cầu
+Tìm hiểu và khảo sát hoạt động của B-Tree được cài đặt qua chương trình tham khảo SQLite
+
+Sinh viên tạo một database chỉ có 1 table duy nhất, trong table chỉ có 1 column duy nhất kiểu số nguyên và được index. Kiểm tra cách sqlite cài đặt b-tree bằng cách đo đạc thời gian, dung lượng ram và dung lượng đĩa cứng sử dụng cho các thao tác sau:
+
+- Thời gian open một B-Tree có n phần tử
+
+- Thời gian tìm một phần tử trong B-Tree có n phần tử
+
+- Thời gian xóa một phần tử trong B-Tree có n phần tử
+
+- Thời gian thay đổi giá trị của một phần tử. Trả lời câu hỏi liệu thay đổi giá trị có khác gì với việc xóa đi rồi thêm mới?
+
+- Tìm Rank của một phần tử
+
+- Tìm các phần tử có giá trị nằm trong khoảng cho nào đó
+
+Lưu ý là các thao tác trên có thể được thực hiện rất nhanh. Nên để đó thời gian của một thao tác, đôi khi ta cần lặp đi lặp lại thao tác đó nhiều lân và đo thời gian tổng.
+
+Báo cáo chuẩn bị cho seminar nén lại bằng file .zip và nộp tại đây, nội dung cần có:
+
+Các đoạn script, và các mã nguồn chương trình đã sử dụng khi thử nghiệm: file mã nguồn hoặc/và file colab notebook
+
+File bảng tính thống kê số liệu
+
+File báo cáo mô tả quá trình nghiệm, phân tích số liệu và kết luận, nhận xét
+
 ## Quá trình test.
 - Trình tự thực hiện hành động: **OPEN** --> **SEARCH** --> **INSERT** --> **UPDATE** --> **BETWEEN** --> **RANK** --> **DELETE**
 - Dùng make để tạo database mẫu: cú pháp `make <nhãn> [SIZE=<một con số>]`
@@ -50,3 +78,5 @@
 - **recovery.sh** nhận 1 đối số `SIZE (kích thước của database tương ứng)`, và dùng để khôi phục database có kích thước ban đầu là `SIZE` record.
 - **Btree.sh** nhận 2 đối số `SIZE (kích thước của database tương ứng)`, `OPERATION (hành động thực thi)`, đây là file thực thi chính, nó thực thi `OPERATION` của sqlite với database có `SIZE` record, các đối số có thể truyền `insert, delete, update, rank, between, open, search, all`.
 	+ vd: `bash Btree.sh insert 250000000` -> thực hiện insert vào database có 250000000 record.
+
+- Kết quả được mô phỏng bằng colab: [Tại đây](https://colab.research.google.com/drive/15-eo0HgmPYuE73_BmRjd_5HZxYTiKxf-?usp=sharing)
