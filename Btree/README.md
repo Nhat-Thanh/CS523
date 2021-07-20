@@ -36,7 +36,7 @@ File báo cáo mô tả quá trình nghiệm, phân tích số liệu và kết 
 
 ## Môi trường
 - OS: garuda linux
-- Tools: bash, du, ps, pgrep, g++, sqlite, cmake.
+- Tools: bash, du, ps, pgrep, g++, sqlite, cmake, automake.
 
 ## Quá trình test.
 - Trình tự thực hiện hành động: **OPEN** --> **SEARCH** --> **INSERT** --> **UPDATE** --> **BETWEEN** --> **RANK** --> **DELETE**
