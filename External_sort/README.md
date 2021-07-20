@@ -31,7 +31,7 @@ File báo cáo mô tả quá trình nghiệm, phân tích số liệu và kết 
 
 ## Môi trường
 - OS: ubuntu 20.04
-- Tools: bash, cmake, g++, pgrep, ps, sort.
+- Tools: bash, cmake, automake, g++, pgrep, ps, sort.
 - Dung lượng còn trống của phân vùng chứa OS phải trống trên 40GB, nếu không đủ có thể sử dụng lệnh **`ln`** để link thư mục **`/tmp`** sang ổ đĩa khác. Phải đảm bảo yếu tố này vì **`sort`** sinh ra file tạm và lưu chúng trong **`/tmp`**.
 
 ## Cấu trúc cây thư mục
