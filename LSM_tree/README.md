@@ -123,7 +123,7 @@
 - Trình tự thực hiện: create_database -> open -> insert -> search -> update -> delete.
 - Sử dụng **`make`** để thực hiện tự động các các thao tác, Makefile có tổng cộng 7 tham số có thể truyền vào, các tham số này có thể tùy biến để phù hợp với các yêu cầu mong muốn:
 	+ **`TREE_TYPE`**: đại diện cho loại của tree, tham số chỉ nhận giá trị "lsm" hoặc "btree", mặc định là "lsm".
-	+ **`OP`**: viết tắt của "OPERATION", tham số chỉ nhận các giá trị trong tập `{create_database, open, insert, delete, update, seach}`, mặc định là "open".
+	+ **`OP`**: viết tắt của "OPERATION", tham số chỉ nhận các giá trị trong tập `{create_database, open, insert, delete, update, search}`, mặc định là "open".
 	+ **`START`**: đại diện cho kích thước (số record) của database nhỏ nhất, mặc định là 100 000.
 	+ **`END`**: đại diện cho kích thước (số record) của database lớn nhất, mặc định là 10 000 000.
 	+ **`DB_SIZE`**: viết tắt của "DATABASE SIZE", đại diện cho kích thước (số record) của database, mặc định là 10 000 000.
