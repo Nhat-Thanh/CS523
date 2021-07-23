@@ -22,10 +22,10 @@
 
 ### Môi trường thử nghiệm
 - Hệ điều hành: Garuda Linux hoặc các GNU distro khác.
-- Công cụ: shell, cmake, automake, g++, du, pgrep, ps, wiredtiger.
+- Công cụ: shell, cmake, automake, g++, du, pgrep, ps, WiredTiger.
 - Yêu câu tối thiểu dung lượng trống trên đĩa cứng là 14GB.
 - Nên thử nghiệm trên HDD để có kết quả chính xác hơn.
-- Cách cài đặt wiredtiger: [tại đây](http://source.wiredtiger.com/1.4.2/install.html)
+- Cách cài đặt WiredTiger: [tại đây](http://source.wiredtiger.com/1.4.2/install.html)
 
 ### Cấu trúc cây thư mục
 - **`bin`**: Thư mục chứa các file chương trình thực thi. 
