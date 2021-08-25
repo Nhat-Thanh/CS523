@@ -158,3 +158,7 @@ csv:
 # merge lsm databases if they're possible
 compact:
 	bash script/compact.sh $(START) $(END) $(STEP)
+	
+# print all records on a database having $(DB_SIZE) records
+print_db:
+	bin/print_db $(TREE_TYPE) $(TREE_TYPE)_db/$(DB_SIZE)
