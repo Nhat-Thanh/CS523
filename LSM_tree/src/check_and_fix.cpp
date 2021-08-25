@@ -1,8 +1,8 @@
 /* 
-@ This progream take 3 argument
-@ argv[1] an integer, smallest database size
-@ argv[2] an integer, biggest database size
-@ srgv[3] ann integer, step at each database size
+* This program takes 3 arguments
+* argv[1] an integer, the smallest database size
+* argv[2] an integer, the biggest database size
+* argv[3] an integer, step at each database size
 */
 
 #include <cstring>  /* strcmp */
@@ -11,9 +11,9 @@
 #include <sstream>  /* std::stringstream */
 #include <string>   /* std::append, getline */
 
-int start; /* the smallest database size */
-int end;   /* the biggest database size */
-int step;  /* step to jump to next database */
+int g_nStart; /* the smallest database size */
+int g_nEnd;   /* the biggest database size */
+int g_nStep;  /* step to jump to next database */
 
 std::string get_last_line(const std::string &input_file_path) {
     /* @src: https://stackoverflow.com/questions/11876290/c-fastest-way-to-read-only-last-line-of-text-file */
@@ -22,19 +22,19 @@ std::string get_last_line(const std::string &input_file_path) {
     std::ifstream fs;
     fs.open(input_file_path, std::fstream::in);
     if (fs.is_open()) {
-        //Got to the last character before EOF
+        // Got to the last character before EOF
         fs.seekg(-1, std::ios_base::end);
         if (!(fs.peek() xor 10)) {
-            //Start searching for \n occurrences
+            // Start searching for \n occurrences
             fs.seekg(-1, std::ios_base::cur);
             int i = fs.tellg();
             for (i; i xor 0; i--) {
                 if (!(fs.peek() xor 10)) {
-                    //Found
+                    // Found
                     fs.get();
                     break;
                 }
-                //Move one character back
+                // Move one character back
                 fs.seekg(i, std::ios_base::beg);
             }
         }
@@ -43,7 +43,13 @@ std::string get_last_line(const std::string &input_file_path) {
     return lastline;
 }
 
-/* make a path to save result in */
+/* 
+todo: make a path to saved-results directory
+* input: hold full path
+* tree_type: lsm or btree
+* op: operation's name
+* db_size: the number of records of target database
+*/
 void make_res_dir_path(std::string &input,
                        const char *tree_type,
                        const char *op,
@@ -59,8 +65,14 @@ void make_res_dir_path(std::string &input,
     input.append("/");
 }
 
-/* make a command to run the fail test again */
-void make_command(std::string &command, 
+/* 
+todo: make a command to run the false test case again
+* command: hold full command
+* tree_type: lsm or btree
+* op: operation's name
+* db_size: the number of records of target database
+*/
+void make_command(std::string &command,
                   const char *tree_type,
                   const char *op,
                   const int &db_size) {
@@ -85,27 +97,37 @@ void make_command(std::string &command,
     }
 }
 
+/* 
+todo: check and fix if the result does not have vsize values
+* tree_type: lsm or btree
+* op: operation's name
+* db_size: the number of records of target database
+*/
 void check_vsize(const char *tree_type,
                  const char *op,
                  const int &db_size) {
     std::string filepath;
-    /* make a path to save result and assign it to filepath */
-    make_res_dir_path(filepath, tree_type, op, db_size);
+    // todo: make a path to saved-results directory and assign it to filepath
     /* filepath = result/tree_type/op/db_size/sensor.txt */
+    make_res_dir_path(filepath, tree_type, op, db_size);
     filepath.append("sensor.txt");
-    /* a stream object to read file */
+    
+    // @ a stream object to read file
     std::ifstream ifs;
     ifs.open(filepath);
+    
     if (ifs.good()) {
-        /* get last time of sensor.txt file */
+        // todo: get last line in sensor.txt file
         std::string lastline(std::move(get_last_line(filepath)));
+        
         /* if lastline == "" or lastline[0] == '%' */
         if (lastline.empty() | !(lastline[0] xor 37)) {
             printf("type=%s, op=%s, size=%d\n", tree_type, op, db_size);
             ifs.close();
             std::string command;
             make_command(command, tree_type, op, db_size);
-            /* run command on system */
+            
+            // todo: run the command on system
             system(command.c_str());
         }
     }
@@ -114,24 +136,26 @@ void check_vsize(const char *tree_type,
 
 int main(int args, char **argv) {
     /* 
-    argv[1] an integer, smallest database size
-    argv[2] an integer, biggest database size
-    srgv[3] ann integer, step at each database size
+    * This program takes 3 arguments
+    * argv[1] an integer, the smallest database size
+    * argv[2] an integer, the biggest database size
+    * argv[3] an integer, step at each database size
     */
 
-    start = std::stoi(argv[1]);
-    end = std::stoi(argv[2]);
-    step = std::stoi(argv[3]);
+    g_nStart = std::stoi(argv[1]);
+    g_nEnd = std::stoi(argv[2]);
+    g_nStep = std::stoi(argv[3]);
 
     const char *tree_type[2] = {"lsm", "btree"};
     const char *op[6] = {"create_database", "open", "insert", "search", "update", "delete"};
+
     /* 
-    it: Index Tree
-    io: Index Operation
+    @ it: Index Tree
+    @ io: Index Operation
      */
     for (int it = 0; it < 2; it++) {
         for (int io = 0; io < 6; io++) {
-            for (int SIZE = start; SIZE <= end; SIZE += step) {
+            for (int SIZE = g_nStart; SIZE <= g_nEnd; SIZE += g_nStep) {
                 check_vsize(tree_type[it], op[io], SIZE);
             }
         }
