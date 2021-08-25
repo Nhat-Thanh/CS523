@@ -130,7 +130,7 @@
 	+ **`AMOUNT_FOR_OP`**: đại diện cho số lượng record mà một **`OP`** cần thao tác, mặc đinh là 100 000.
 	+ **`STEP`**: đại diện số lượng record chênh lệch giữa 2 database liền nhau, mặc định là 100 000.
 
-- **`Makefile`** có tổng cộng 16 nhãn, mỗi nhãn có thể được gọi để thực hiện một công việc, tất cả các nhãn đều cần được truyền tham số:
+- **`Makefile`** có tổng cộng 17 nhãn, mỗi nhãn có thể được gọi để thực hiện một công việc, tất cả các nhãn đều cần được truyền tham số:
     - **`auto`**: Thực hiện mọi thử nghiệm một cách tự động
         + Các tham số cần truyền: **`START`**, **`END`**, **`AMOUNT_FOR_OP`**, **`STEP`**.
     - **`init`**: Tạo thư mục **`result`**, **`btree_db`**, **`lsm_db`**, **`bin`** và các thư mục con bên trong.
@@ -163,6 +163,8 @@
         + Các tham số cần truyền: **`START`**, **`END`**, **`STEP`**.
     - **`compact`**: Thực hiện merge các LSM database.
         + Các tham số cần truyền: **`START`**, **`END`**, **`STEP`**.
+    - **`print_db`**: In ra toàn bộ record của một database.
+    	+ Các tham số cần truyền: **`TREE_TYPE`**, **`DB_SIZE`**. 
 
 - Cấu trúc của cây thư mục hiện tại dùng để chạy với các giá trị mặc đinh, nếu muốn chạy với các kích thước và giới hạn khác cần xóa 3 thư mục **`btree_db`**, **`lsm_db`**, **`result`** trước khi chạy.
 
