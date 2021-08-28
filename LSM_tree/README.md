@@ -192,9 +192,7 @@
     + Lệnh để chạy: **`make csv START=100000 END=10000000 STEP=100000`**.
     + **`START`**, **`END`**, **`STEP`** phải giống với lúc chạy lệnh **`make auto`**.
 
-- Chi tiết các bước thực hiện và kết quả thử nghiệm đều được ghi trong file báo cáo: 
-	- Bản sao file báo cáo trên Github: [PDF](https://github.com/Nhat-Thanh/CS523.L21/blob/main/LSM_tree/B%C3%81O%20C%C3%81O%20%C4%90%E1%BB%92%20%C3%81N%20LSM%20TREE.pdf), [DOCX](https://github.com/Nhat-Thanh/CS523.L21/blob/main/LSM_tree/B%C3%81O%20C%C3%81O%20%C4%90%E1%BB%92%20%C3%81N%20LSM%20TREE.docx) 
-	- Bản gốc của file báo cáo: [Tại đây](https://uithcm-my.sharepoint.com/:w:/g/personal/19521791_ms_uit_edu_vn/ESL9xksQW-9Brg3Hk1EKlv8B58owaLZensagduR6XfwRzg?e=pZn8B6)
+- Chi tiết các bước thực hiện và kết quả thử nghiệm đều được ghi trong file báo cáo: [PDF](https://github.com/Nhat-Thanh/CS523.L21/blob/main/LSM_tree/B%C3%81O%20C%C3%81O%20%C4%90%E1%BB%92%20%C3%81N%20LSM%20TREE.pdf), [DOCX](https://github.com/Nhat-Thanh/CS523.L21/blob/main/LSM_tree/B%C3%81O%20C%C3%81O%20%C4%90%E1%BB%92%20%C3%81N%20LSM%20TREE.docx) 
 - Các kết quả được mô phỏng và đánh giá: [Tại đây](https://colab.research.google.com/drive/1gLP6Bc5lhb_CpKPL5dd92P_poETSQt6j?usp=sharing).
 
 
