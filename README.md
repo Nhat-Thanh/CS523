@@ -1,5 +1,7 @@
 # CS523.L21 - Cấu trúc dữ liệu và giải thuật nâng cao
-## Contributors
+## Giảng viên: ThS. Phạm Nguyễn Trường An
+## Năm học: 2020 - 1021
+## Thành viên
 | Order | Name | Student code |Git|
 |:-----:|:----:|:------------:|:-:|
 | 1 | Vũ Nguyễn Nhật Thanh | 19522246 | [Nhat-Thanh](https://github.com/Nhat-Thanh/) |
