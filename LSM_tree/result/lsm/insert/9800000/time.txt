@@ -1,18 +1,18 @@
 	Command being timed: "bin/insert lsm 9800000 lsm_db/9800000 100000"
-	User time (seconds): 0.64
-	System time (seconds): 0.05
-	Percent of CPU this job got: 58%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.19
+	User time (seconds): 4.38
+	System time (seconds): 2.67
+	Percent of CPU this job got: 144%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.88
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 19704
+	Maximum resident set size (kbytes): 78200
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 3363
-	Voluntary context switches: 3141
-	Involuntary context switches: 36
+	Major (requiring I/O) page faults: 2
+	Minor (reclaiming a frame) page faults: 10620
+	Voluntary context switches: 12954
+	Involuntary context switches: 7742
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0

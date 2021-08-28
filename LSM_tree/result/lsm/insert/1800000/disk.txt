@@ -27,14 +27,11 @@
 5	lsm_db/1800000
 5	lsm_db/1800000
 5	lsm_db/1800000
-5	lsm_db/1800000
-5	lsm_db/1800000
-5	lsm_db/1800000
-5	lsm_db/1800000
 9	lsm_db/1800000
 5	lsm_db/1800000
 5	lsm_db/1800000
 5	lsm_db/1800000
+9	lsm_db/1800000
 5	lsm_db/1800000
 5	lsm_db/1800000
 5	lsm_db/1800000

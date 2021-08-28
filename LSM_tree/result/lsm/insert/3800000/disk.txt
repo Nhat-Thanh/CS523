@@ -28,7 +28,15 @@
 5	lsm_db/3800000
 5	lsm_db/3800000
 5	lsm_db/3800000
-9	lsm_db/3800000
+5	lsm_db/3800000
+5	lsm_db/3800000
+5	lsm_db/3800000
+5	lsm_db/3800000
+5	lsm_db/3800000
+5	lsm_db/3800000
+5	lsm_db/3800000
+5	lsm_db/3800000
+5	lsm_db/3800000
 5	lsm_db/3800000
 5	lsm_db/3800000
 5	lsm_db/3800000

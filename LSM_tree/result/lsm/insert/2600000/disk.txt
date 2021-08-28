@@ -27,9 +27,14 @@
 5	lsm_db/2600000
 5	lsm_db/2600000
 5	lsm_db/2600000
-9	lsm_db/2600000
 5	lsm_db/2600000
-9	lsm_db/2600000
+5	lsm_db/2600000
+5	lsm_db/2600000
+5	lsm_db/2600000
+5	lsm_db/2600000
+5	lsm_db/2600000
+5	lsm_db/2600000
+5	lsm_db/2600000
 5	lsm_db/2600000
 5	lsm_db/2600000
 5	lsm_db/2600000

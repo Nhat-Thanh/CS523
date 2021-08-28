@@ -27,9 +27,10 @@
 5	lsm_db/900000
 5	lsm_db/900000
 5	lsm_db/900000
-9	lsm_db/900000
 5	lsm_db/900000
-9	lsm_db/900000
+5	lsm_db/900000
+5	lsm_db/900000
+5	lsm_db/900000
 5	lsm_db/900000
 5	lsm_db/900000
 5	lsm_db/900000
