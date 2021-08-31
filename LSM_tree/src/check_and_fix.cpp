@@ -13,7 +13,7 @@
 
 int g_nStart; /* the smallest database size */
 int g_nEnd;   /* the biggest database size */
-int g_nStep;  /* step to jump to next database */
+int g_nStep;  /* the discrepancy between 2 adjacent database size */
 
 /* 
 todo: get the last line in a file

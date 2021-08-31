@@ -14,8 +14,7 @@
 
 int g_nStart; /* the smallest database size */
 int g_nEnd;   /* the biggest database size */
-int g_nEtep;  /* step to jump to next database */
-
+int g_nStep;  /* the discrepancy between 2 adjacent database size */
 
 /*
 todo: converse str to second
@@ -313,7 +312,7 @@ void make_csv(const char* tree_type, const char* op) {
 
     // todo: push strings to csv file
     sheet << "size (record), time (s), rss (kB), vsize (kB), disk (kB)\n";
-    for (int db_size = g_nStart; db_size <= g_nEnd; db_size += g_nEtep) {
+    for (int db_size = g_nStart; db_size <= g_nEnd; db_size += g_nStep) {
         /* sheet << db_size, time, rss_max, disk_max */
         sheet << db_size;
         sheet << "," << get_time(tree_type, op, db_size);
@@ -338,7 +337,7 @@ int main(int args, char** argv) {
 
     g_nStart = std::stoi(argv[3]);
     g_nEnd = std::stoi(argv[4]);
-    g_nEtep = std::stoi(argv[5]);
+    g_nStep = std::stoi(argv[5]);
 
     make_csv(argv[1], argv[2]);
 
