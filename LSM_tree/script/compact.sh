@@ -7,7 +7,7 @@ STEP=$(($SIZE + 1))
 
 # while (SIZE < END)
 while [ "$SIZE" -lt "$END" ]; do
-    # run compact file in bin directory
+    # run compact in bin directory
     bin/compact lsm_db/$SIZE
     SIZE=$(($SIZE + $STEP))
 done

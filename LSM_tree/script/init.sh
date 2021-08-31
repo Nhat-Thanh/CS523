@@ -22,11 +22,11 @@ mkdir -p result/lsm/update
 mkdir -p result/lsm/delete
 
 while [ "$SIZE" -lt "$END" ]; do
-    # database dir
+    # database directories
     mkdir -p lsm_db/$SIZE
     mkdir -p btree_db/$SIZE
 
-    # result dir with corresponding size
+    # result directories with corresponding size
     mkdir -p result/btree/create_database/$SIZE
     mkdir -p result/btree/open/$SIZE
     mkdir -p result/btree/search/$SIZE

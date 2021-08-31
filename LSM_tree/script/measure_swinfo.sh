@@ -1,7 +1,7 @@
-TYPE=$1   # tree type
-OP=$2     # the name of operation
-SIZE=$3   # the size of database
-AMOUNT=$4 # the amount of record that you want to interact with
+TYPE=$1   # tree type (lsm or btree)
+OP=$2     # name of operation
+SIZE=$3   # size of database
+AMOUNT=$4 # the number of records that you want to interact with
 
 # assign the command of running process to command variable
 if [ "$OP" == "create_database" ]; then
@@ -13,7 +13,7 @@ fi
 SENSORS_PATH="result/$TYPE/$OP/$SIZE/sensor.txt"
 # path of disk.txt file
 DISK_PATH="result/$TYPE/$OP/$SIZE/disk.txt"
-# push sensor infoto sensor.txt
+# push sensor info to sensor.txt
 sensors >$SENSORS_PATH
 echo "" >$DISK_PATH
 echo "%MEM   RSS  SIZE    VSZ" >>$SENSORS_PATH
@@ -21,7 +21,7 @@ echo "%MEM   RSS  SIZE    VSZ" >>$SENSORS_PATH
 # find the process id of COMMAND
 PID=$(pgrep -x --full "$COMMAND")
 
-# while process id of COMMAND still existing
+# while process id of COMMAND is existing
 while [ $(pgrep -x --full "$COMMAND") ]; do
 	# get pmen, rss, size and vsize info and push to sensor.txt
 	ps --pid $PID --format pmem,rss,size,vsize --no-headers >>"$SENSORS_PATH" |

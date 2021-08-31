@@ -1,7 +1,7 @@
-TYPE=$1   # tree type
+TYPE=$1   # tree type (lsm or btree)
 START=$2  # the smallest database size
 END=$3    # the biggest database size
-AMOUNT=$4 # the amount of record that you want to interact with
+AMOUNT=$4 # the number of records that you want to interact with
 STEP=$5   # discrepacy between 2 adjacent database size
 
 SIZE=$START
