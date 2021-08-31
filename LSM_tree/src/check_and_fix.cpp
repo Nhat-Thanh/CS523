@@ -1,8 +1,8 @@
 /* 
 * This program takes 3 arguments
-* argv[1] an integer, the smallest database size
-* argv[2] an integer, the biggest database size
-* argv[3] an integer, step at each database size
+* argv[1] -> an integer, the smallest database size
+* argv[2] -> an integer, the biggest database size
+* argv[3] -> an integer, the discrepancy between 2 adjacent database size
 */
 
 #include <cstring>  /* strcmp */
@@ -15,6 +15,10 @@ int g_nStart; /* the smallest database size */
 int g_nEnd;   /* the biggest database size */
 int g_nStep;  /* step to jump to next database */
 
+/* 
+todo: get the last line in a file
+* input_file_path: the path of file
+*/
 std::string get_last_line(const std::string &input_file_path) {
     /* @src: https://stackoverflow.com/questions/11876290/c-fastest-way-to-read-only-last-line-of-text-file */
     /* @answered by alexandros */
@@ -43,8 +47,9 @@ std::string get_last_line(const std::string &input_file_path) {
     return lastline;
 }
 
+
 /* 
-todo: make a path to saved-results directory
+todo: make a path to result directory
 * input: hold full path
 * tree_type: lsm or btree
 * op: operation's name
@@ -64,6 +69,7 @@ void make_res_dir_path(std::string &input,
     input.append(std::to_string(db_size));
     input.append("/");
 }
+
 
 /* 
 todo: make a command to run the false test case again
@@ -97,6 +103,7 @@ void make_command(std::string &command,
     }
 }
 
+
 /* 
 todo: check and fix if the result does not have vsize values
 * tree_type: lsm or btree
@@ -107,17 +114,17 @@ void check_vsize(const char *tree_type,
                  const char *op,
                  const int &db_size) {
     std::string filepath;
-    // todo: make a path to saved-results directory and assign it to filepath
+    // todo: make a path to result directory and assign it to filepath
     /* filepath = result/tree_type/op/db_size/sensor.txt */
     make_res_dir_path(filepath, tree_type, op, db_size);
     filepath.append("sensor.txt");
     
-    // @ a stream object to read file
+    // @ a stream object to read a file
     std::ifstream ifs;
     ifs.open(filepath);
     
     if (ifs.good()) {
-        // todo: get last line in sensor.txt file
+        // todo: get the last line in sensor.txt file
         std::string lastline(std::move(get_last_line(filepath)));
         
         /* if lastline == "" or lastline[0] == '%' */
@@ -134,12 +141,13 @@ void check_vsize(const char *tree_type,
     ifs.close();
 }
 
+
 int main(int args, char **argv) {
     /* 
     * This program takes 3 arguments
-    * argv[1] an integer, the smallest database size
-    * argv[2] an integer, the biggest database size
-    * argv[3] an integer, step at each database size
+    * argv[1] -> an integer, the smallest database size
+    * argv[2] -> an integer, the biggest database size
+    * argv[3] -> an integer, the discrepancy between 2 adjacent database size
     */
 
     g_nStart = std::stoi(argv[1]);

@@ -1,6 +1,6 @@
 /* 
-* This progream take 1 argument
-* argv[1] -> path of saved-database directory
+* This program takes 1 argument
+* argv[1] -> a string, the path of directory that saves database files
 */
 
 #include <wiredtiger.h>

@@ -1,9 +1,9 @@
 /* 
-* This progream take 4 argument
-* argv[1] -> type of database, "lsm" or "btree"
-* argv[2] -> size of database
-* argv[3] -> path of saved-database directory
-* argv[4] -> num of records for this operation
+* This program takes 4 arguments
+* argv[1] -> a string, tree type (lsm or btree)
+* argv[2] -> an integer, size of database
+* argv[3] -> a string, the path of directory that saves database files
+* argv[4] -> an integer, the number of records for this operation
 */
 
 #include <cstring> /* strcmp() */

@@ -1,10 +1,10 @@
 /* 
-* This program take 5 argument
-* argv[1] a string, type of database, "lsm" or "btree"
-* argv[2] a string, the name of operation (open, insert, ..)
-* argv[3] an integer, the smallest database size
-* argv[4] an integer, the biggest database size
-* argv[5] an integer, step at each database size
+* This program takes 5 arguments
+* argv[1] -> a string, tree type (lsm or btree)
+* argv[2] -> a string, the name of operation (open, insert, ..)
+* argv[3] -> an integer, the smallest database size
+* argv[4] -> an integer, the biggest database size
+* argv[5] -> an integer, the discrepancy between 2 adjacent database size
 */
 
 #include <fstream>  /* std::ifstream, std::ofstream */
@@ -40,7 +40,7 @@ float string_to_second(const std::string& str) {
     if the character at fp_idx is ':'
         return str.size() - 1
     else
-        retun fp_idx - 1 
+        return fp_idx - 1 
     */
     int last = (!(str[fp_idx] xor 58)) ? str.size() - 1 : fp_idx - 1;
 
@@ -81,7 +81,7 @@ float string_to_second(const std::string& str) {
 
     /* if the character at fp_idx is '.' */
     if (!(str[fp_idx++] xor 46)) {
-        // todo: add the value behind the '.' to second variable
+        // todo: add the value behind '.' to second variable
         nth = 10;
         while (fp_idx xor str.size()) {
             second += 1.0 * (str[fp_idx++] - 48) / nth;
@@ -95,7 +95,7 @@ float string_to_second(const std::string& str) {
 
 /* 
 todo: make csv file path and assign to output variable 
-* ouput: hold full path
+* output: hold the full path
 * tree_type: lsm or btree
 * op: operation's name
 */
@@ -115,7 +115,7 @@ void make_csv_path(std::string& output,
 
 /* 
 todo: make a result path and assign to input variable
-* input: hold full path
+* input: hold the full path
 * tree_type: lsm or btree
 * op: operation's name
 * db_size: the number of records of target database
@@ -152,13 +152,13 @@ float get_time(const char* tree_type,
     make_res_dir_path(filepath, tree_type, op, db_size);
     filepath.append("time.txt");
 
-    // @ a stream object to read file
+    // @ a stream object to read a file
     std::ifstream ifs;
     ifs.open(filepath);
 
     std::string needed_line;
     if (ifs.good()) {
-        // todo: jump to 5th line, this line contain time string.
+        // todo: jump to 5th line, this line contains time string.
         for (int32_t line = 0; line xor 5; ++line) {
             getline(ifs, needed_line);
         }
@@ -185,12 +185,12 @@ std::string get_rss_max(const char* tree_type,
     filepath.append("time.txt");
     std::string needed_line;
 
-    // @ a stream object to read file
+    // @ a stream object to read a file
     std::ifstream ifs;
     ifs.open(filepath);
     
     if (ifs.good()) {
-        // todo: jump to 10th line, this line contain maximum rss size string
+        // todo: jump to 10th line, this line contains rss size string
         for (int32_t line = 0; line xor 10; ++line) {
             getline(ifs, needed_line);
         }
@@ -216,7 +216,7 @@ float get_vsize_max(const char* tree_type,
     make_res_dir_path(filepath, tree_type, op, db_size);
     filepath.append("sensor.txt");
 
-    // @ a stream object to read file
+    // @ a stream object to read a file
     std::ifstream ifs;
     ifs.open(filepath);
 
@@ -264,7 +264,7 @@ int get_disk_max(const char* tree_type,
     make_res_dir_path(filepath, tree_type, op, db_size);
     filepath.append("disk.txt");
 
-    // @ a stream object to read file
+    // @ a stream object to read a file
     std::ifstream ifs;
     ifs.open(filepath);
 
@@ -280,11 +280,11 @@ int get_disk_max(const char* tree_type,
         // todo: use linear search to find maximum vsize
         while (!ifs.eof()) {
             getline(ifs, line);
-            // @ a stream object to get values in string
-            // @ by ignoring space character
+            // @ a stream object to get values in a string
+            // @ by ignoring space characters
             std::stringstream ss(line);
 
-            // todo: pass value to MAX
+            // todo: pass value to MAX variable
             ss >> MAX;
 
             DISK_SIZE = (DISK_SIZE < MAX) ? MAX : DISK_SIZE;
@@ -307,11 +307,11 @@ void make_csv(const char* tree_type, const char* op) {
     /* example: sheet/lsm_insert.csv */
     make_csv_path(csv_file_path, tree_type, op);
 
-    // @ a stream object to write file
+    // @ a stream object to write a file
     std::ofstream sheet;
     sheet.open(csv_file_path);
 
-    // todo: Push strings to csv file
+    // todo: push strings to csv file
     sheet << "size (record), time (s), rss (kB), vsize (kB), disk (kB)\n";
     for (int db_size = g_nStart; db_size <= g_nEnd; db_size += g_nEtep) {
         /* sheet << db_size, time, rss_max, disk_max */
@@ -328,11 +328,12 @@ void make_csv(const char* tree_type, const char* op) {
 
 int main(int args, char** argv) {
     /* 
-    * argv[1] a tring, the tree type (lsm, btree)
-    * argv[2] a stirng, the name of operation (open, insert, ..)
-    * argv[3] an integer, the smallest database size
-    * argv[4] an integer, the biggest database size
-    * argv[5] an integer, step at each database size
+    * This program takes 5 arguments
+    * argv[1] -> a string, tree type (lsm or btree)
+    * argv[2] -> a stirng, the name of operation (open, insert, ..)
+    * argv[3] -> an integer, the smallest database size
+    * argv[4] -> an integer, the biggest database size
+    * argv[5] -> an integer, the discrepancy between 2 adjacent database size
     */
 
     g_nStart = std::stoi(argv[3]);

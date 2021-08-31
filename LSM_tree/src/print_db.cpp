@@ -1,7 +1,7 @@
 /* 
-* This progream take 2 argument
-* argv[1] -> type of database, "lsm" or "btree"
-* argv[2] -> path of place that save database file
+* This program takes 2 arguments
+* argv[1] a string, tree type (lsm or btree)
+* argv[2] a string, the path of directory that saves database files
 */
 
 #include <cstring> /* strcmp */

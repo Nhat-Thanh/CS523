@@ -1,7 +1,7 @@
 /* 
-* This progream take 2 argument
-* argv[1] -> the expected size
-* argv[2] -> path of saved-database directory
+* This program takes 2 arguments
+* argv[1] -> an integer, the expected size
+* argv[2] -> a string, the path of directory that saves database files
 */
 
 #include <string> /* std::append, std::c_str() */

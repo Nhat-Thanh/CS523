@@ -1,8 +1,8 @@
 /* 
-* This progream take 3 argument
-* argv[1] -> a string, tree type (lsm, btree)
-* argv[2] -> an integer, the expected key
-* argv[3] -> a string, path of directory that save database file
+* This program takes 3 arguments
+* argv[1] -> a string, tree type (lsm or btree)
+* argv[2] -> an integer, the expected key value
+* argv[3] -> a string, the path of directory that saves database files
 */
 
 #include <cstring> /* strcmp() */
