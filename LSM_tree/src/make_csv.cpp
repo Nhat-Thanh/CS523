@@ -16,8 +16,16 @@ int g_nStart; /* the smallest database size */
 int g_nEnd;   /* the biggest database size */
 int g_nEtep;  /* step to jump to next database */
 
+
+/*
+todo: converse str to second
+* str: a string has format hh::mm::ss.ss 
+	h-> hour
+	m -> minute
+	s -> second
+*/
 float string_to_second(const std::string& str) {
-    // *str's fomat is xx:xx:xx.xx
+    // @ second: returned value
     float second = 0.0f;
     
     // @ fp_idx: floating-point index
@@ -84,11 +92,12 @@ float string_to_second(const std::string& str) {
     return second;
 }
 
+
 /* 
 todo: make csv file path and assign to output variable 
-@ ouput: hold full path
-@ tree_type: lsm or btree
-@ op: operation's name
+* ouput: hold full path
+* tree_type: lsm or btree
+* op: operation's name
 */
 void make_csv_path(std::string& output,
                    const char* tree_type,
@@ -103,9 +112,10 @@ void make_csv_path(std::string& output,
     output.append(".csv");
 }
 
+
 /* 
 todo: make a result path and assign to input variable
-@ input: hold full path
+* input: hold full path
 * tree_type: lsm or btree
 * op: operation's name
 * db_size: the number of records of target database
@@ -125,6 +135,7 @@ void make_res_dir_path(std::string& input,
     input.append(std::to_string(db_size));
     input.append("/");
 }
+
 
 /* 
 todo: get time from time.txt in result/tree_type/op/db_size/ 
@@ -157,6 +168,7 @@ float get_time(const char* tree_type,
     return string_to_second(std::string(needed_line.begin() + 45, needed_line.end()));
 }
 
+
 /* 
 todo: get rss size from time.txt file in result/tree_type/op/db_size/ 
 * tree_type: lsm or btree
@@ -187,6 +199,7 @@ std::string get_rss_max(const char* tree_type,
 
     return std::string(needed_line.begin() + 36, needed_line.end());
 }
+
 
 /* 
 todo: get max vsize from sensor.txt in result/tree_type/op/db_size/ 
@@ -235,6 +248,7 @@ float get_vsize_max(const char* tree_type,
     return VSIZE_MAX;
 }
 
+
 /* 
 todo: get max disk size from disk.txt in result/tree_type/op/db_size/ 
 * tree_type: lsm or btree
@@ -280,6 +294,7 @@ int get_disk_max(const char* tree_type,
     return DISK_SIZE;
 }
 
+
 /* 
 todo: write data to csv file 
 * tree_type: lsm or btree
@@ -309,6 +324,7 @@ void make_csv(const char* tree_type, const char* op) {
     }
     sheet.close();
 }
+
 
 int main(int args, char** argv) {
     /* 
