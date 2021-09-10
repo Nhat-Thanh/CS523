@@ -1,6 +1,6 @@
-START=$1  # the smallest database size
-END=$2    # the biggest database size
-STEP=$3   # discrepacy between 2 adjacent database size
+START=$1  # The smallest database size
+END=$2    # The biggest database size
+STEP=$3   # The discrepacy between 2 adjacent database size
 
 SIZE=$START
 END=$(($END + 1))
@@ -22,11 +22,11 @@ mkdir -p result/lsm/update
 mkdir -p result/lsm/delete
 
 while [ "$SIZE" -lt "$END" ]; do
-    # database directories
+    # Directories hold databases
     mkdir -p lsm_db/$SIZE
     mkdir -p btree_db/$SIZE
 
-    # result directories with corresponding size
+    # Result directories with corresponding size
     mkdir -p result/btree/create_database/$SIZE
     mkdir -p result/btree/open/$SIZE
     mkdir -p result/btree/search/$SIZE

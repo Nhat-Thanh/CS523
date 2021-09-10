@@ -1,27 +1,30 @@
-TYPE=$1   # tree type (lsm or btree)
-OP=$2     # name of operation
-SIZE=$3   # size of database
-AMOUNT=$4 # the number of records that you want to interact with
+TYPE=$1   # Tree type (lsm or btree)
+OP=$2     # Operation's name
+SIZE=$3   # Size of database
+AMOUNT=$4 # The number of records that you want to interact with
 
-# assign the command of running process to command variable
+# Assign the command of running process to command variable
 if [ "$OP" == "create_database" ]; then
 	COMMAND="bin/create_"$TYPE"_table $SIZE "$TYPE"_db/$SIZE"
 else
 	COMMAND="bin/$OP $TYPE $SIZE "$TYPE"_db/$SIZE $AMOUNT"
 fi
-# path of sensor.txt file
+
+# Path of sensor.txt file
 SENSORS_PATH="result/$TYPE/$OP/$SIZE/sensor.txt"
-# path of disk.txt file
+
+# Path of disk.txt file
 DISK_PATH="result/$TYPE/$OP/$SIZE/disk.txt"
-# push sensor info to sensor.txt
+
+# Push sensor info to sensor.txt
 sensors >$SENSORS_PATH
 echo "" >$DISK_PATH
 echo "%MEM   RSS  SIZE    VSZ" >>$SENSORS_PATH
 
-# find the process id of COMMAND
+# Find the process id of COMMAND
 PID=$(pgrep -x --full "$COMMAND")
 
-# while process id of COMMAND is existing
+# While process id of COMMAND is existing
 while [ $(pgrep -x --full "$COMMAND") ]; do
 	# get pmen, rss, size and vsize info and push to sensor.txt
 	ps --pid $PID --format pmem,rss,size,vsize --no-headers >>"$SENSORS_PATH" |
@@ -34,5 +37,7 @@ while [ $(pgrep -x --full "$COMMAND") ]; do
 			--exclude='*.basecfg' \
 			--threshold=1K "$TYPE"_db/$SIZE >>$DISK_PATH 2>/dev/null
 done
+
 echo "finish measuring ram and disk, op=$OP, size=$SIZE, type=$TYPE"
+
 exit 0
