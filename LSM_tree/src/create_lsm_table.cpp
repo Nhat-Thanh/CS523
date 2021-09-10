@@ -1,7 +1,7 @@
 /* 
 * This program takes 2 arguments
-* argv[1] -> an integer, the expected size
-* argv[2] -> a string, the path of directory that saves database files
+* argv[1] -> An integer, the expected size
+* argv[2] -> A string, the path of directory that saves database files
 */
 
 #include <string> /* std::append, std::c_str() */
@@ -13,13 +13,17 @@ int main(int args, char **argv) {
     WT_CURSOR *cursor;
     int SIZE = std::stoi(argv[1]) + 1;
 
-    // @ connection config
+    /* 
+    @ connection config 
+    */
     std::string conn_config;
     conn_config.append("create,cache_size=2G,mmap_all=false,");
     conn_config.append("lsm_manager=(worker_thread_max=8),");
     conn_config.append("eviction=(threads_min=4,threads_max=4)");
 
-    // @ table config
+    /* 
+    @ table config 
+    */
     std::string table_config;
     table_config.append("key_format=i,value_format=i,type=lsm,");
     table_config.append("internal_page_max=128K,leaf_page_max=16K,");
@@ -44,11 +48,13 @@ int main(int args, char **argv) {
         cursor->set_key(cursor, i);
         cursor->set_value(cursor, i);
         cursor->insert(cursor);
+
         // todo: Restart the scan
         cursor->reset(cursor);
     }
 
     // todo: Close all handles
     connection->close(connection, nullptr);
+    
     return 0;
 }

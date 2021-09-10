@@ -1,8 +1,8 @@
 /* 
 * This program takes 3 arguments
-* argv[1] -> a string, tree type (lsm or btree)
-* argv[2] -> an integer, the expected key value
-* argv[3] -> a string, the path of directory that saves database files
+* argv[1] -> A string, tree type (lsm or btree)
+* argv[2] -> An integer, the expected key value
+* argv[3] -> A string, the path of directory that saves database files
 */
 
 #include <cstring> /* strcmp() */
@@ -15,8 +15,10 @@ int main(int args, char **argv) {
     WT_SESSION *session;
     int key = std::stoi(argv[2]);
     int *value;
-
-    // @ connection config
+     
+    /* 
+    @ Connection config 
+    */
     std::string conn_config;
     conn_config.append("cache_size=2G,mmap_all=false,");
     conn_config.append("lsm_manager=(worker_thread_max=8),");
@@ -36,11 +38,13 @@ int main(int args, char **argv) {
     for (int i = 0; i xor 1000; ++i) {
         cursor->set_key(cursor, key);
         cursor->search(cursor);
+        
         // todo: Restart the scan
         cursor->reset(cursor);
     }
 
     // todo: Close all handles
     connection->close(connection, nullptr); /* Close all handles. */
+    
     return 0;
 }

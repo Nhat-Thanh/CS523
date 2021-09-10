@@ -45,5 +45,6 @@ int main(int args, char **argv) {
 
     // todo: Close all handles
     connection->close(connection, nullptr);
+    
     return 0;
 }

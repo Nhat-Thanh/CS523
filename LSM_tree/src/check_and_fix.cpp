@@ -1,8 +1,8 @@
 /* 
 * This program takes 3 arguments
-* argv[1] -> an integer, the smallest database size
-* argv[2] -> an integer, the biggest database size
-* argv[3] -> an integer, the discrepancy between 2 adjacent database size
+* argv[1] -> An integer, the smallest database size
+* argv[2] -> An integer, the biggest database size
+* argv[3] -> An integer, the discrepancy between 2 adjacent database size
 */
 
 #include <cstring>  /* strcmp */
@@ -11,18 +11,18 @@
 #include <sstream>  /* std::stringstream */
 #include <string>   /* std::append, getline */
 
-int g_nStart; /* the smallest database size */
-int g_nEnd;   /* the biggest database size */
-int g_nStep;  /* the discrepancy between 2 adjacent database size */
+int g_nStart; /* The smallest database size */
+int g_nEnd;   /* The biggest database size */
+int g_nStep;  /* The discrepancy between 2 adjacent database size */
 
 /* 
-todo: get the last line in a file
+todo: Get the last line in a file
 * input_file_path: the path of file
 */
 std::string get_last_line(const std::string &input_file_path) {
     /* @src: https://stackoverflow.com/questions/11876290/c-fastest-way-to-read-only-last-line-of-text-file */
     /* @answered by alexandros */
-    std::string lastline, nextline;
+    std::string last_line, nextline;
     std::ifstream fs;
     fs.open(input_file_path, std::fstream::in);
     if (fs.is_open()) {
@@ -42,25 +42,28 @@ std::string get_last_line(const std::string &input_file_path) {
                 fs.seekg(i, std::ios_base::beg);
             }
         }
-        getline(fs, lastline);
+        getline(fs, last_line);
     }
-    return lastline;
+    return last_line;
 }
 
 
 /* 
-todo: make a path to result directory
-* input: hold full path
+todo: Make a path to result directory and assign to input variable
+* input: Hold full directory path
 * tree_type: lsm or btree
-* op: operation's name
-* db_size: the number of records of target database
+* op: Operation's name
+* db_size: The number of records of target database
 */
 void make_res_dir_path(std::string &input,
                        const char *tree_type,
                        const char *op,
                        const int &db_size) {
+    /* 
+    @ input = result/tree_type/op/db_size/ 
+    @ example: result/lsm/insert/100000/
+    */
     input.clear();
-    /* result/tree_type/op/db_size/ */
     input.append("result/");
     input.append(tree_type);
     input.append("/");
@@ -72,11 +75,12 @@ void make_res_dir_path(std::string &input,
 
 
 /* 
-todo: make a command to run the false test case again
-* command: hold full command
+todo: Make a command to run the failing test case again
+todo: The command will be assigned to command variable
+* command: Hold full command
 * tree_type: lsm or btree
-* op: operation's name
-* db_size: the number of records of target database
+* op: Operation's name
+* db_size: The number of records of target database
 */
 void make_command(std::string &command,
                   const char *tree_type,
@@ -85,17 +89,22 @@ void make_command(std::string &command,
     command.clear();
     /* if (op != "create-database") */
     if (strcmp(op, "create_database")) {
-        /* command = make fix TREE_TYPE=tree_type OP=op DB_SIZE=db_size */
-        /* example: make fix TREE_TYPE=lsm OP=insert DB_SIZE=100000 */
+        /* 
+        @ command = make fix TREE_TYPE=tree_type OP=op DB_SIZE=db_size
+        @ example: make fix TREE_TYPE=lsm OP=insert DB_SIZE=100000 
+        */
         command.append("make fix TREE_TYPE=");
         command.append(tree_type);
         command.append(" OP=");
         command.append(op);
         command.append(" DB_SIZE=");
         command.append(std::to_string(db_size));
+
     } else {
-        /* command = make fix_create_database TREE_TYPE=tree_type DB_SIZE=db_size */
-        /* example: make fix_create_database TREE_TYPE=lsm DB_SIZE=100000 */
+        /* 
+        @ command = make fix_create_database TREE_TYPE=tree_type DB_SIZE=db_size
+        @ example: make fix_create_database TREE_TYPE=lsm DB_SIZE=100000 
+        */
         command.append("make fix_create_database TREE_TYPE=");
         command.append(tree_type);
         command.append(" DB_SIZE=");
@@ -105,36 +114,38 @@ void make_command(std::string &command,
 
 
 /* 
-todo: check and fix if the result does not have vsize values
+todo: Check and fix if the result file doesn't have vsize values
 * tree_type: lsm or btree
-* op: operation's name
-* db_size: the number of records of target database
+* op: Operation's name
+* db_size: The number of records of target database
 */
 void check_vsize(const char *tree_type,
                  const char *op,
                  const int &db_size) {
+    /* 
+    @ filepath = result/tree_type/op/db_size/sensor.txt 
+    */
     std::string filepath;
-    // todo: make a path to result directory and assign it to filepath
-    /* filepath = result/tree_type/op/db_size/sensor.txt */
     make_res_dir_path(filepath, tree_type, op, db_size);
     filepath.append("sensor.txt");
     
-    // @ a stream object to read a file
+    /* 
+    @ The stream object to read a file 
+    */
     std::ifstream ifs;
     ifs.open(filepath);
     
     if (ifs.good()) {
-        // todo: get the last line in sensor.txt file
-        std::string lastline(std::move(get_last_line(filepath)));
+        std::string last_line = get_last_line(filepath);
         
-        /* if lastline == "" or lastline[0] == '%' */
-        if (lastline.empty() | !(lastline[0] xor 37)) {
+        /* if last_line == "" or last_line[0] == '%' */
+        if (last_line.empty() | !(last_line[0] xor 37)) {
             printf("type=%s, op=%s, size=%d\n", tree_type, op, db_size);
             ifs.close();
             std::string command;
             make_command(command, tree_type, op, db_size);
             
-            // todo: run the command on system
+            // todo: Run the command on system
             system(command.c_str());
         }
     }
@@ -145,9 +156,9 @@ void check_vsize(const char *tree_type,
 int main(int args, char **argv) {
     /* 
     * This program takes 3 arguments
-    * argv[1] -> an integer, the smallest database size
-    * argv[2] -> an integer, the biggest database size
-    * argv[3] -> an integer, the discrepancy between 2 adjacent database size
+    * argv[1] -> An integer, the smallest database size
+    * argv[2] -> An integer, the biggest database size
+    * argv[3] -> An integer, the discrepancy between 2 adjacent database size
     */
 
     g_nStart = std::stoi(argv[1]);

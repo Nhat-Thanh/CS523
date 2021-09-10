@@ -1,6 +1,6 @@
 /* 
 * This program takes 1 argument
-* argv[1] -> a string, the path of directory that saves database files
+* argv[1] -> A string, the path of directory that saves database files
 */
 
 #include <wiredtiger.h>
@@ -25,5 +25,6 @@ int main(int args, char **argv) {
 
     // todo: Close all handles
     connection->close(connection, nullptr);
+    
     return 0;
 }

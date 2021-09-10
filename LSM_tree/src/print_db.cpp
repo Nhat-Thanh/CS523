@@ -1,7 +1,7 @@
 /* 
 * This program takes 2 arguments
-* argv[1] a string, tree type (lsm or btree)
-* argv[2] a string, the path of directory that saves database files
+* argv[1] A string, tree type (lsm or btree)
+* argv[2] A string, the path of directory that saves database files
 */
 
 #include <cstring> /* strcmp */
@@ -13,6 +13,7 @@ int main(int args, char **argv) {
     WT_SESSION *session;
     int *key, *value;
     int ret;
+    
     // todo: Connection config
     const char *conn_config = "cache_size=2G,eviction=(threads_min=4,threads_max=4)";
     const char *table_name = (!strcmp(argv[1], "lsm")) ? "table:LSM" : "table:Btree";
@@ -39,5 +40,6 @@ int main(int args, char **argv) {
 
     // todo: Close all handles
     connection->close(connection, nullptr);
+    
     return 0;
 }

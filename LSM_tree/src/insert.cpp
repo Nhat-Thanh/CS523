@@ -1,9 +1,9 @@
 /* 
 * This program takes 4 arguments
-* argv[1] -> a string, tree type (lsm or btree)
-* argv[2] -> an integer, size of database
-* argv[3] -> a string, the path of directory that saves database files
-* argv[4] -> an integer, the number of records for this operation
+* argv[1] -> A string, tree type (lsm or btree)
+* argv[2] -> An integer, size of database
+* argv[3] -> A string, the path of directory that saves database files
+* argv[4] -> An integer, the number of records for this operation
 */
 
 #include <cstring> /* strcmp() */
@@ -17,7 +17,9 @@ int main(int args, char **argv) {
     int SIZE = std::stoi(argv[2]);
     int LIMIT = SIZE + std::stoi(argv[4]) + 1;
 
-    // @ connection config
+    /* 
+    @ Connection config 
+    */
     std::string conn_config;
     conn_config.append("cache_size=2G,mmap_all=false,");
     conn_config.append("lsm_manager=(worker_thread_max=8),");
@@ -38,11 +40,13 @@ int main(int args, char **argv) {
         cursor->set_key(cursor, key);
         cursor->set_value(cursor, key);
         cursor->insert(cursor);
+    
         // todo: Restart the scan
         cursor->reset(cursor);
     }
 
     // todo: Close all handles
     connection->close(connection, nullptr);
+    
     return 0;
 }
