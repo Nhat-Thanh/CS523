@@ -35,7 +35,7 @@ auto:
 	bash script/update.sh lsm $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
 	bash script/delete.sh lsm $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
 
-	#============================ Run Btree tree operations ==========================
+	#============================ Run Btree operations ==========================
 	bash script/open.sh btree $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
 	bash script/insert.sh btree $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
 	bash script/search.sh btree $(START) $(END) $(AMOUNT_FOR_OP) $(STEP)
